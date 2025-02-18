@@ -11,6 +11,8 @@ Built off of USB HID Terminal, this connects to a Shure MVX2U to send/receive HI
 
 <!-- TODO: show gradle build steps -->
 
+![](screenshot.jpg)
+
 ## LICENSE
 
 Copyright 2024 452 emetemunoy.
