@@ -3,15 +3,34 @@
 ShureDroid
 ==========
 
-Built off of USB HID Terminal, this connects to a Shure MVX2U to send/receive HID packets.
+Built off of [USB HID Terminal](https://github.com/452/USBHIDTerminal),
+this connects to a Shure MVX2U to send/receive HID packets.
 
-<!-- TODO: play store link -->
+<img src="screenshot.jpg" width=240>
+
+
+## Getting Started
+
+<!-- TODO: play store and/or f-droid link -->
 
 <!-- TODO: link apk in releases -->
 
+### Build
+
 <!-- TODO: show gradle build steps -->
 
-![](screenshot.jpg)
+
+## Checklist
+
+- [ ] send and receive configuration packets for all known settings
+- [ ] create crude UI for each packet
+- [ ] fix USB device detection/capture
+- [ ] UI improvements
+    - [ ] bring back status bar, appropriate layout
+    - [ ] EQ view
+    - [ ] get the whole thing looking great on tablet, too
+    - [ ] status bar gain setter?
+
 
 ## LICENSE
 
