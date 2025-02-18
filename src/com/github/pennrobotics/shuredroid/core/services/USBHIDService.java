@@ -21,6 +21,8 @@ import com.github.pennrobotics.shuredroid.core.events.LogMessageEvent;
 import com.github.pennrobotics.shuredroid.core.events.ShowDevicesListEvent;
 import com.github.pennrobotics.shuredroid.core.events.USBDataReceiveEvent;
 
+import java.io.ByteArrayOutputStream;
+
 public class USBHIDService extends AbstractUSBHIDService {
 
 	private String delimiter;
@@ -34,10 +36,6 @@ public class USBHIDService extends AbstractUSBHIDService {
 
 	@Override
 	public void onCommand(Intent intent, String action, int flags, int startId) {
-		if (Consts.RECEIVE_DATA_FORMAT.equals(action)) {
-			receiveDataFormat = intent.getStringExtra(Consts.RECEIVE_DATA_FORMAT);
-			delimiter = intent.getStringExtra(Consts.DELIMITER);
-		}
 		super.onCommand(intent, action, flags, startId);
 	}
 
@@ -164,7 +162,7 @@ public class USBHIDService extends AbstractUSBHIDService {
 
 	@Override
 	public void onUSBDataSending(String data) {
-		mLog("Sending: " + data);
+		mLog("SEND: " + data);
 	}
 
 	@Override
@@ -172,41 +170,19 @@ public class USBHIDService extends AbstractUSBHIDService {
 		if (status <= 0) {
 			mLog("Unable to send");
 		} else {
-			mLog("Sended " + status + " bytes");
-			for (int i = 0; i < out.length/* && out[i] != 0*/; i++) {
-				mLog(Consts.SPACE + USBUtils.toInt(out[i]));
-			}
+			mLog("Sent " + status + " bytes");
+				mLog(USBUtils.toHex(out));
 		}
 	}
 
 	@Override
 	public void onSendingError(Exception e) {
-		mLog("Please check your bytes, sent as text");
+		mLog("onSendingError exception");
 	}
 
 	@Override
 	public void onUSBDataReceive(byte[] buffer) {
-
-		StringBuilder stringBuilder = new StringBuilder();
-		int i = 0;
-		if (receiveDataFormat.equals(Consts.INTEGER)) {
-			for (; i < buffer.length/* && buffer[i] != 0*/; i++) {
-				stringBuilder.append(delimiter).append(String.valueOf(USBUtils.toInt(buffer[i])));
-			}
-		} else if (receiveDataFormat.equals(Consts.HEXADECIMAL)) {
-			for (; i < buffer.length/* && buffer[i] != 0*/; i++) {
-				stringBuilder.append(delimiter).append(Integer.toHexString(buffer[i]));
-			}
-		} else if (receiveDataFormat.equals(Consts.TEXT)) {
-			for (; i < buffer.length/* && buffer[i] != 0*/; i++) {
-				stringBuilder.append(String.valueOf((char) buffer[i]));
-			}
-		} else if (receiveDataFormat.equals(Consts.BINARY)) {
-			for (; i < buffer.length/* && buffer[i] != 0*/; i++) {
-				stringBuilder.append(delimiter).append("0b").append(Integer.toBinaryString(Integer.valueOf(buffer[i])));
-			}
-		}
-		eventBus.post(new USBDataReceiveEvent(stringBuilder.toString(), i));
+		eventBus.post(new USBDataReceiveEvent(buffer));
 	}
 
 	private void mLog(String log) {
@@ -226,18 +202,18 @@ public class USBHIDService extends AbstractUSBHIDService {
 						.setAction(Consts.USB_HID_TERMINAL_CLOSE_ACTION),
 				PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
 		mNotificationBuilder
-				.setSmallIcon(R.drawable.ic_launcher)
+				.setSmallIcon(R.mipmap.ic_launcher)
 				.setCategory(NotificationCompat.CATEGORY_SERVICE)
 				.setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-				.setContentTitle(getText(R.string.app_name))
+				//.setContentTitle(getText(R.string.app_name))
 				.setWhen(System.currentTimeMillis())
 				.setContentIntent(pendingIntent)
 				.addAction(android.R.drawable.ic_menu_close_clear_cancel,
 						getString(R.string.action_exit), pendingCloseIntent)
 				.setOngoing(true);
-		mNotificationBuilder
-				.setTicker(getText(R.string.app_name))
-				.setContentText(getText(R.string.app_name));
+		//mNotificationBuilder
+		//		.setTicker(getText(R.string.app_name))
+		//		.setContentText(getText(R.string.app_name));
 		if (mNotificationManager != null) {
 			mNotificationManager.notify(Consts.USB_HID_TERMINAL_NOTIFICATION, mNotificationBuilder.build());
 		}

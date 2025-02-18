@@ -121,6 +121,8 @@ public abstract class AbstractUSBHIDService extends Service {
 									final int status = connection.bulkTransfer(endPointRead, buffer, buffer.length, 100);
 									if (buffer.length != 64) {
 										// TODO: throw away received packets unless they are 64 bytes
+									} else if (buffer.length > 4 && buffer[2] == 0x4 && buffer[3] == 0x20) {
+										// TODO: ignore this packet for now
 									} else if (status > 0) {
 										uiHandler.post(new Runnable() {
 											@Override
@@ -187,38 +189,6 @@ public abstract class AbstractUSBHIDService extends Service {
 						onUSBDataSended(status, bytes);
 						status = connection.controlTransfer(0x21, REQUEST_SET_REPORT, REPORT_TYPE_OUTPUT, 0x02, bytes, bytes.length, 250);
 						onUSBDataSended(status, bytes);
-					}
-				}
-			}
-		}
-	}
-
-	private void sendData(String data, boolean sendAsString) {
-		if (device != null && mUsbManager.hasPermission(device) && !data.isEmpty()) {
-			// mLog(connection +"\n"+ device +"\n"+ request +"\n"+
-			// packetSize);
-			for (UsbInterface intf: interfacesList) {
-				for (int i = 0; i < intf.getEndpointCount(); i++) {
-					UsbEndpoint endPointWrite = intf.getEndpoint(i);
-					if (UsbConstants.USB_DIR_OUT == endPointWrite.getDirection()) {
-						byte[] out = data.getBytes();// UTF-16LE
-						// Charset.forName("UTF-16")
-						onUSBDataSending(data);
-						if (sendAsString) {
-							try {
-								String str[] = data.split("[\\s]");
-								out = new byte[str.length];
-								for (int s = 0; s < str.length; s++) {
-									out[s] = USBUtils.toByte(Integer.decode(str[s]));
-								}
-							} catch (Exception e) {
-								onSendingError(e);
-							}
-						}
-						int status = connection.bulkTransfer(endPointWrite, out, out.length, 250);
-						onUSBDataSended(status, out);
-						status = connection.controlTransfer(0x21, REQUEST_SET_REPORT, REPORT_TYPE_OUTPUT, 0x02, out, out.length, 250);
-						onUSBDataSended(status, out);
 					}
 				}
 			}

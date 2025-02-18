@@ -7,7 +7,6 @@ import android.content.Intent;
 import androidx.test.rule.ActivityTestRule;
 
 import com.github.pennrobotics.shuredroid.ShureDroid;
-import com.github.pennrobotics.shuredroid.core.services.SocketService;
 
 import org.junit.Test;
 

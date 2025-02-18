@@ -4,14 +4,14 @@
     android:layout_height="fill_parent"
     android:orientation="vertical"
     android:windowSoftInputMode="stateHidden"
-    tools:context=".USBHIDTerminal">
+    tools:context=".ShureDroid">
 
     <Button
         android:id="@+id/btnSelectHIDDevice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:minWidth="50dip"
-        android:minHeight="36dip"
+        android:minHeight="42dip"
         android:text="@string/selectHIDDevice"
         android:textAppearance="?android:attr/textAppearanceSmallInverse" />
 
@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/btnSelectHIDDevice"
-        android:minHeight="36dip"
+        android:minHeight="42dip"
         android:text="@string/clear"
         android:textAppearance="?android:attr/textAppearanceSmallInverse" />
 
@@ -29,62 +29,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/btnClear"
-        android:minHeight="36dip"
+        android:minHeight="42dip"
         android:text="TPkt"
-        android:textAppearance="?android:attr/textAppearanceSmallInverse"
-        />
+        android:textAppearance="?android:attr/textAppearanceSmallInverse" />
 
     <RadioGroup
         android:id="@+id/radioGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/btnSelectHIDDevice"
-        android:orientation="horizontal">
-
-        <RadioButton
-            android:id="@+id/rbSendText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="@string/sendText"
-            android:textAppearance="?android:attr/textAppearanceSmallInverse" />
-
-        <RadioButton
-            android:id="@+id/rbSendData"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/sendData"
-            android:textAppearance="?android:attr/textAppearanceSmallInverse" />
-    </RadioGroup>
-
-    <Button
-        android:id="@+id/btnSend"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/radioGroup"
-        android:enabled="false"
-        android:minHeight="36dip"
-        android:text="@string/send"
-        android:textAppearance="?android:attr/textAppearanceSmallInverse">
-
-        <requestFocus />
-    </Button>
-
-    <EditText
-        android:id="@+id/edtxtHidInput"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/radioGroup"
-        android:layout_toRightOf="@id/btnSend"
-        android:hint="0x81 #81"
-        android:inputType="text"
-        android:textAppearance="?android:attr/textAppearanceSmallInverse" />
+        android:orientation="horizontal"/>
 
     <ScrollView
         android:id="@+id/scroll"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_below="@id/btnSend"
+        android:layout_below="@id/btnSelectHIDDevice"
         android:orientation="vertical">
 
         <EditText
