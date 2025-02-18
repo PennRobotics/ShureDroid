@@ -11,12 +11,13 @@ this connects to a Shure MVX2U to send/receive HID packets.
 
 ## Getting Started
 
+_The .apk is currently being developed. Build from source._
 <!-- TODO: play store and/or f-droid link -->
-
 <!-- TODO: link apk in releases -->
 
 ### Build
 
+_Until I get instructions up, refer to the 452 repo._
 <!-- TODO: show gradle build steps -->
 
 
