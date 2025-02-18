@@ -1,31 +1,13 @@
-USBHIDTerminal for Android
-==============
-[![Build Status](https://travis-ci.org/452/USBHIDTerminal.svg?branch=develop)](https://travis-ci.org/452/USBHIDTerminal)
+ShureDroid
+==========
 
-This application was created in my hobby time.
+Built off of USB HID Terminal, this connects to a Shure MVX2U to send/receive HID packets.
 
-USB HID Terminal provide access to HID USB devices.
-HID Terminal can be used for transfer any commands or any data to your USB HID devices.
-USB HID Terminal - can receive and send bytes, hex, binary, text.
+<!-- TODO: play store link -->
 
-https://play.google.com/store/apps/details?id=com.appspot.usbhidterminal
+<!-- TODO: link apk in releases -->
 
-binary APK:
-https://github.com/452/USBHIDTerminalAPKRepo
-
-for Gradle: [https://docs.gradle.org/current/userguide/installation.html]
-
-    $ git clone https://github.com/452/USBHIDTerminal.git
-    $ cd USBHIDTerminal
-    $ ./gradlew build
-
-result you can find:
-> USBHIDTerminal/build/outputs/apk/USBHIDTerminal-release-unsigned.apk
-
-If you have some problem or want to improve this application you can help me, or just say me about this.
-We can make this world better.
-
-;) Ukraine
+<!-- TODO: show gradle build steps -->
 
 ## LICENSE
 
