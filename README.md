@@ -1,3 +1,5 @@
+![](res/mipmap-xxhdpi/ic_launcher.png)
+
 ShureDroid
 ==========
 
