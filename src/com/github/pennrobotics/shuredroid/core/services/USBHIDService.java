@@ -43,12 +43,12 @@ public class USBHIDService extends AbstractUSBHIDService {
 
 	@Override
 	public void onDeviceConnected(UsbDevice device) {
-		mLog("device VID:0x" + Integer.toHexString(device.getVendorId()) + " PID:0x" + Integer.toHexString(device.getProductId()) + " " + device.getDeviceName() + " connected");
+		mLog(device.getProductName() + " connected");
 	}
 
 	@Override
 	public void onDeviceDisconnected(UsbDevice device) {
-		mLog("device disconnected");
+		mLog("Disconnected");
 		eventBus.post(new DeviceDetachedEvent());
 	}
 
@@ -67,28 +67,13 @@ public class USBHIDService extends AbstractUSBHIDService {
 		eventBus.post(new ShowDevicesListEvent(deviceName));
 	}
 
-	private String directionInfo(int data) {
-		if (UsbConstants.USB_DIR_IN == data) {
-			return "IN " + showDecHex(data);
-		}
-		if (UsbConstants.USB_DIR_OUT == data) {
-			return "OUT " + showDecHex(data);
-		}
-		return "NA " + showDecHex(data);
-	}
-
 	private String showDecHex(int data) {
 		return  data + " 0x" + Integer.toHexString(data);
 	}
 
 	@Override
 	public CharSequence onBuildingDevicesList(UsbDevice usbDevice) {
-		return "VID:0x" + Integer.toHexString(usbDevice.getVendorId()) + " PID:0x" + Integer.toHexString(usbDevice.getProductId()) + " " + usbDevice.getDeviceName() + " devID:" + usbDevice.getDeviceId();
-	}
-
-	@Override
-	public void onUSBDataSending(String data) {
-		mLog("SEND: " + data);
+		return usbDevice.getDeviceName() + " devID:" + usbDevice.getDeviceId();
 	}
 
 	@Override
@@ -99,11 +84,6 @@ public class USBHIDService extends AbstractUSBHIDService {
 			mLog("Sent " + status + " bytes");
 			mLog(USBUtils.toHex(out));
 		}
-	}
-
-	@Override
-	public void onSendingError(Exception e) {
-		mLog("onSendingError exception");
 	}
 
 	@Override
@@ -131,15 +111,15 @@ public class USBHIDService extends AbstractUSBHIDService {
 				.setSmallIcon(R.mipmap.ic_launcher)
 				.setCategory(NotificationCompat.CATEGORY_SERVICE)
 				.setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-				//.setContentTitle(getText(R.string.app_name))
+				.setContentTitle(getText(R.string.app_name))
 				.setWhen(System.currentTimeMillis())
 				.setContentIntent(pendingIntent)
 				.addAction(android.R.drawable.ic_menu_close_clear_cancel,
 						getString(R.string.action_exit), pendingCloseIntent)
 				.setOngoing(true);
-		//mNotificationBuilder
-		//		.setTicker(getText(R.string.app_name))
-		//		.setContentText(getText(R.string.app_name));
+		mNotificationBuilder
+				.setTicker(getText(R.string.app_name))
+				.setContentText(getText(R.string.app_name));
 		if (mNotificationManager != null) {
 			mNotificationManager.notify(Consts.USB_HID_TERMINAL_NOTIFICATION, mNotificationBuilder.build());
 		}

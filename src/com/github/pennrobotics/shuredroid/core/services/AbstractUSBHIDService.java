@@ -22,6 +22,7 @@ import android.os.IBinder;
 import android.util.Log;
 
 import com.github.pennrobotics.shuredroid.core.Consts;
+import com.github.pennrobotics.shuredroid.core.events.LogMessageEvent;
 import com.github.pennrobotics.shuredroid.core.events.PrepareDevicesListEvent;
 import com.github.pennrobotics.shuredroid.core.events.SelectDeviceEvent;
 import com.github.pennrobotics.shuredroid.core.events.USBDataSendEvent;
@@ -106,33 +107,17 @@ public abstract class AbstractUSBHIDService extends Service {
 					while (!isStopped) {
 						for (UsbInterface intf: interfacesList) {
 							for (int i = 0; i < intf.getEndpointCount(); i++) {
+								//eventBus.post(new LogMessageEvent("(" + Integer.toString(i) + ")"));  // TODO-debug
 								UsbEndpoint endPointRead = intf.getEndpoint(i);
 								if (UsbConstants.USB_DIR_IN == endPointRead.getDirection()) {
 									final byte[] buffer = new byte[endPointRead.getMaxPacketSize()];
-									final int status = connection.bulkTransfer(endPointRead, buffer, buffer.length, 100);
-									if (buffer.length != 64) {
-										// TODO: throw away received packets unless they are 64 bytes
-									} else if (buffer.length > 4 && buffer[2] == 0x4 && buffer[3] == 0x20) {
-										// TODO: ignore this packet for now
-									} else if (status > 0) {
+									if (0 < connection.bulkTransfer(endPointRead, buffer, buffer.length, 100)) {
 										uiHandler.post(new Runnable() {
 											@Override
 											public void run() {
 												onUSBDataReceive(buffer);
 											}
 										});
-									} else {
-										/* TODO-debug
-										int transfer = connection.controlTransfer(0xA0, REQUEST_GET_REPORT, REPORT_TYPE_OUTPUT, 0x00, buffer, buffer.length, 100);
-										if (transfer > 0) {
-											uiHandler.post(new Runnable() {
-												@Override
-												public void run() {
-													onUSBDataReceive(buffer);
-												}
-											});
-										}
-										 */
 									}
 								}
 							}
@@ -225,6 +210,7 @@ public abstract class AbstractUSBHIDService extends Service {
 					}
 					interfacesList = new LinkedList<>();
 					for (int i = 0; i < device.getInterfaceCount(); i++) {
+						// TODO-hi: only claim the necessary interfaces
 						UsbInterface intf = device.getInterface(i);
 						connection.claimInterface(intf, true);
 						interfacesList.add(intf);
