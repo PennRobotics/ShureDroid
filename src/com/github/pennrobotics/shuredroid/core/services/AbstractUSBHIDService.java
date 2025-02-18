@@ -22,7 +22,6 @@ import android.os.IBinder;
 import android.util.Log;
 
 import com.github.pennrobotics.shuredroid.core.Consts;
-import com.github.pennrobotics.shuredroid.core.USBUtils;
 import com.github.pennrobotics.shuredroid.core.events.PrepareDevicesListEvent;
 import com.github.pennrobotics.shuredroid.core.events.SelectDeviceEvent;
 import com.github.pennrobotics.shuredroid.core.events.USBDataSendEvent;
@@ -34,12 +33,6 @@ import org.greenrobot.eventbus.ThreadMode;
 public abstract class AbstractUSBHIDService extends Service {
 
 	private static final String TAG = AbstractUSBHIDService.class.getCanonicalName();
-
-	public static final int REQUEST_GET_REPORT = 0x01;
-	public static final int REQUEST_SET_REPORT = 0x09;
-	public static final int REPORT_TYPE_INPUT = 0x0100;
-	public static final int REPORT_TYPE_OUTPUT = 0x0200;
-	public static final int REPORT_TYPE_FEATURE = 0x0300;
 
 	private USBThreadDataReceiver usbThreadDataReceiver;
 
@@ -54,9 +47,7 @@ public abstract class AbstractUSBHIDService extends Service {
 	private IntentFilter filter;
 	private PendingIntent mPermissionIntent;
 
-	private boolean sendedDataType;
-
-	protected EventBus eventBus = EventBus.getDefault();
+    protected EventBus eventBus = EventBus.getDefault();
 
 	@Override
 	public IBinder onBind(Intent intent) {
@@ -85,7 +76,7 @@ public abstract class AbstractUSBHIDService extends Service {
 	public int onStartCommand(Intent intent, int flags, int startId) {
 		String action = intent.getAction();
 		if (Consts.ACTION_USB_DATA_TYPE.equals(action)) {
-			sendedDataType = intent.getBooleanExtra(Consts.ACTION_USB_DATA_TYPE, false);
+            intent.getBooleanExtra(Consts.ACTION_USB_DATA_TYPE, false);
 		}
 		onCommand(intent, action, flags, startId);
 		return START_REDELIVER_INTENT;
@@ -131,6 +122,7 @@ public abstract class AbstractUSBHIDService extends Service {
 											}
 										});
 									} else {
+										/* TODO-debug
 										int transfer = connection.controlTransfer(0xA0, REQUEST_GET_REPORT, REPORT_TYPE_OUTPUT, 0x00, buffer, buffer.length, 100);
 										if (transfer > 0) {
 											uiHandler.post(new Runnable() {
@@ -140,6 +132,7 @@ public abstract class AbstractUSBHIDService extends Service {
 												}
 											});
 										}
+										 */
 									}
 								}
 							}
@@ -184,11 +177,9 @@ public abstract class AbstractUSBHIDService extends Service {
 			for (UsbInterface intf: interfacesList) {
 				for (int i = 0; i < intf.getEndpointCount(); i++) {
 					UsbEndpoint endPointWrite = intf.getEndpoint(i);
-					if (UsbConstants.USB_DIR_OUT == endPointWrite.getDirection()) {
+					if (i == 1 && UsbConstants.USB_DIR_OUT == endPointWrite.getDirection()) {
 						int status = connection.bulkTransfer(endPointWrite, bytes, bytes.length, 250);
-						onUSBDataSended(status, bytes);
-						status = connection.controlTransfer(0x21, REQUEST_SET_REPORT, REPORT_TYPE_OUTPUT, 0x02, bytes, bytes.length, 250);
-						onUSBDataSended(status, bytes);
+						onUSBDataSent(status, bytes);
 					}
 				}
 			}
@@ -276,7 +267,7 @@ public abstract class AbstractUSBHIDService extends Service {
 	public void onUSBDataSending(String data) {
 	}
 
-	public void onUSBDataSended(int status, byte[] out) {
+	public void onUSBDataSent(int status, byte[] out) {
 	}
 
 	public void onSendingError(Exception e) {

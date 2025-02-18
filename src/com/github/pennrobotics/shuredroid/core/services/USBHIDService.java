@@ -3,11 +3,8 @@ package com.github.pennrobotics.shuredroid.core.services;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
-import android.hardware.usb.UsbConfiguration;
 import android.hardware.usb.UsbConstants;
 import android.hardware.usb.UsbDevice;
-import android.hardware.usb.UsbEndpoint;
-import android.hardware.usb.UsbInterface;
 
 import androidx.core.app.NotificationCompat;
 
@@ -57,78 +54,7 @@ public class USBHIDService extends AbstractUSBHIDService {
 
 	@Override
 	public void onDeviceSelected(UsbDevice device) {
-		mLog("Selected device VID:0x" + Integer.toHexString(device.getVendorId()) + " PID:0x" + Integer.toHexString(device.getProductId()));
-		mLog("id " + showDecHex(device.getDeviceId()));
-		mLog("name " + device.getDeviceName());
-		mLog("manufacturer name " + device.getManufacturerName());
-		mLog("serial number " + device.getSerialNumber());
-		mLog("class " + showDecHex(device.getDeviceClass()));
-		mLog("subclass " + showDecHex(device.getDeviceSubclass()));
-		mLog("protocol " + showDecHex(device.getDeviceProtocol()));
-		mLog("");
-		mLog("interfaces count " + device.getInterfaceCount());
-		for (int i = 0; i < device.getInterfaceCount(); i++) {
-			mLog("");
-			mLog("interface " + i);
-			UsbInterface dInterface = device.getInterface(i);
-			mLog(" name " + dInterface.getName());
-			mLog(" id " + showDecHex(dInterface.getId()));
-			mLog(" class " + showDecHex(dInterface.getInterfaceClass()));
-			mLog(" subclass " + showDecHex(dInterface.getInterfaceSubclass()));
-			mLog(" protocol " + showDecHex(dInterface.getInterfaceProtocol()));
-			mLog("");
-			mLog(" endpoint count " + dInterface.getEndpointCount());
-			for (int ien = 0; ien < dInterface.getEndpointCount(); ien++) {
-				UsbEndpoint endpoint = dInterface.getEndpoint(ien);
-				mLog("");
-				mLog("  endpoint " + ien);
-				mLog("  endpoint number " + endpoint.getEndpointNumber());
-				mLog("  address " + showDecHex(endpoint.getAddress()));
-				mLog("  type " + showDecHex(endpoint.getType()));
-				mLog("  direction " + directionInfo(endpoint.getDirection()));
-				mLog("  max packet size " + endpoint.getMaxPacketSize());
-				mLog("  interval " + endpoint.getInterval());
-				mLog("  attributes " + showDecHex(endpoint.getAttributes()));
-			}
-		}
-		mLog("");
-		mLog("configuration count " + device.getConfigurationCount());
-		for (int i = 0; i < device.getConfigurationCount(); i++) {
-			UsbConfiguration configuration = device.getConfiguration(i);
-			mLog("");
-			mLog("configuration " + i);
-			mLog(" name " + configuration.getName());
-			mLog(" id " + showDecHex(configuration.getId()));
-			mLog(" max power " + configuration.getMaxPower());
-			mLog(" is self powered " + configuration.isSelfPowered());
-			mLog("");
-			mLog("configuration interfaces count " + configuration.getInterfaceCount());
-			for (int ic = 0; i < configuration.getInterfaceCount(); i++) {
-				mLog("");
-				mLog("configuration interface " + ic);
-				UsbInterface cInterface = configuration.getInterface(i);
-				mLog(" name " + cInterface.getName());
-				mLog(" id " + showDecHex(cInterface.getId()));
-				mLog(" class " + showDecHex(cInterface.getInterfaceClass()));
-				mLog(" subclass " + showDecHex(cInterface.getInterfaceSubclass()));
-				mLog(" protocol " + showDecHex(cInterface.getInterfaceProtocol()));
-				mLog("");
-				mLog(" configuration endpoint count " + cInterface.getEndpointCount());
-				for (int ien = 0; ien < cInterface.getEndpointCount(); ien++) {
-					UsbEndpoint endpoint = cInterface.getEndpoint(ien);
-					mLog("");
-					mLog("  endpoint " + ien);
-					mLog("  endpoint number " + endpoint.getEndpointNumber());
-					mLog("  address " + showDecHex(endpoint.getAddress()));
-					mLog("  type " + showDecHex(endpoint.getType()));
-					mLog("  direction " + directionInfo(endpoint.getDirection()));
-					mLog("  max packet size " + endpoint.getMaxPacketSize());
-					mLog("  interval " + endpoint.getInterval());
-					mLog("  attributes " + showDecHex(endpoint.getAttributes()));
-				}
-			}
-		}
-
+		mLog("Connected to adapter: " + device.getProductName());
 	}
 
 	@Override
@@ -166,12 +92,12 @@ public class USBHIDService extends AbstractUSBHIDService {
 	}
 
 	@Override
-	public void onUSBDataSended(int status, byte[] out) {
+	public void onUSBDataSent(int status, byte[] out) {
 		if (status <= 0) {
-			mLog("Unable to send");
+			mLog("Unable to send (" + status + ")");
 		} else {
 			mLog("Sent " + status + " bytes");
-				mLog(USBUtils.toHex(out));
+			mLog(USBUtils.toHex(out));
 		}
 	}
 
