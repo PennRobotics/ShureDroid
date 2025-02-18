@@ -2,7 +2,8 @@ apply plugin: 'com.android.application'
 
 ext {
     versionMajor = 1
-    versionMinor = 1
+    versionMinor = 0
+    versionPatch = 0
 }
 
 buildscript {
@@ -26,7 +27,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'androidx.core:core:1.13.1'
+    implementation 'androidx.core:core:1.15.0'
     implementation 'com.nanohttpd:nanohttpd:2.1.1'
     implementation 'com.nanohttpd:nanohttpd-websocket:2.1.1'
     implementation 'org.greenrobot:eventbus:3.3.1'
@@ -39,14 +40,14 @@ dependencies {
 
 android {
 
-    namespace 'com.appspot.usbhidterminal'
+    namespace 'com.github.pennrobotics.shuredroid'
 
-    compileSdk 34
+    compileSdk 35
 
     defaultConfig {
-        applicationId "com.appspot.usbhidterminal"
+        applicationId 'com.github.pennrobotics.shuredroid'
         minSdkVersion 21
-        targetSdkVersion 34
+        targetSdkVersion 35
         versionCode computeVersionCode()
         versionName computeVersionName()
     }
