@@ -24,6 +24,16 @@
         android:text="@string/clear"
         android:textAppearance="?android:attr/textAppearanceSmallInverse" />
 
+    <Button
+        android:id="@+id/btnTestPacket"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/btnClear"
+        android:minHeight="36dip"
+        android:text="TPkt"
+        android:textAppearance="?android:attr/textAppearanceSmallInverse"
+        />
+
     <RadioGroup
         android:id="@+id/radioGroup"
         android:layout_width="wrap_content"

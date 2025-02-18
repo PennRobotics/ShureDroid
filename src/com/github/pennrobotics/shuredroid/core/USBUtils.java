@@ -1,4 +1,4 @@
-package com.appspot.shuredroid.core;
+package com.github.pennrobotics.shuredroid.core;
 
 public class USBUtils {
 

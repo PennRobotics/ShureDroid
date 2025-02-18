@@ -1,4 +1,4 @@
-package com.appspot.shuredroid.core.services;
+package com.github.pennrobotics.shuredroid.core.services;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -21,11 +21,11 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
 
-import com.appspot.shuredroid.core.Consts;
-import com.appspot.shuredroid.core.USBUtils;
-import com.appspot.shuredroid.core.events.PrepareDevicesListEvent;
-import com.appspot.shuredroid.core.events.SelectDeviceEvent;
-import com.appspot.shuredroid.core.events.USBDataSendEvent;
+import com.github.pennrobotics.shuredroid.core.Consts;
+import com.github.pennrobotics.shuredroid.core.USBUtils;
+import com.github.pennrobotics.shuredroid.core.events.PrepareDevicesListEvent;
+import com.github.pennrobotics.shuredroid.core.events.SelectDeviceEvent;
+import com.github.pennrobotics.shuredroid.core.events.USBDataSendEvent;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;

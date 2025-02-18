@@ -1,4 +1,4 @@
-package com.appspot.shuredroid.core;
+package com.github.pennrobotics.shuredroid.core;
 
 public abstract class Consts {
 	public static final String BINARY = "binary";

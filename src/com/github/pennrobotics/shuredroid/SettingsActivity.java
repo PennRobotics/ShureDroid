@@ -1,4 +1,4 @@
-package com.appspot.shuredroid;
+package com.github.pennrobotics.shuredroid;
 
 import android.annotation.TargetApi;
 import android.content.Context;

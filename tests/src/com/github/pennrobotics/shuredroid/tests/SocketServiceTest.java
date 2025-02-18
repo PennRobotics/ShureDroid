@@ -1,4 +1,4 @@
-package com.appspot.shuredroid.tests;
+package com.github.pennrobotics.shuredroid.tests;
 
 import static org.junit.Assert.assertNotNull;
 
@@ -6,15 +6,15 @@ import android.content.Intent;
 
 import androidx.test.rule.ActivityTestRule;
 
-import com.appspot.shuredroid.USBHIDTerminal;
-import com.appspot.shuredroid.core.services.SocketService;
+import com.github.pennrobotics.shuredroid.ShureDroid;
+import com.github.pennrobotics.shuredroid.core.services.SocketService;
 
 import org.junit.Test;
 
-public class SocketServiceTest extends ActivityTestRule<USBHIDTerminal> {
+public class SocketServiceTest extends ActivityTestRule<ShureDroid> {
 
 	public SocketServiceTest(){
-		super(USBHIDTerminal.class);
+		super(ShureDroid.class);
 	}
 
 	@Test

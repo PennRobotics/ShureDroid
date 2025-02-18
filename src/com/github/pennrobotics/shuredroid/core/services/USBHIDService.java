@@ -1,4 +1,4 @@
-package com.appspot.shuredroid.core.services;
+package com.github.pennrobotics.shuredroid.core.services;
 
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -11,15 +11,15 @@ import android.hardware.usb.UsbInterface;
 
 import androidx.core.app.NotificationCompat;
 
-import com.appspot.shuredroid.R;
-import com.appspot.shuredroid.USBHIDTerminal;
-import com.appspot.shuredroid.core.Consts;
-import com.appspot.shuredroid.core.USBUtils;
-import com.appspot.shuredroid.core.events.DeviceAttachedEvent;
-import com.appspot.shuredroid.core.events.DeviceDetachedEvent;
-import com.appspot.shuredroid.core.events.LogMessageEvent;
-import com.appspot.shuredroid.core.events.ShowDevicesListEvent;
-import com.appspot.shuredroid.core.events.USBDataReceiveEvent;
+import com.github.pennrobotics.shuredroid.R;
+import com.github.pennrobotics.shuredroid.ShureDroid;
+import com.github.pennrobotics.shuredroid.core.Consts;
+import com.github.pennrobotics.shuredroid.core.USBUtils;
+import com.github.pennrobotics.shuredroid.core.events.DeviceAttachedEvent;
+import com.github.pennrobotics.shuredroid.core.events.DeviceDetachedEvent;
+import com.github.pennrobotics.shuredroid.core.events.LogMessageEvent;
+import com.github.pennrobotics.shuredroid.core.events.ShowDevicesListEvent;
+import com.github.pennrobotics.shuredroid.core.events.USBDataReceiveEvent;
 
 public class USBHIDService extends AbstractUSBHIDService {
 
@@ -217,11 +217,11 @@ public class USBHIDService extends AbstractUSBHIDService {
 		NotificationManager mNotificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 		NotificationCompat.Builder mNotificationBuilder = new NotificationCompat.Builder(this);
 		PendingIntent pendingIntent = PendingIntent.getActivity(this, 0,
-				new Intent(this, USBHIDTerminal.class)
+				new Intent(this, ShureDroid.class)
 						.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP),
 				PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
 		PendingIntent pendingCloseIntent = PendingIntent.getActivity(this, 0,
-				new Intent(this, USBHIDTerminal.class)
+				new Intent(this, ShureDroid.class)
 						.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP)
 						.setAction(Consts.USB_HID_TERMINAL_CLOSE_ACTION),
 				PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);

@@ -1,4 +1,4 @@
-package com.appspot.shuredroid.core.services;
+package com.github.pennrobotics.shuredroid.core.services;
 
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -11,12 +11,12 @@ import androidx.core.app.NotificationCompat;
 
 import android.util.Log;
 
-import com.appspot.shuredroid.R;
-import com.appspot.shuredroid.USBHIDTerminal;
-import com.appspot.shuredroid.core.Consts;
-import com.appspot.shuredroid.core.USBUtils;
-import com.appspot.shuredroid.core.events.LogMessageEvent;
-import com.appspot.shuredroid.core.webserver.WebServer;
+import com.github.pennrobotics.shuredroid.R;
+import com.github.pennrobotics.shuredroid.ShureDroid;
+import com.github.pennrobotics.shuredroid.core.Consts;
+import com.github.pennrobotics.shuredroid.core.USBUtils;
+import com.github.pennrobotics.shuredroid.core.events.LogMessageEvent;
+import com.github.pennrobotics.shuredroid.core.webserver.WebServer;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -87,11 +87,11 @@ public class WebServerService extends Service {
         NotificationManager mNotificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         NotificationCompat.Builder mNotificationBuilder = new NotificationCompat.Builder(this);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0,
-                new Intent(this, USBHIDTerminal.class)
+                new Intent(this, ShureDroid.class)
                         .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP),
                 PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
         PendingIntent pendingCloseIntent = PendingIntent.getActivity(this, 0,
-                new Intent(this, USBHIDTerminal.class)
+                new Intent(this, ShureDroid.class)
                         .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP)
                         .setAction(Consts.WEB_SERVER_CLOSE_ACTION),
                 PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);

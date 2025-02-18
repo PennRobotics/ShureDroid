@@ -35,7 +35,7 @@ import org.greenrobot.eventbus.EventBusException;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-public class HIDMicSandbox extends Activity implements View.OnClickListener {
+public class ShureDroid extends Activity implements View.OnClickListener {
 
 	private SharedPreferences sharedPreferences;
 

@@ -1,4 +1,4 @@
-package com.appspot.shuredroid.core.webserver;
+package com.github.pennrobotics.shuredroid.core.webserver;
 
 import android.content.res.AssetManager;
 import android.util.Log;

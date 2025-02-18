@@ -1,9 +1,9 @@
-package com.appspot.shuredroid.core.webserver;
+package com.github.pennrobotics.shuredroid.core.webserver;
 
 import android.util.Log;
 
-import com.appspot.shuredroid.core.events.USBDataReceiveEvent;
-import com.appspot.shuredroid.core.events.USBDataSendEvent;
+import com.github.pennrobotics.shuredroid.core.events.USBDataReceiveEvent;
+import com.github.pennrobotics.shuredroid.core.events.USBDataSendEvent;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;

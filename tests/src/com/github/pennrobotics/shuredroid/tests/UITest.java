@@ -1,18 +1,18 @@
-package com.appspot.shuredroid.tests;
+package com.github.pennrobotics.shuredroid.tests;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
 import androidx.test.rule.ActivityTestRule;
 
-import com.appspot.shuredroid.USBHIDTerminal;
+import com.github.pennrobotics.shuredroid.ShureDroid;
 
 import org.junit.Test;
 
-public class UITest extends ActivityTestRule<USBHIDTerminal> {
+public class UITest extends ActivityTestRule<ShureDroid> {
 
 	public UITest(){
-		super(USBHIDTerminal.class);
+		super(ShureDroid.class);
 	}
 
 	@Test

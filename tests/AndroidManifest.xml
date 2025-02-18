@@ -13,6 +13,6 @@
 
     <instrumentation
             android:name="androidx.test.runner.AndroidJUnitRunner"
-            android:targetPackage="com.appspot.usbhidterminal" />
+            android:targetPackage="com.github.pennrobotics.shuredroid" />
 
 </manifest>

@@ -1,4 +1,4 @@
-package com.appspot.shuredroid.core.events;
+package com.github.pennrobotics.shuredroid.core.events;
 
 public class DeviceDetachedEvent {
 }
