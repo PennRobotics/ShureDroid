@@ -19,6 +19,7 @@ import android.widget.ViewSwitcher;
 import com.github.pennrobotics.shuredroid.core.Consts;
 import com.github.pennrobotics.shuredroid.core.events.DeviceAttachedEvent;
 import com.github.pennrobotics.shuredroid.core.events.DeviceDetachedEvent;
+import com.github.pennrobotics.shuredroid.core.events.DevicePluggedEvent;
 import com.github.pennrobotics.shuredroid.core.events.LogMessageEvent;
 import com.github.pennrobotics.shuredroid.core.events.PrepareDevicesListEvent;
 import com.github.pennrobotics.shuredroid.core.events.SelectDeviceEvent;
@@ -404,13 +405,20 @@ public class ShureDroid extends Activity implements View.OnClickListener {
 	}
 
 	@Subscribe(threadMode = ThreadMode.MAIN)
+	public void onEvent(DevicePluggedEvent event) {
+		btnSelectHIDDevice.setBackgroundResource(android.R.drawable.presence_audio_away);
+	}
+
+	@Subscribe(threadMode = ThreadMode.MAIN)
 	public void onEvent(DeviceAttachedEvent event) {
+		btnSelectHIDDevice.setBackgroundResource(android.R.drawable.presence_audio_online);
 		makeSettingsUIEnabled(true);
 	}
 
 	@Subscribe(threadMode = ThreadMode.MAIN)
 	public void onEvent(DeviceDetachedEvent event) {
 		makeSettingsUIEnabled(false);
+		btnSelectHIDDevice.setBackgroundResource(android.R.drawable.presence_audio_busy);
 	}
 
 	@Override

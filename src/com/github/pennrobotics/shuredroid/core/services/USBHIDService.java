@@ -14,6 +14,7 @@ import com.github.pennrobotics.shuredroid.core.Consts;
 import com.github.pennrobotics.shuredroid.core.USBUtils;
 import com.github.pennrobotics.shuredroid.core.events.DeviceAttachedEvent;
 import com.github.pennrobotics.shuredroid.core.events.DeviceDetachedEvent;
+import com.github.pennrobotics.shuredroid.core.events.DevicePluggedEvent;
 import com.github.pennrobotics.shuredroid.core.events.LogMessageEvent;
 import com.github.pennrobotics.shuredroid.core.events.ShowDevicesListEvent;
 import com.github.pennrobotics.shuredroid.core.events.USBDataReceiveEvent;
@@ -43,6 +44,7 @@ public class USBHIDService extends AbstractUSBHIDService {
 
 	@Override
 	public void onDeviceConnected(UsbDevice device) {
+		eventBus.post(new DevicePluggedEvent());
 		//mLog(device.getProductName() + " connected");
 	}
 
