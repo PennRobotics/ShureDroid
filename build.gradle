@@ -31,13 +31,12 @@ dependencies {
 
 android {
     namespace 'com.github.pennrobotics.shuredroid'
-
     compileSdk 35
 
     defaultConfig {
         applicationId 'com.github.pennrobotics.shuredroid'
-        minSdkVersion 21
-        targetSdkVersion 35
+        minSdk 21
+        targetSdk 35
         versionCode computeVersionCode()
         versionName computeVersionName()
     }
@@ -69,10 +68,6 @@ android {
             pickFirsts += ['**']
         }
     }
-    lint {
-        abortOnError false
-    }
-
 }
 
 /*
