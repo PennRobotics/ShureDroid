@@ -11,7 +11,11 @@ public class USBDataReceiveEvent {
         this.bytesCount = bytes.length;
     }
 
-    public String getData() {
+    public byte[] getData() {
+        return bytes;
+    }
+
+    public String getDataAsHex() {
         return USBUtils.toHex(bytes);
     }
 

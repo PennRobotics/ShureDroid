@@ -17,6 +17,7 @@ import android.widget.SeekBar;
 import android.widget.ViewSwitcher;
 
 import com.github.pennrobotics.shuredroid.core.Consts;
+import com.github.pennrobotics.shuredroid.core.USBUtils;
 import com.github.pennrobotics.shuredroid.core.events.DeviceAttachedEvent;
 import com.github.pennrobotics.shuredroid.core.events.DeviceDetachedEvent;
 import com.github.pennrobotics.shuredroid.core.events.DevicePluggedEvent;
@@ -88,6 +89,9 @@ public class ShureDroid extends Activity implements View.OnClickListener {
 	private SeekBar seekBarEq4;
 	private CheckBox switchEq5;
 	private SeekBar seekBarEq5;
+
+	private EditText editLogText;
+
 	protected EventBus eventBus;
 
 	private void prepareServices() {
@@ -160,6 +164,8 @@ public class ShureDroid extends Activity implements View.OnClickListener {
 		seekBarEq4 = (SeekBar) findViewById(R.id.seekBarEq4);
 		switchEq5 = (CheckBox) findViewById(R.id.switchEq5);
 		seekBarEq5 = (SeekBar) findViewById(R.id.seekBarEq5);
+
+		editLogText = (EditText) findViewById(R.id.editLogText);
 
 		makeSettingsUIEnabled(false);
 
@@ -312,11 +318,35 @@ public class ShureDroid extends Activity implements View.OnClickListener {
 			default:
 				break;
 		}
-		/*			byte[] packet = {1,16,0x11,0x22,0,3,8,8,0x70,8,1,2,1,0,0,0,
-					0x54,0x77,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-					0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-					0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-			eventBus.post(new USBDataSendEvent(packet)); */
+	}
+
+	void getAllMVX2UParameters() {
+		mLog("start");
+		eventBus.post(new USBDataSendEvent(USBUtils.padPktData("010201000000")));  // ID
+		eventBus.post(new USBDataSendEvent(USBUtils.padPktData("0102010600A6")));  // Parameter lock
+		eventBus.post(new USBDataSendEvent(USBUtils.padPktData("010202000102")));  // Manual Gain
+		eventBus.post(new USBDataSendEvent(USBUtils.padPktData("010202000104")));  // Mute
+		eventBus.post(new USBDataSendEvent(USBUtils.padPktData("010202000106")));  // HPF
+		eventBus.post(new USBDataSendEvent(USBUtils.padPktData("010202000151")));  // Limiter
+		eventBus.post(new USBDataSendEvent(USBUtils.padPktData("01020200015C")));  // Compressor
+		eventBus.post(new USBDataSendEvent(USBUtils.padPktData("010202000166")));  // Phantom
+		eventBus.post(new USBDataSendEvent(USBUtils.padPktData("010202000182")));  // Auto Position
+		eventBus.post(new USBDataSendEvent(USBUtils.padPktData("010202000183")));  // Auto Tone
+		eventBus.post(new USBDataSendEvent(USBUtils.padPktData("010202000185")));  // Auto Mode Enable
+		eventBus.post(new USBDataSendEvent(USBUtils.padPktData("010202010186")));  // Mix
+		eventBus.post(new USBDataSendEvent(USBUtils.padPktData("010202000187")));  // Auto Gain
+		eventBus.post(new USBDataSendEvent(USBUtils.padPktData("010202000200")));  // EQ Enable
+		eventBus.post(new USBDataSendEvent(USBUtils.padPktData("010202000210")));  // EQ Band 1 Enable
+		eventBus.post(new USBDataSendEvent(USBUtils.padPktData("010202000214")));  // EQ Band 1 Gain
+		eventBus.post(new USBDataSendEvent(USBUtils.padPktData("010202000220")));  // EQ Band 2 Enable
+		eventBus.post(new USBDataSendEvent(USBUtils.padPktData("010202000224")));  // EQ Band 2 Gain
+		eventBus.post(new USBDataSendEvent(USBUtils.padPktData("010202000230")));  // EQ Band 3 Enable
+		eventBus.post(new USBDataSendEvent(USBUtils.padPktData("010202000234")));  // EQ Band 3 Gain
+		eventBus.post(new USBDataSendEvent(USBUtils.padPktData("010202000240")));  // EQ Band 4 Enable
+		eventBus.post(new USBDataSendEvent(USBUtils.padPktData("010202000244")));  // EQ Band 4 Gain
+		eventBus.post(new USBDataSendEvent(USBUtils.padPktData("010202000250")));  // EQ Band 5 Enable
+		eventBus.post(new USBDataSendEvent(USBUtils.padPktData("010202000254")));  // EQ Band 5 Gain
+		mLog("finish");
 	}
 
 	void showListOfDevices(CharSequence devicesName[]) {
@@ -388,9 +418,17 @@ public class ShureDroid extends Activity implements View.OnClickListener {
 		seekBarEq5.setEnabled(enable);
 	}
 
+	private void mLog(String log) {
+		editLogText.append(log + "\n");
+	}
+
 	@Subscribe(threadMode = ThreadMode.MAIN)
 	public void onEvent(USBDataReceiveEvent event) {
-		//mLog(event.getData() + " \nReceived " + event.getBytesCount() + " bytes", true);
+		mLog(event.getDataAsHex());
+
+		//byte[] ba = event.getData();  // TODO-debug
+		//int pType = USBUtils.testParamType(ba);
+		//mLog(Integer.toHexString(pType));
 	}
 
 	@Subscribe(threadMode = ThreadMode.MAIN)
@@ -411,6 +449,7 @@ public class ShureDroid extends Activity implements View.OnClickListener {
 	@Subscribe(threadMode = ThreadMode.MAIN)
 	public void onEvent(DeviceAttachedEvent event) {
 		btnSelectHIDDevice.setBackgroundResource(android.R.drawable.presence_audio_online);
+		getAllMVX2UParameters();  // TODO-debug
 		makeSettingsUIEnabled(true);
 	}
 

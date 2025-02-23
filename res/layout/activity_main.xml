@@ -54,6 +54,15 @@
         </com.google.android.material.tabs.TabLayout>
     </LinearLayout>
 
+    <EditText
+        android:id="@+id/editLogText"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:inputType="textMultiLine"
+        android:isScrollContainer="true" />
+
     <ViewSwitcher
         android:id="@+id/viewSwitcher"
         android:layout_width="match_parent"
