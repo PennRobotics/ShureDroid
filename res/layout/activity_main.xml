@@ -24,6 +24,7 @@
             tools:ignore="SpeakableTextPresentCheck" />
 
         <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="#6f6f6f"
@@ -37,12 +38,14 @@
             app:tabTextColor="#cfcfcf">
 
             <com.google.android.material.tabs.TabItem
+                android:id="@+id/tabAuto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTintMode="add"
                 android:text="Auto" />
 
             <com.google.android.material.tabs.TabItem
+                android:id="@+id/tabManual"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Manual" />
@@ -51,10 +54,12 @@
     </LinearLayout>
 
     <ViewSwitcher
+        android:id="@+id/viewSwitcher"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <ScrollView
+            android:id="@+id/viewAuto"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -62,6 +67,7 @@
         </ScrollView>
 
         <ScrollView
+            android:id="@+id/viewManual"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 

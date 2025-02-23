@@ -91,10 +91,6 @@ public class USBHIDService extends AbstractUSBHIDService {
 		eventBus.post(new USBDataReceiveEvent(buffer));
 	}
 
-	private void mLog(String log) {
-		eventBus.post(new LogMessageEvent(log));
-	}
-
 	private void setupNotifications() { //called in onCreate()
 		NotificationManager mNotificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 		NotificationCompat.Builder mNotificationBuilder = new NotificationCompat.Builder(this);
