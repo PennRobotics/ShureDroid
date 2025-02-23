@@ -43,18 +43,18 @@ public class USBHIDService extends AbstractUSBHIDService {
 
 	@Override
 	public void onDeviceConnected(UsbDevice device) {
-		mLog(device.getProductName() + " connected");
+		//mLog(device.getProductName() + " connected");
 	}
 
 	@Override
 	public void onDeviceDisconnected(UsbDevice device) {
-		mLog("Disconnected");
+		//mLog("Disconnected");
 		eventBus.post(new DeviceDetachedEvent());
 	}
 
 	@Override
 	public void onDeviceSelected(UsbDevice device) {
-		mLog("Connected to adapter: " + device.getProductName());
+		//mLog("Connected to adapter: " + device.getProductName());
 	}
 
 	@Override
@@ -79,10 +79,10 @@ public class USBHIDService extends AbstractUSBHIDService {
 	@Override
 	public void onUSBDataSent(int status, byte[] out) {
 		if (status <= 0) {
-			mLog("Unable to send (" + status + ")");
+			//mLog("Unable to send (" + status + ")");
 		} else {
-			mLog("Sent " + status + " bytes");
-			mLog(USBUtils.toHex(out));
+			//mLog("Sent " + status + " bytes");
+			//mLog(USBUtils.toHex(out));
 		}
 	}
 

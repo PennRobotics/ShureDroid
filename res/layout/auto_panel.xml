@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <androidx.gridlayout.widget.GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:minHeight="48dp"
+        app:columnCount="2">
+
+        <CheckBox
+            android:id="@+id/switchPhantomAPanel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            app:layout_gravity="center"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <TextView
+            style="@style/gridToggleText"
+            android:text="@string/phantom_power_48v"
+            app:layout_gravity="fill|center_vertical" />
+
+        <View
+            android:layout_width="48dp"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider" />
+
+        <View
+            android:layout_width="48dp"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider"
+            app:layout_gravity="start|end" />
+
+        <CheckBox
+            android:id="@+id/switchMicMuteAPanel"
+            android:minHeight="48dp"
+            app:layout_gravity="center"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <TextView
+            android:text="@string/mic_mute"
+            style="@style/gridToggleText"
+            app:layout_gravity="fill|center_vertical" />
+
+        <View
+            android:layout_width="48dp"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider" />
+
+        <View
+            android:layout_width="48dp"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider"
+            app:layout_gravity="start|end" />
+
+        <TextView
+            app:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/paren_mic" />
+
+        <TextView
+            style="@android:style/Widget.Material.Light.TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/monitor_mix" />  <!-- TODO: style?? -->
+
+
+        <EditText
+            android:id="@+id/editTextNumberMixAPanel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="2"
+            android:importantForAutofill="no"
+            android:inputType="number"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:singleLine="true"
+            app:layout_gravity="center"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <SeekBar
+            android:id="@+id/seekBarMixAPanel"
+            style="@style/sdSeekBar"
+            app:layout_gravity="start|end" />
+
+    </androidx.gridlayout.widget.GridLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:text="@string/distance" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RadioButton
+            android:id="@+id/radioADistNear"
+            android:text="@string/near"
+            style="@style/sdRadioButton"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <RadioButton
+            android:id="@+id/radioADistFar"
+            style="@style/sdRadioButton"
+            android:text="@string/far"
+            tools:ignore="TouchTargetSizeCheck" />
+
+    </RadioGroup>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:text="@string/tone" />
+
+    <RadioGroup
+        android:id="@+id/radioGroupATone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RadioButton
+            android:id="@+id/radioAToneDark"
+            style="@style/sdRadioButton"
+            android:text="@string/dark"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <RadioButton
+            android:id="@+id/radioAToneNeutral"
+            style="@style/sdRadioButton"
+            android:text="@string/neutral"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <RadioButton
+            android:id="@+id/radioAToneBright"
+            style="@style/sdRadioButton"
+            android:text="@string/bright"
+            tools:ignore="TouchTargetSizeCheck" />
+
+
+    </RadioGroup>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="48dp"
+        android:text="@string/auto_gain" />
+
+    <RadioGroup
+        android:id="@+id/radioGroupAGain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RadioButton
+            android:id="@+id/radioAGainLow"
+            style="@style/sdRadioButton"
+            android:text="@string/low"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <RadioButton
+            android:id="@+id/radioAGainNormal"
+            style="@style/sdRadioButton"
+            android:text="@string/normal"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <RadioButton
+            android:id="@+id/radioAGainHigh"
+            style="@style/sdRadioButton"
+            android:text="@string/high"
+            tools:ignore="TouchTargetSizeCheck" />
+
+    </RadioGroup>
+
+    <View
+        android:id="@+id/bottomFillerAPanel"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+</LinearLayout>

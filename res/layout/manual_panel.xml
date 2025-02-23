@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <androidx.gridlayout.widget.GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:minHeight="48dp"
+        app:columnCount="2">
+
+        <CheckBox
+            android:id="@+id/switchPhantomMPanel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            app:layout_gravity="center"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <TextView
+            android:text="@string/phantom_power_48v"
+            style="@style/gridToggleText"
+            app:layout_gravity="fill|center_vertical" />
+
+        <View
+            android:layout_width="48dp"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider" />
+
+        <View
+            android:layout_width="48dp"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider"
+            app:layout_gravity="start|end" />
+
+        <CheckBox
+            android:id="@+id/switchMicMuteMPanel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            app:layout_gravity="center"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <TextView
+            style="@style/gridToggleText"
+            android:text="@string/mic_mute"
+            app:layout_gravity="fill|center_vertical" />
+
+        <View
+            android:layout_width="48dp"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider" />
+
+        <View
+            android:layout_width="48dp"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider"
+            app:layout_gravity="start|end" />
+
+        <TextView
+            app:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/paren_mic" />
+
+        <TextView
+            style="@android:style/Widget.Material.Light.TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/monitor_mix" />  <!-- TODO: style?? -->
+
+        <EditText
+            android:id="@+id/editTextNumberMixMPanel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="2"
+            android:importantForAutofill="no"
+            android:inputType="number"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:singleLine="true"
+            app:layout_gravity="center"
+            tools:ignore="SpeakableTextPresentCheck" /> <!-- TODO: put into style xml -->
+
+        <SeekBar
+            android:id="@+id/seekBarMixMPanel"
+            style="@style/sdSeekBar"
+            app:layout_gravity="start|end" />
+
+        <View
+            android:layout_width="48dp"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider" />
+
+        <View
+            android:layout_width="48dp"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider"
+            app:layout_gravity="start|end" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            style="@android:style/Widget.Material.Light.TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/manual_gain" /> <!-- TODO: style? -->
+
+        <EditText
+            android:id="@+id/editTextNumberMGain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="2"
+            android:importantForAutofill="no"
+            android:inputType="number"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:singleLine="true"
+            app:layout_gravity="center"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <SeekBar
+            android:id="@+id/seekBarMGain"
+            style="@style/sdSeekBar"
+            app:layout_gravity="start|end" />
+
+        <View
+            android:layout_width="48dp"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider" />
+
+        <View
+            android:layout_width="48dp"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider"
+            app:layout_gravity="start|end" />
+
+        <CheckBox
+            android:id="@+id/switchMLimiter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            app:layout_gravity="center"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <TextView
+            android:text="@string/limiter"
+            style="@style/gridToggleText"
+            app:layout_gravity="fill|center_vertical" />
+
+    </androidx.gridlayout.widget.GridLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:text="@string/compressor" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RadioButton
+            android:id="@+id/radioMCompOff"
+            android:text="@string/off"
+            style="@style/sdRadioButton"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <RadioButton
+            android:id="@+id/radioMCompLight"
+            android:text="@string/light"
+            style="@style/sdRadioButton"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <RadioButton
+            android:id="@+id/radioMCompModerate"
+            android:text="@string/moderate"
+            style="@style/sdRadioButton"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <RadioButton
+            android:id="@+id/radioMCompHeavy"
+            android:text="@string/heavy"
+            style="@style/sdRadioButton"
+            tools:ignore="TouchTargetSizeCheck" />
+
+    </RadioGroup>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:text="@string/low_cut" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RadioButton
+            android:id="@+id/radioMLpfOff"
+            android:text="@string/off"
+            style="@style/sdRadioButton"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <RadioButton
+            android:id="@+id/radioMLpf75Hz"
+            android:text="@string/_75_hz"
+            style="@style/sdRadioButton"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <RadioButton
+            android:id="@+id/radioMLpf150Hz"
+            android:text="@string/_150_hz"
+            style="@style/sdRadioButton"
+            tools:ignore="TouchTargetSizeCheck" />
+
+    </RadioGroup>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider" />
+
+    <androidx.gridlayout.widget.GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:minHeight="48dp"
+        app:columnCount="3">
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="48dp" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="48dp" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <CheckBox
+            android:id="@+id/switchEqEnable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            app:layout_gravity="center"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <TextView
+            style="@android:style/Widget.Material.Light.TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/eq"
+            app:layout_gravity="start|center_vertical" /> <!-- TODO: style? -->
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <CheckBox
+            android:id="@+id/switchEq1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            app:layout_gravity="center"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <TextView
+            style="@android:style/Widget.Material.Light.TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/_100"
+            app:layout_gravity="center_vertical|end" />
+
+        <SeekBar
+            android:id="@+id/seekBarEq1"
+            style="@style/eqSeekBar"
+            app:layout_gravity="start|end" />
+
+        <CheckBox
+            android:id="@+id/switchEq2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            app:layout_gravity="center"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <TextView
+            style="@android:style/Widget.Material.Light.TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/_250"
+            app:layout_gravity="center_vertical|end" />
+
+        <SeekBar
+            android:id="@+id/seekBarEq2"
+            style="@style/eqSeekBar"
+            app:layout_gravity="start|end" />
+
+        <CheckBox
+            android:id="@+id/switchEq3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            app:layout_gravity="center"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <TextView
+            style="@android:style/Widget.Material.Light.TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/_1000"
+            app:layout_gravity="center_vertical|end" />
+
+        <SeekBar
+            android:id="@+id/seekBarEq3"
+            style="@style/eqSeekBar"
+            app:layout_gravity="start|end" />
+
+        <CheckBox
+            android:id="@+id/switchEq4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            app:layout_gravity="center"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <TextView
+            style="@android:style/Widget.Material.Light.TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/_4000"
+            app:layout_gravity="center_vertical|end" />
+
+        <SeekBar
+            android:id="@+id/seekBarEq4"
+            style="@style/eqSeekBar"
+            app:layout_gravity="start|end" />
+
+        <CheckBox
+            android:id="@+id/switchEq5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            app:layout_gravity="center"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <TextView
+            style="@android:style/Widget.Material.Light.TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/_10000"
+            app:layout_gravity="center_vertical|end" />
+
+        <SeekBar
+            android:id="@+id/seekBarEq5"
+            style="@style/eqSeekBar"
+            app:layout_gravity="start|end" />
+
+    </androidx.gridlayout.widget.GridLayout>
+
+    <View
+        android:id="@+id/bottomFillerMPanel"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+</LinearLayout>

@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import com.github.pennrobotics.shuredroid.core.Consts;
 import com.github.pennrobotics.shuredroid.core.events.DeviceAttachedEvent;
@@ -32,10 +33,10 @@ public class ShureDroid extends Activity implements View.OnClickListener {
 
 	private Intent usbService;
 
-	private EditText edtlogText;
-	private Button btnSelectHIDDevice;
-	private Button btnTestPacket;
-	private Button btnClear;
+	//private EditText edtlogText;
+	private ImageButton btnSelectHIDDevice;
+	//private Button btnTestPacket;
+	//private Button btnClear;
 
 	protected EventBus eventBus;
 
@@ -61,33 +62,31 @@ public class ShureDroid extends Activity implements View.OnClickListener {
 		setVersionToTitle();
 		getActionBar().hide();
 
-		btnSelectHIDDevice = (Button) findViewById(R.id.btnSelectHIDDevice);
+		btnSelectHIDDevice = (ImageButton) findViewById(R.id.btnSelectHIDDevice);
 		btnSelectHIDDevice.setOnClickListener(this);
 
-		btnTestPacket = (Button) findViewById(R.id.btnTestPacket);
-		btnTestPacket.setOnClickListener(this);
+		// TODO
+		//btnTestPacket = (Button) findViewById(R.id.btnTestPacket);
+		//btnTestPacket.setOnClickListener(this);
 
-		btnClear = (Button) findViewById(R.id.btnClear);
-		btnClear.setOnClickListener(this);
+		//btnClear = (Button) findViewById(R.id.btnClear);
+		//btnClear.setOnClickListener(this);
 
-		edtlogText = (EditText) findViewById(R.id.edtlogText);
+		//edtlogText = (EditText) findViewById(R.id.edtlogText);
 
-		mLog("Initialized\nPlease select your USB HID device\n", false);
+		//mLog("Initialized\nPlease select your USB HID device\n", false);
 		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 	}
 
 	public void onClick(View v) {
-		if (v == btnClear) {
-			edtlogText.setText("");
-		} else if (v == btnSelectHIDDevice) {
+		if (v == btnSelectHIDDevice) {
 			eventBus.post(new PrepareDevicesListEvent());
-		} else if (v == btnTestPacket) {
-			byte[] packet = {1,16,0x11,0x22,0,3,8,8,0x70,8,1,2,1,0,0,0,
+		}
+		/*			byte[] packet = {1,16,0x11,0x22,0,3,8,8,0x70,8,1,2,1,0,0,0,
 					0x54,0x77,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 					0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 					0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-			eventBus.post(new USBDataSendEvent(packet));
-		}
+			eventBus.post(new USBDataSendEvent(packet)); */
 	}
 
 	void showListOfDevices(CharSequence devicesName[]) {
@@ -111,12 +110,12 @@ public class ShureDroid extends Activity implements View.OnClickListener {
 
 	@Subscribe(threadMode = ThreadMode.MAIN)
 	public void onEvent(USBDataReceiveEvent event) {
-		mLog(event.getData() + " \nReceived " + event.getBytesCount() + " bytes", true);
+		//mLog(event.getData() + " \nReceived " + event.getBytesCount() + " bytes", true);
 	}
 
 	@Subscribe(threadMode = ThreadMode.MAIN)
 	public void onEvent(LogMessageEvent event) {
-		mLog(event.getData(), true);
+		//mLog(event.getData(), true);
 	}
 
 	@Subscribe(threadMode = ThreadMode.MAIN)
@@ -126,12 +125,12 @@ public class ShureDroid extends Activity implements View.OnClickListener {
 
 	@Subscribe(threadMode = ThreadMode.MAIN)
 	public void onEvent(DeviceAttachedEvent event) {
-		btnTestPacket.setEnabled(true);
+		//btnTestPacket.setEnabled(true);
 	}
 
 	@Subscribe(threadMode = ThreadMode.MAIN)
 	public void onEvent(DeviceDetachedEvent event) {
-		btnTestPacket.setEnabled(false);
+		//btnTestPacket.setEnabled(false);
 	}
 
 	@Override
@@ -176,16 +175,6 @@ public class ShureDroid extends Activity implements View.OnClickListener {
 	void sendToUSBService(String action, int data) {
 		usbService.putExtra(action, data);
 		sendToUSBService(action);
-	}
-
-	private void mLog(String log, boolean newLine) {
-		if (newLine) {
-			edtlogText.append(Consts.NEW_LINE);
-		}
-		edtlogText.append(log);
-		if(edtlogText.getLineCount() > 1000) {
-			edtlogText.setText("cleared");
-		}
 	}
 
 	private void setVersionToTitle() {
