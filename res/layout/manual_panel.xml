@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:ignore="VisualLintBounds" >
 
     <androidx.gridlayout.widget.GridLayout
         android:layout_width="match_parent"
@@ -313,7 +314,7 @@
         <SeekBar
             android:id="@+id/seekBarEq2"
             style="@style/eqSeekBar"
-            app:layout_gravity="start|end" />
+            app:layout_gravity="start|end"/>
 
         <CheckBox
             android:id="@+id/switchEq3"
