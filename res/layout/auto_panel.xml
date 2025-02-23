@@ -16,6 +16,7 @@
             android:id="@+id/switchPhantomAPanel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:enabled="false"
             android:minHeight="48dp"
             app:layout_gravity="center"
             tools:ignore="TouchTargetSizeCheck" />
@@ -38,6 +39,7 @@
 
         <CheckBox
             android:id="@+id/switchMicMuteAPanel"
+            android:enabled="false"
             android:minHeight="48dp"
             app:layout_gravity="center"
             tools:ignore="TouchTargetSizeCheck" />
@@ -87,6 +89,10 @@
         <SeekBar
             android:id="@+id/seekBarMixAPanel"
             style="@style/sdSeekBar"
+            android:clickable="false"
+            android:focusable="false"
+            android:indeterminate="true"
+            android:indeterminateBehavior="cycle"
             app:layout_gravity="start|end" />
 
     </androidx.gridlayout.widget.GridLayout>
@@ -108,13 +114,15 @@
 
         <RadioButton
             android:id="@+id/radioADistNear"
-            android:text="@string/near"
             style="@style/sdRadioButton"
+            android:enabled="false"
+            android:text="@string/near"
             tools:ignore="TouchTargetSizeCheck" />
 
         <RadioButton
             android:id="@+id/radioADistFar"
             style="@style/sdRadioButton"
+            android:enabled="false"
             android:text="@string/far"
             tools:ignore="TouchTargetSizeCheck" />
 
@@ -139,18 +147,21 @@
         <RadioButton
             android:id="@+id/radioAToneDark"
             style="@style/sdRadioButton"
+            android:enabled="false"
             android:text="@string/dark"
             tools:ignore="TouchTargetSizeCheck" />
 
         <RadioButton
             android:id="@+id/radioAToneNeutral"
             style="@style/sdRadioButton"
+            android:enabled="false"
             android:text="@string/neutral"
             tools:ignore="TouchTargetSizeCheck" />
 
         <RadioButton
             android:id="@+id/radioAToneBright"
             style="@style/sdRadioButton"
+            android:enabled="false"
             android:text="@string/bright"
             tools:ignore="TouchTargetSizeCheck" />
 
@@ -177,18 +188,21 @@
         <RadioButton
             android:id="@+id/radioAGainLow"
             style="@style/sdRadioButton"
+            android:enabled="false"
             android:text="@string/low"
             tools:ignore="TouchTargetSizeCheck" />
 
         <RadioButton
             android:id="@+id/radioAGainNormal"
             style="@style/sdRadioButton"
+            android:enabled="false"
             android:text="@string/normal"
             tools:ignore="TouchTargetSizeCheck" />
 
         <RadioButton
             android:id="@+id/radioAGainHigh"
             style="@style/sdRadioButton"
+            android:enabled="false"
             android:text="@string/high"
             tools:ignore="TouchTargetSizeCheck" />
 

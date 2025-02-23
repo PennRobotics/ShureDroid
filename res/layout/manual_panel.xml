@@ -16,6 +16,7 @@
             android:id="@+id/switchPhantomMPanel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:enabled="false"
             android:minHeight="48dp"
             app:layout_gravity="center"
             tools:ignore="TouchTargetSizeCheck" />
@@ -40,6 +41,7 @@
             android:id="@+id/switchMicMuteMPanel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:enabled="false"
             android:minHeight="48dp"
             app:layout_gravity="center"
             tools:ignore="TouchTargetSizeCheck" />
@@ -89,6 +91,8 @@
             android:id="@+id/seekBarMixMPanel"
             style="@style/sdSeekBar"
             app:layout_gravity="start|end" />
+
+        <!-- TODO: disable the rest of the elements on startup -->
 
         <View
             android:layout_width="48dp"
@@ -144,6 +148,7 @@
             android:id="@+id/switchMLimiter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:enabled="false"
             android:minHeight="48dp"
             app:layout_gravity="center"
             tools:ignore="TouchTargetSizeCheck" />
@@ -172,26 +177,30 @@
 
         <RadioButton
             android:id="@+id/radioMCompOff"
-            android:text="@string/off"
             style="@style/sdRadioButton"
+            android:enabled="false"
+            android:text="@string/off"
             tools:ignore="TouchTargetSizeCheck" />
 
         <RadioButton
             android:id="@+id/radioMCompLight"
-            android:text="@string/light"
             style="@style/sdRadioButton"
+            android:enabled="false"
+            android:text="@string/light"
             tools:ignore="TouchTargetSizeCheck" />
 
         <RadioButton
             android:id="@+id/radioMCompModerate"
-            android:text="@string/moderate"
             style="@style/sdRadioButton"
+            android:enabled="false"
+            android:text="@string/moderate"
             tools:ignore="TouchTargetSizeCheck" />
 
         <RadioButton
             android:id="@+id/radioMCompHeavy"
-            android:text="@string/heavy"
             style="@style/sdRadioButton"
+            android:enabled="false"
+            android:text="@string/heavy"
             tools:ignore="TouchTargetSizeCheck" />
 
     </RadioGroup>
@@ -213,20 +222,23 @@
 
         <RadioButton
             android:id="@+id/radioMLpfOff"
-            android:text="@string/off"
             style="@style/sdRadioButton"
+            android:enabled="false"
+            android:text="@string/off"
             tools:ignore="TouchTargetSizeCheck" />
 
         <RadioButton
             android:id="@+id/radioMLpf75Hz"
-            android:text="@string/_75_hz"
             style="@style/sdRadioButton"
+            android:enabled="false"
+            android:text="@string/_75_hz"
             tools:ignore="TouchTargetSizeCheck" />
 
         <RadioButton
             android:id="@+id/radioMLpf150Hz"
-            android:text="@string/_150_hz"
             style="@style/sdRadioButton"
+            android:enabled="false"
+            android:text="@string/_150_hz"
             tools:ignore="TouchTargetSizeCheck" />
 
     </RadioGroup>
