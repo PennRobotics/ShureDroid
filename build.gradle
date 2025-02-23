@@ -62,7 +62,12 @@ android {
         }
     }
     packagingOptions {
-        pickFirst '**'
+        jniLibs {
+            pickFirsts += ['**']
+        }
+        resources {
+            pickFirsts += ['**']
+        }
     }
     lint {
         abortOnError false
