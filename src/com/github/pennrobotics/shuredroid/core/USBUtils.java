@@ -1,8 +1,15 @@
 package com.github.pennrobotics.shuredroid.core;
 
+import android.widget.EditText;
+
 import androidx.annotation.NonNull;
 
+import com.github.pennrobotics.shuredroid.R;
+
+import java.io.ByteArrayOutputStream;
 import java.util.Arrays;
+
+import kotlin.collections.ByteIterator;
 
 public class USBUtils {
 	static byte SEQ = 0x00;
@@ -81,7 +88,40 @@ public class USBUtils {
 		return Integer.reverse(crc) >>> 16;
 	}
 
-	public static int testParamType(@NonNull final byte[] ba) {
-		return -1;
+	public static int getParamType(@NonNull final byte[] ba) {
+		if (ba.length < 10
+				|| ba[0] != 0x01
+				|| ba[2] != 0x11
+				|| ba[3] != 0x22
+				|| ba[6] != 0x08
+				|| ba[8] != 0x70
+				|| ba[7] != ba[9])
+		{
+			return -1;  // Bad packet header
+		}
+
+		if (ba.length < 16
+				|| ba[10] != 0x03
+				|| ba[11] != 0x02)
+		{
+			return -2;  // Not a GetParam result packet
+		}
+
+		return Byte.toUnsignedInt(ba[12]) << 24
+				| Byte.toUnsignedInt(ba[13]) << 16
+				| Byte.toUnsignedInt(ba[14]) << 8
+				| Byte.toUnsignedInt(ba[15]);
+	}
+
+	public static int getParamVal(@NonNull final byte[] ba) {
+		int len = ba[7];
+		int result = Byte.toUnsignedInt(ba[16]);
+		if (len == 9)  { return result; }
+		result = (result << 8) | Byte.toUnsignedInt(ba[17]);
+		if (len == 10)  { return result; }
+		result = (result << 16)
+				| (Byte.toUnsignedInt(ba[18]) << 8)
+				| (Byte.toUnsignedInt(ba[19]));
+		return result;
 	}
 }

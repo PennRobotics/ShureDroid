@@ -12,6 +12,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.ScrollView;
 import android.widget.SeekBar;
 import android.widget.ViewSwitcher;
@@ -50,6 +51,8 @@ public class ShureDroid extends Activity implements View.OnClickListener {
 	private TabItem tabManual;
 	private TabItem tabAuto;
 
+	private CheckBox switchLockAPanel;
+	private CheckBox switchLockMPanel;
 	private CheckBox switchPhantomAPanel;
 	private CheckBox switchPhantomMPanel;
 	private CheckBox switchMicMuteAPanel;
@@ -59,11 +62,14 @@ public class ShureDroid extends Activity implements View.OnClickListener {
 	private SeekBar seekBarMixAPanel;
 	private SeekBar seekBarMixMPanel;
 
+	private RadioGroup radioGroupADist;
 	private RadioButton radioADistNear;
 	private RadioButton radioADistFar;
+	private RadioGroup radioGroupATone;
 	private RadioButton radioAToneDark;
 	private RadioButton radioAToneNeutral;
 	private RadioButton radioAToneBright;
+	private RadioGroup radioGroupAGain;
 	private RadioButton radioAGainLow;
 	private RadioButton radioAGainNormal;
 	private RadioButton radioAGainHigh;
@@ -71,13 +77,15 @@ public class ShureDroid extends Activity implements View.OnClickListener {
 	private EditText editTextNumberMGain;
 	private SeekBar seekBarMGain;
 	private CheckBox switchMLimiter;
+	private RadioGroup radioGroupMComp;
 	private RadioButton radioMCompOff;
 	private RadioButton radioMCompLight;
 	private RadioButton radioMCompModerate;
 	private RadioButton radioMCompHeavy;
-	private RadioButton radioMLpfOff;
-	private RadioButton radioMLpf75Hz;
-	private RadioButton radioMLpf150Hz;
+	private RadioGroup radioGroupMHpf;
+	private RadioButton radioMHpfOff;
+	private RadioButton radioMHpf75Hz;
+	private RadioButton radioMHpf150Hz;
 	private CheckBox switchEqEnable;
 	private CheckBox switchEq1;
 	private SeekBar seekBarEq1;
@@ -125,6 +133,8 @@ public class ShureDroid extends Activity implements View.OnClickListener {
 		tabManual = (TabItem) findViewById(R.id.tabManual);
 		tabAuto = (TabItem) findViewById(R.id.tabAuto);
 
+		switchLockAPanel = (CheckBox) findViewById(R.id.switchLockAPanel);
+		switchLockMPanel = (CheckBox) findViewById(R.id.switchLockMPanel);
 		switchPhantomAPanel = (CheckBox) findViewById(R.id.switchPhantomAPanel);
 		switchPhantomMPanel = (CheckBox) findViewById(R.id.switchPhantomMPanel);
 		switchMicMuteAPanel = (CheckBox) findViewById(R.id.switchMicMuteAPanel);
@@ -134,11 +144,14 @@ public class ShureDroid extends Activity implements View.OnClickListener {
 		seekBarMixAPanel = (SeekBar) findViewById(R.id.seekBarMixAPanel);
 		seekBarMixMPanel = (SeekBar) findViewById(R.id.seekBarMixMPanel);
 
+		radioGroupADist = (RadioGroup) findViewById(R.id.radioGroupADist);
 		radioADistNear = (RadioButton) findViewById(R.id.radioADistNear);
 		radioADistFar = (RadioButton) findViewById(R.id.radioADistFar);
+		radioGroupATone = (RadioGroup) findViewById(R.id.radioGroupATone);
 		radioAToneDark = (RadioButton) findViewById(R.id.radioAToneDark);
 		radioAToneNeutral = (RadioButton) findViewById(R.id.radioAToneNeutral);
 		radioAToneBright = (RadioButton) findViewById(R.id.radioAToneBright);
+		radioGroupATone = (RadioGroup) findViewById(R.id.radioGroupATone);
 		radioAGainLow = (RadioButton) findViewById(R.id.radioAGainLow);
 		radioAGainNormal = (RadioButton) findViewById(R.id.radioAGainNormal);
 		radioAGainHigh = (RadioButton) findViewById(R.id.radioAGainHigh);
@@ -146,13 +159,15 @@ public class ShureDroid extends Activity implements View.OnClickListener {
 		editTextNumberMGain = (EditText) findViewById(R.id.editTextNumberMGain);
 		seekBarMGain = (SeekBar) findViewById(R.id.seekBarMGain);
 		switchMLimiter = (CheckBox) findViewById(R.id.switchMLimiter);
+		radioGroupMComp = (RadioGroup) findViewById(R.id.radioGroupMComp);
 		radioMCompOff = (RadioButton) findViewById(R.id.radioMCompOff);
 		radioMCompLight = (RadioButton) findViewById(R.id.radioMCompLight);
 		radioMCompModerate = (RadioButton) findViewById(R.id.radioMCompModerate);
 		radioMCompHeavy = (RadioButton) findViewById(R.id.radioMCompHeavy);
-		radioMLpfOff = (RadioButton) findViewById(R.id.radioMLpfOff);
-		radioMLpf75Hz = (RadioButton) findViewById(R.id.radioMLpf75Hz);
-		radioMLpf150Hz = (RadioButton) findViewById(R.id.radioMLpf150Hz);
+		radioGroupMHpf = (RadioGroup) findViewById(R.id.radioGroupMHpf);
+		radioMHpfOff = (RadioButton) findViewById(R.id.radioMHpfOff);
+		radioMHpf75Hz = (RadioButton) findViewById(R.id.radioMHpf75Hz);
+		radioMHpf150Hz = (RadioButton) findViewById(R.id.radioMHpf150Hz);
 		switchEqEnable = (CheckBox) findViewById(R.id.switchEqEnable);
 		switchEq1 = (CheckBox) findViewById(R.id.switchEq1);
 		seekBarEq1 = (SeekBar) findViewById(R.id.seekBarEq1);
@@ -192,6 +207,8 @@ public class ShureDroid extends Activity implements View.OnClickListener {
 			public void onTabReselected(TabLayout.Tab tab)  {}
 		});
 
+		switchLockAPanel.setOnClickListener(this);
+		switchLockMPanel.setOnClickListener(this);
 		switchPhantomAPanel.setOnClickListener(this);
 		switchPhantomMPanel.setOnClickListener(this);
 		switchMicMuteAPanel.setOnClickListener(this);
@@ -217,9 +234,9 @@ public class ShureDroid extends Activity implements View.OnClickListener {
 		radioMCompLight.setOnClickListener(this);
 		radioMCompModerate.setOnClickListener(this);
 		radioMCompHeavy.setOnClickListener(this);
-		radioMLpfOff.setOnClickListener(this);
-		radioMLpf75Hz.setOnClickListener(this);
-		radioMLpf150Hz.setOnClickListener(this);
+		radioMHpfOff.setOnClickListener(this);
+		radioMHpf75Hz.setOnClickListener(this);
+		radioMHpf150Hz.setOnClickListener(this);
 		switchEqEnable.setOnClickListener(this);
 		switchEq1.setOnClickListener(this);
 		seekBarEq1.setOnClickListener(this);
@@ -237,11 +254,14 @@ public class ShureDroid extends Activity implements View.OnClickListener {
 	}
 
 	public void onClick(View v) {
-		switch (v.getId()) {
+		switch (v.getId()/*TODO-hi*/) {
 			case R.id.btnSelectHIDDevice:
 				eventBus.post(new PrepareDevicesListEvent());
 				break;
 
+			case R.id.switchLockAPanel:
+			case R.id.switchLockMPanel:
+				break;
 			case R.id.switchPhantomAPanel:
 			case R.id.switchPhantomMPanel:
 				break;
@@ -286,11 +306,11 @@ public class ShureDroid extends Activity implements View.OnClickListener {
 				break;
 			case R.id.radioMCompHeavy:
 				break;
-			case R.id.radioMLpfOff:
+			case R.id.radioMHpfOff:
 				break;
-			case R.id.radioMLpf75Hz:
+			case R.id.radioMHpf75Hz:
 				break;
-			case R.id.radioMLpf150Hz:
+			case R.id.radioMHpf150Hz:
 				break;
 			case R.id.switchEqEnable:
 				break;
@@ -369,8 +389,6 @@ public class ShureDroid extends Activity implements View.OnClickListener {
 	}
 
 	void makeSettingsUIEnabled(boolean enable) {
-		tabLayout.setEnabled(enable);
-
 		switchPhantomAPanel.setEnabled(enable);
 		switchPhantomMPanel.setEnabled(enable);
 		switchMicMuteAPanel.setEnabled(enable);
@@ -402,9 +420,9 @@ public class ShureDroid extends Activity implements View.OnClickListener {
 		radioMCompLight.setEnabled(enable);
 		radioMCompModerate.setEnabled(enable);
 		radioMCompHeavy.setEnabled(enable);
-		radioMLpfOff.setEnabled(enable);
-		radioMLpf75Hz.setEnabled(enable);
-		radioMLpf150Hz.setEnabled(enable);
+		radioMHpfOff.setEnabled(enable);
+		radioMHpf75Hz.setEnabled(enable);
+		radioMHpf150Hz.setEnabled(enable);
 		switchEqEnable.setEnabled(enable);
 		switchEq1.setEnabled(enable);
 		seekBarEq1.setEnabled(enable);
@@ -426,9 +444,101 @@ public class ShureDroid extends Activity implements View.OnClickListener {
 	public void onEvent(USBDataReceiveEvent event) {
 		mLog(event.getDataAsHex());
 
-		//byte[] ba = event.getData();  // TODO-debug
-		//int pType = USBUtils.testParamType(ba);
-		//mLog(Integer.toHexString(pType));
+		byte[] ba = event.getData();
+		int pType = USBUtils.getParamType(ba);
+		if (pType < 0)  { return; }
+		int pVal = USBUtils.getParamVal(ba);
+
+		mLog(Integer.toHexString(pType) + " - " + Integer.toString(pVal));
+		switch (pType) {
+			case 0x01000000:  break;
+			case 0x010600a6:  // Lock state
+				makeSettingsUIEnabled(pVal == 0);
+				switchLockAPanel.setChecked(pVal != 0);
+				switchLockMPanel.setChecked(pVal != 0);
+				break;
+			case 0x02000102:  mLog("TODO Manual gain " + String.valueOf(pVal)); break;
+			case 0x02000104:
+				switchMicMuteAPanel.setChecked(pVal != 0);
+				switchMicMuteMPanel.setChecked(pVal != 0);
+				break;
+			case 0x02000106:
+				if (pVal == 0) {
+					radioGroupMHpf.check(R.id.radioMHpfOff);
+				} else if (pVal == 1) {
+					radioGroupMHpf.check(R.id.radioMHpf75Hz);
+				} else if (pVal == 2) {
+					radioGroupMHpf.check(R.id.radioMHpf150Hz);
+				} else {
+					mLog("HPF param error");
+				}
+				break;
+			case 0x02000151:  switchMLimiter.setChecked(pVal != 0); break;
+			case 0x0200015c:
+				if (pVal == 0) {
+					radioGroupMComp.check(R.id.radioMCompOff);
+				} else if (pVal == 1) {
+					radioGroupMComp.check(R.id.radioMCompLight);
+				} else if (pVal == 2) {
+					radioGroupMComp.check(R.id.radioMCompModerate);
+				} else if (pVal == 3) {
+					radioGroupMComp.check(R.id.radioMCompHeavy);
+				} else {
+					mLog("Comp param error");
+				}
+				break;
+			case 0x02000166:
+				mLog("PPOW " + Integer.toString(pVal));
+				switchPhantomAPanel.setChecked(pVal != 0);
+				switchPhantomMPanel.setChecked(pVal != 0);
+				break;
+			case 0x02000182:
+				if (pVal == 0) {
+					radioGroupADist.check(R.id.radioADistNear);
+				} else if (pVal == 1) {
+					radioGroupADist.check(R.id.radioADistFar);
+				} else {
+					mLog("Dist param error");
+				}
+				break;
+			case 0x02000183:
+				if (pVal == 0) {
+					radioGroupATone.check(R.id.radioAToneDark);
+				} else if (pVal == 1) {
+					radioGroupATone.check(R.id.radioAToneNeutral);
+				} else if (pVal == 2) {
+					radioGroupATone.check(R.id.radioAToneBright);
+				} else {
+					mLog("Tone param error");
+				}
+				break;
+			case 0x02000185:  break;  // TODO-hi: Switch to correct panel!
+			case 0x02010186:  mLog("TODO Mic mix " + String.valueOf(pVal)); break;
+			case 0x02000187:
+				if (pVal == 0) {
+					radioGroupAGain.check(R.id.radioAGainLow);
+				} else if (pVal == 1) {
+					radioGroupAGain.check(R.id.radioAGainNormal);
+				} else if (pVal == 2) {
+					radioGroupAGain.check(R.id.radioAGainHigh);
+				} else {
+					mLog("Gain (auto) param error");
+				}
+				break;
+			case 0x02000200:  switchEqEnable.setChecked(pVal != 0); break;
+			case 0x02000210:  switchEq1.setChecked(pVal != 0); break;
+			case 0x02000214:  mLog("TODO EQ 1 @ " + String.valueOf(pVal)); break;
+			case 0x02000220:  switchEq2.setChecked(pVal != 0); break;
+			case 0x02000224:  mLog("TODO EQ 2 @ " + String.valueOf(pVal)); break;
+			case 0x02000230:  switchEq3.setChecked(pVal != 0); break;
+			case 0x02000234:  mLog("TODO EQ 3 @ " + String.valueOf(pVal)); break;
+			case 0x02000240:  switchEq4.setChecked(pVal != 0); break;
+			case 0x02000244:  mLog("TODO EQ 4 @ " + String.valueOf(pVal)); break;
+			case 0x02000250:  switchEq5.setChecked(pVal != 0); break;
+			case 0x02000254:  mLog("TODO EQ 5 @ " + String.valueOf(pVal)); break;
+			default:
+				mLog("Param Error!");
+		}
 	}
 
 	@Subscribe(threadMode = ThreadMode.MAIN)
@@ -449,8 +559,10 @@ public class ShureDroid extends Activity implements View.OnClickListener {
 	@Subscribe(threadMode = ThreadMode.MAIN)
 	public void onEvent(DeviceAttachedEvent event) {
 		btnSelectHIDDevice.setBackgroundResource(android.R.drawable.presence_audio_online);
-		getAllMVX2UParameters();  // TODO-debug
 		makeSettingsUIEnabled(true);
+		switchLockAPanel.setEnabled(true);
+		switchLockMPanel.setEnabled(true);
+		getAllMVX2UParameters();
 	}
 
 	@Subscribe(threadMode = ThreadMode.MAIN)

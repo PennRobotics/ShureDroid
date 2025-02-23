@@ -13,6 +13,31 @@
         app:columnCount="2">
 
         <CheckBox
+            android:id="@+id/switchLockAPanel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:minHeight="48dp"
+            app:layout_gravity="center"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <TextView
+            style="@style/gridToggleText"
+            android:text="@string/lock"
+            app:layout_gravity="fill|center_vertical" />
+
+        <View
+            android:layout_width="48dp"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider" />
+
+        <View
+            android:layout_width="48dp"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider"
+            app:layout_gravity="start|end" />
+
+        <CheckBox
             android:id="@+id/switchPhantomAPanel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -98,6 +123,7 @@
         android:text="@string/distance" />
 
     <RadioGroup
+        android:id="@+id/radioGroupADist"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
