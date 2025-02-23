@@ -10,14 +10,10 @@ buildscript {
     repositories {
         google()
         mavenCentral()
-        jcenter()
     }
 
     dependencies {
         classpath 'com.android.tools.build:gradle:8.8.1'
-
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
     }
 }
 
@@ -31,15 +27,9 @@ dependencies {
     implementation 'org.greenrobot:eventbus:3.3.1'
     implementation 'androidx.gridlayout:gridlayout:1.0.0'
     implementation 'com.google.android.material:material:1.12.0'
-    // Testing-only dependencies
-    androidTestImplementation "androidx.test:core:1.6.1";
-    androidTestImplementation "androidx.test.ext:junit:1.2.1";
-    androidTestImplementation "androidx.test:runner:1.6.1";
-    androidTestImplementation "androidx.test:rules:1.6.1";
 }
 
 android {
-
     namespace 'com.github.pennrobotics.shuredroid'
 
     compileSdk 35
@@ -70,13 +60,9 @@ android {
             res.srcDirs = ['res']
             assets.srcDirs = ['assets']
         }
-        androidTest.setRoot('tests')
-        androidTest.java.srcDirs = ['tests/src']
     }
     packagingOptions {
-        resources {
-            excludes += ['META-INF/DEPENDENCIES.txt', 'META-INF/DEPENDENCIES', 'META-INF/dependencies.txt', 'META-INF/LICENSE.txt', 'META-INF/LICENSE', 'META-INF/license.txt', 'META-INF/LGPL2.1', 'META-INF/NOTICE.txt', 'META-INF/NOTICE', 'META-INF/notice.txt', 'LICENSE.txt']
-        }
+        pickFirst '**'
     }
     lint {
         abortOnError false
@@ -84,22 +70,17 @@ android {
 
 }
 
+/*
 task adbConfig(type: Exec) {
     commandLine 'adb', 'connect', '192.168.1.45:5555'
 }
-
-
 task tst(dependsOn: ['adbConfig', 'connectedAndroidTest']) {
-
-}
+} */
 
 def computeVersionName() {
-    // Basic <major>.<minor> version name
-    return String.format('%d.%d', versionMajor, versionMinor)
+    return String.format('%d.%d.%d', versionMajor, versionMinor, versionPatch)
 }
 
-// Will return 120042 for Jenkins build #42
 def computeVersionCode() {
-    // Major + minor + Jenkins build number (where available)
-    return (versionMajor * 10) + (versionMinor * 10) + Integer.valueOf(System.env.BUILD_NUMBER ?: 0)
+    return (versionMajor * 10000) + (versionMinor * 100) + versionPatch;
 }
