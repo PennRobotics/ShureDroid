@@ -109,7 +109,6 @@ public class ShureDroid extends Activity implements View.OnClickListener {
 
 	private void initUI() {
 		getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
-		setVersionToTitle();
 		getActionBar().hide();
 
 		btnSelectHIDDevice = (ImageButton) findViewById(R.id.btnSelectHIDDevice);
@@ -424,7 +423,7 @@ public class ShureDroid extends Activity implements View.OnClickListener {
 	@Override
 	protected void onStart() {
 		super.onStart();
-		prepareServices();
+		prepareServices();  // USBService
 		eventBus.register(this);
 	}
 
@@ -463,15 +462,5 @@ public class ShureDroid extends Activity implements View.OnClickListener {
 	void sendToUSBService(String action, int data) {
 		usbService.putExtra(action, data);
 		sendToUSBService(action);
-	}
-
-	private void setVersionToTitle() {
-		/*
-		try {
-			this.setTitle(Consts.SPACE + this.getTitle() + Consts.SPACE + getPackageManager().getPackageInfo(getPackageName(), 0).versionName);
-		} catch (NameNotFoundException e) {
-			e.printStackTrace();
-		}
-		 */
 	}
 }
