@@ -66,6 +66,27 @@ public class ShureDroid extends Activity implements View.OnClickListener {
 	private RadioButton radioAGainNormal;
 	private RadioButton radioAGainHigh;
 
+	private EditText editTextNumberMGain;
+	private SeekBar seekBarMGain;
+	private CheckBox switchMLimiter;
+	private RadioButton radioMCompOff;
+	private RadioButton radioMCompLight;
+	private RadioButton radioMCompModerate;
+	private RadioButton radioMCompHeavy;
+	private RadioButton radioMLpfOff;
+	private RadioButton radioMLpf75Hz;
+	private RadioButton radioMLpf150Hz;
+	private CheckBox switchEqEnable;
+	private CheckBox switchEq1;
+	private SeekBar seekBarEq1;
+	private CheckBox switchEq2;
+	private SeekBar seekBarEq2;
+	private CheckBox switchEq3;
+	private SeekBar seekBarEq3;
+	private CheckBox switchEq4;
+	private SeekBar seekBarEq4;
+	private CheckBox switchEq5;
+	private SeekBar seekBarEq5;
 	protected EventBus eventBus;
 
 	private void prepareServices() {
@@ -101,9 +122,14 @@ public class ShureDroid extends Activity implements View.OnClickListener {
 		tabAuto = (TabItem) findViewById(R.id.tabAuto);
 
 		switchPhantomAPanel = (CheckBox) findViewById(R.id.switchPhantomAPanel);
+		switchPhantomMPanel = (CheckBox) findViewById(R.id.switchPhantomMPanel);
 		switchMicMuteAPanel = (CheckBox) findViewById(R.id.switchMicMuteAPanel);
+		switchMicMuteMPanel = (CheckBox) findViewById(R.id.switchMicMuteMPanel);
 		editTextNumberMixAPanel = (EditText) findViewById(R.id.editTextNumberMixAPanel);
+		editTextNumberMixMPanel = (EditText) findViewById(R.id.editTextNumberMixMPanel);
 		seekBarMixAPanel = (SeekBar) findViewById(R.id.seekBarMixAPanel);
+		seekBarMixMPanel = (SeekBar) findViewById(R.id.seekBarMixMPanel);
+
 		radioADistNear = (RadioButton) findViewById(R.id.radioADistNear);
 		radioADistFar = (RadioButton) findViewById(R.id.radioADistFar);
 		radioAToneDark = (RadioButton) findViewById(R.id.radioAToneDark);
@@ -112,6 +138,30 @@ public class ShureDroid extends Activity implements View.OnClickListener {
 		radioAGainLow = (RadioButton) findViewById(R.id.radioAGainLow);
 		radioAGainNormal = (RadioButton) findViewById(R.id.radioAGainNormal);
 		radioAGainHigh = (RadioButton) findViewById(R.id.radioAGainHigh);
+
+		editTextNumberMGain = (EditText) findViewById(R.id.editTextNumberMGain);
+		seekBarMGain = (SeekBar) findViewById(R.id.seekBarMGain);
+		switchMLimiter = (CheckBox) findViewById(R.id.switchMLimiter);
+		radioMCompOff = (RadioButton) findViewById(R.id.radioMCompOff);
+		radioMCompLight = (RadioButton) findViewById(R.id.radioMCompLight);
+		radioMCompModerate = (RadioButton) findViewById(R.id.radioMCompModerate);
+		radioMCompHeavy = (RadioButton) findViewById(R.id.radioMCompHeavy);
+		radioMLpfOff = (RadioButton) findViewById(R.id.radioMLpfOff);
+		radioMLpf75Hz = (RadioButton) findViewById(R.id.radioMLpf75Hz);
+		radioMLpf150Hz = (RadioButton) findViewById(R.id.radioMLpf150Hz);
+		switchEqEnable = (CheckBox) findViewById(R.id.switchEqEnable);
+		switchEq1 = (CheckBox) findViewById(R.id.switchEq1);
+		seekBarEq1 = (SeekBar) findViewById(R.id.seekBarEq1);
+		switchEq2 = (CheckBox) findViewById(R.id.switchEq2);
+		seekBarEq2 = (SeekBar) findViewById(R.id.seekBarEq2);
+		switchEq3 = (CheckBox) findViewById(R.id.switchEq3);
+		seekBarEq3 = (SeekBar) findViewById(R.id.seekBarEq3);
+		switchEq4 = (CheckBox) findViewById(R.id.switchEq4);
+		seekBarEq4 = (SeekBar) findViewById(R.id.seekBarEq4);
+		switchEq5 = (CheckBox) findViewById(R.id.switchEq5);
+		seekBarEq5 = (SeekBar) findViewById(R.id.seekBarEq5);
+
+		makeSettingsUIEnabled(false);
 
 		btnSelectHIDDevice.setOnClickListener(this);
 
@@ -137,9 +187,14 @@ public class ShureDroid extends Activity implements View.OnClickListener {
 		});
 
 		switchPhantomAPanel.setOnClickListener(this);
+		switchPhantomMPanel.setOnClickListener(this);
 		switchMicMuteAPanel.setOnClickListener(this);
+		switchMicMuteMPanel.setOnClickListener(this);
 		editTextNumberMixAPanel.setOnClickListener(this);
+		editTextNumberMixMPanel.setOnClickListener(this);
 		seekBarMixAPanel.setOnClickListener(this);
+		seekBarMixMPanel.setOnClickListener(this);
+
 		radioADistNear.setOnClickListener(this);
 		radioADistFar.setOnClickListener(this);
 		radioAToneDark.setOnClickListener(this);
@@ -148,6 +203,28 @@ public class ShureDroid extends Activity implements View.OnClickListener {
 		radioAGainLow.setOnClickListener(this);
 		radioAGainNormal.setOnClickListener(this);
 		radioAGainHigh.setOnClickListener(this);
+
+		editTextNumberMGain.setOnClickListener(this);
+		seekBarMGain.setOnClickListener(this);
+		switchMLimiter.setOnClickListener(this);
+		radioMCompOff.setOnClickListener(this);
+		radioMCompLight.setOnClickListener(this);
+		radioMCompModerate.setOnClickListener(this);
+		radioMCompHeavy.setOnClickListener(this);
+		radioMLpfOff.setOnClickListener(this);
+		radioMLpf75Hz.setOnClickListener(this);
+		radioMLpf150Hz.setOnClickListener(this);
+		switchEqEnable.setOnClickListener(this);
+		switchEq1.setOnClickListener(this);
+		seekBarEq1.setOnClickListener(this);
+		switchEq2.setOnClickListener(this);
+		seekBarEq2.setOnClickListener(this);
+		switchEq3.setOnClickListener(this);
+		seekBarEq3.setOnClickListener(this);
+		switchEq4.setOnClickListener(this);
+		seekBarEq4.setOnClickListener(this);
+		switchEq5.setOnClickListener(this);
+		seekBarEq5.setOnClickListener(this);
 
 		//mLog("Initialized\nPlease select your USB HID device\n", false);
 		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
@@ -189,6 +266,49 @@ public class ShureDroid extends Activity implements View.OnClickListener {
 			case R.id.radioAGainHigh:
 				break;
 
+			case R.id.editTextNumberMGain:
+				break;
+			case R.id.seekBarMGain:
+				break;
+			case R.id.switchMLimiter:
+				break;
+			case R.id.radioMCompOff:
+				break;
+			case R.id.radioMCompLight:
+				break;
+			case R.id.radioMCompModerate:
+				break;
+			case R.id.radioMCompHeavy:
+				break;
+			case R.id.radioMLpfOff:
+				break;
+			case R.id.radioMLpf75Hz:
+				break;
+			case R.id.radioMLpf150Hz:
+				break;
+			case R.id.switchEqEnable:
+				break;
+			case R.id.switchEq1:
+				break;
+			case R.id.seekBarEq1:
+				break;
+			case R.id.switchEq2:
+				break;
+			case R.id.seekBarEq2:
+				break;
+			case R.id.switchEq3:
+				break;
+			case R.id.seekBarEq3:
+				break;
+			case R.id.switchEq4:
+				break;
+			case R.id.seekBarEq4:
+				break;
+			case R.id.switchEq5:
+				break;
+			case R.id.seekBarEq5:
+				break;
+
 			default:
 				break;
 		}
@@ -220,7 +340,46 @@ public class ShureDroid extends Activity implements View.OnClickListener {
 
 	void makeSettingsUIEnabled(boolean enable) {
 		tabLayout.setEnabled(enable);
-		//btnTestPacket.setEnabled(true);
+
+		switchPhantomAPanel.setEnabled(enable);
+		switchPhantomMPanel.setEnabled(enable);
+		switchMicMuteAPanel.setEnabled(enable);
+		switchMicMuteMPanel.setEnabled(enable);
+		editTextNumberMixAPanel.setEnabled(enable);
+		editTextNumberMixMPanel.setEnabled(enable);
+		seekBarMixAPanel.setEnabled(enable);
+		seekBarMixMPanel.setEnabled(enable);
+
+		radioADistNear.setEnabled(enable);
+		radioADistFar.setEnabled(enable);
+		radioAToneDark.setEnabled(enable);
+		radioAToneNeutral.setEnabled(enable);
+		radioAToneBright.setEnabled(enable);
+		radioAGainLow.setEnabled(enable);
+		radioAGainNormal.setEnabled(enable);
+		radioAGainHigh.setEnabled(enable);
+
+		editTextNumberMGain.setEnabled(enable);
+		seekBarMGain.setEnabled(enable);
+		switchMLimiter.setEnabled(enable);
+		radioMCompOff.setEnabled(enable);
+		radioMCompLight.setEnabled(enable);
+		radioMCompModerate.setEnabled(enable);
+		radioMCompHeavy.setEnabled(enable);
+		radioMLpfOff.setEnabled(enable);
+		radioMLpf75Hz.setEnabled(enable);
+		radioMLpf150Hz.setEnabled(enable);
+		switchEqEnable.setEnabled(enable);
+		switchEq1.setEnabled(enable);
+		seekBarEq1.setEnabled(enable);
+		switchEq2.setEnabled(enable);
+		seekBarEq2.setEnabled(enable);
+		switchEq3.setEnabled(enable);
+		seekBarEq3.setEnabled(enable);
+		switchEq4.setEnabled(enable);
+		seekBarEq4.setEnabled(enable);
+		switchEq5.setEnabled(enable);
+		seekBarEq5.setEnabled(enable);
 	}
 
 	@Subscribe(threadMode = ThreadMode.MAIN)
