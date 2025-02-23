@@ -349,6 +349,8 @@ public class ShureDroid extends Activity implements View.OnClickListener {
 		editTextNumberMixMPanel.setEnabled(enable);
 		seekBarMixAPanel.setEnabled(enable);
 		seekBarMixMPanel.setEnabled(enable);
+		seekBarMixAPanel.setIndeterminate(!enable);
+		seekBarMixMPanel.setIndeterminate(!enable);
 
 		radioADistNear.setEnabled(enable);
 		radioADistFar.setEnabled(enable);
@@ -361,6 +363,7 @@ public class ShureDroid extends Activity implements View.OnClickListener {
 
 		editTextNumberMGain.setEnabled(enable);
 		seekBarMGain.setEnabled(enable);
+		seekBarMGain.setIndeterminate(!enable);
 		switchMLimiter.setEnabled(enable);
 		radioMCompOff.setEnabled(enable);
 		radioMCompLight.setEnabled(enable);

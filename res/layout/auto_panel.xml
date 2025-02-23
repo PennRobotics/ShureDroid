@@ -75,24 +75,13 @@
 
         <EditText
             android:id="@+id/editTextNumberMixAPanel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="2"
-            android:importantForAutofill="no"
-            android:inputType="number"
-            android:minWidth="48dp"
-            android:minHeight="48dp"
-            android:singleLine="true"
+            style="@style/sdEditNumber"
             app:layout_gravity="center"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <SeekBar
             android:id="@+id/seekBarMixAPanel"
             style="@style/sdSeekBar"
-            android:clickable="false"
-            android:focusable="false"
-            android:indeterminate="true"
-            android:indeterminateBehavior="cycle"
             app:layout_gravity="start|end" />
 
     </androidx.gridlayout.widget.GridLayout>

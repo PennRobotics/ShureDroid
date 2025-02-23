@@ -76,14 +76,8 @@
 
         <EditText
             android:id="@+id/editTextNumberMixMPanel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="2"
+            style="@style/sdEditNumber"
             android:importantForAutofill="no"
-            android:inputType="number"
-            android:minWidth="48dp"
-            android:minHeight="48dp"
-            android:singleLine="true"
             app:layout_gravity="center"
             tools:ignore="SpeakableTextPresentCheck" /> <!-- TODO: put into style xml -->
 
@@ -117,14 +111,8 @@
 
         <EditText
             android:id="@+id/editTextNumberMGain"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="2"
+            style="@style/sdEditNumber"
             android:importantForAutofill="no"
-            android:inputType="number"
-            android:minWidth="48dp"
-            android:minHeight="48dp"
-            android:singleLine="true"
             app:layout_gravity="center"
             tools:ignore="SpeakableTextPresentCheck" />
 

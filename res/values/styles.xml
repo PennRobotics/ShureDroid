@@ -18,6 +18,8 @@
     </style>
 
     <style name="sdSeekBar" parent="android:Widget.SeekBar">
+        <item name="android:indeterminateBehavior">cycle</item>
+        <item name="android:indeterminateTint">#afafaf</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:max">60</item>
@@ -29,6 +31,16 @@
         <item name="android:progressTintMode">src_in</item>
         <item name="android:splitTrack">false</item>
         <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="sdEditNumber">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:ems">2</item>
+        <item name="android:inputType">number</item>
+        <item name="android:minWidth">48dp</item>
+        <item name="android:minHeight">48dp</item>
+        <item name="android:singleLine">true</item>
     </style>
 
     <style name="eqSeekBar" parent="android:Widget.SeekBar">
@@ -60,5 +72,6 @@
     </style>
 
     <style name="ThemeCustom.TabLayout" parent="Theme.MaterialComponents.Light"/>
+
 
 </resources>
