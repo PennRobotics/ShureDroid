@@ -346,8 +346,10 @@ public class ShureDroid extends Activity implements View.OnClickListener, SeekBa
 				break;
 
 			case R.id.switchMLimiter:
-				String p = new String(switchMLimiter.isChecked() ? "01" : "00");
-				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000151"+p,0)));  // Limiter
+				{
+					String p = new String(switchMLimiter.isChecked() ? "01" : "00");
+					eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000151"+p,0)));  // Limiter
+				}
 				break;
 
 			case R.id.radioMCompOff:
