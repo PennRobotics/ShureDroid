@@ -194,9 +194,11 @@ public class ShureDroid extends Activity implements View.OnClickListener, SeekBa
 				switch(tab.getPosition()) {
 					case 0:  /* tabAuto */
 						if (!currentlyAuto) { viewSwitcher.showPrevious(); }
+						// TODO: send and verify packet to enter auto mode
 						break;
 					case 1:  /* tabManual */
 						if (currentlyAuto) { viewSwitcher.showNext(); }
+						// TODO: send and verify packet to enter manual mode
 						break;
 				}
 			}
@@ -256,23 +258,9 @@ public class ShureDroid extends Activity implements View.OnClickListener, SeekBa
 
 	public void onClick(View v) {
 		/*
-				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("0202010600A6"+p,0)));  // Parameter lock
-				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000104"+p,0)));  // Mute
-				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000106"+p,0)));  // HPF
-				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000151"+p,0)));  // Limiter
-				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("02020200015C"+p,0)));  // Compressor
-				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000166"+p,0)));  // Phantom
-				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000182"+p,0)));  // Auto Position
-				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000183"+p,0)));  // Auto Tone
+			TODO: Move to correct handler and test:
 				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000185"+p,0)));  // Auto Mode Enable
 				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202010186"+p,0)));  // Mix
-				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000187"+p,0)));  // Auto Gain
-				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000200"+p,0)));  // EQ Enable
-				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000210"+p,0)));  // EQ Band 1 Enable
-				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000220"+p,0)));  // EQ Band 2 Enable
-				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000230"+p,0)));  // EQ Band 3 Enable
-				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000240"+p,0)));  // EQ Band 4 Enable
-				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000250"+p,0)));  // EQ Band 5 Enable
 		 */
 		switch (v.getId()/*TODO-hi*/) {
 			case R.id.btnSelectHIDDevice:
@@ -281,6 +269,7 @@ public class ShureDroid extends Activity implements View.OnClickListener, SeekBa
 
 			case R.id.switchLockAPanel:
 			case R.id.switchLockMPanel:
+				// TODO: eventBus.post(new USBDataSendEvent(USBUtils.padPktData("0202010600A6"+p,0)));  // Parameter lock
 				break;
 
 			case R.id.switchPhantomAPanel:
@@ -297,81 +286,132 @@ public class ShureDroid extends Activity implements View.OnClickListener, SeekBa
 				}
 				break;
 			case R.id.switchPhantomMPanel:
-			{
-				boolean c = switchPhantomMPanel.isChecked();
-				if (c) {
-					eventBus.post(new USBDataSendEvent(USBUtils.padPktData("02020200016630", 0)));  // Phantom
-					eventBus.post(new USBDataSendEvent(USBUtils.padPktData("010000")));  // Phantom
-				} else {
-					eventBus.post(new USBDataSendEvent(USBUtils.padPktData("02020200016600", 0)));  // Phantom
-					eventBus.post(new USBDataSendEvent(USBUtils.padPktData("010000")));  // Phantom
+				{
+					boolean c = switchPhantomMPanel.isChecked();
+					if (c) {
+						eventBus.post(new USBDataSendEvent(USBUtils.padPktData("02020200016630", 0)));  // Phantom
+						eventBus.post(new USBDataSendEvent(USBUtils.padPktData("010000")));  // Phantom
+					} else {
+						eventBus.post(new USBDataSendEvent(USBUtils.padPktData("02020200016600", 0)));  // Phantom
+						eventBus.post(new USBDataSendEvent(USBUtils.padPktData("010000")));  // Phantom
+					}
+					switchPhantomAPanel.setChecked(c);
 				}
-				switchPhantomAPanel.setChecked(c);
-			}
+				break;
 
 			case R.id.switchMicMuteAPanel:
 			case R.id.switchMicMuteMPanel:
+				// TODO: eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000104"+p,0)));  // Mute
 				break;
 
 			case R.id.editTextNumberMixAPanel:
 			case R.id.editTextNumberMixMPanel:
-				break;
+				break;  // TODO
 
 			case R.id.seekBarMixAPanel:
 			case R.id.seekBarMixMPanel:
-				break;
+				break;  // TODO
 
 			case R.id.radioADistNear:
+				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("02020200018200",0)));  // Auto Position
 				break;
 			case R.id.radioADistFar:
+				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("02020200018201",0)));  // Auto Position
 				break;
+
 			case R.id.radioAToneDark:
+				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("02020200018300",0)));  // Auto Tone
 				break;
 			case R.id.radioAToneNeutral:
+				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("02020200018301",0)));  // Auto Tone
 				break;
 			case R.id.radioAToneBright:
+				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("02020200018302",0)));  // Auto Tone
 				break;
+
 			case R.id.radioAGainLow:
+				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("02020200018700",0)));  // Auto Gain
 				break;
 			case R.id.radioAGainNormal:
+				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("02020200018701",0)));  // Auto Gain
 				break;
 			case R.id.radioAGainHigh:
+				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("02020200018702",0)));  // Auto Gain
 				break;
 
 			case R.id.editTextNumberMGain:
-				// TODO: set seekbar, fallthrough!
+				// TODO: link with seekbar and vice-versa
+				// TODO: link all edittexts to their seekbars
+				// TODO: set seekbar, run that (seekbar) code
 				break;
 
 			case R.id.switchMLimiter:
+				String p = new String(switchMLimiter.isChecked() ? "01" : "00");
+				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000151"+p,0)));  // Limiter
 				break;
+
 			case R.id.radioMCompOff:
+				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("02020200015C00",0)));  // Compressor
 				break;
 			case R.id.radioMCompLight:
+				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("02020200015C01",0)));  // Compressor
 				break;
 			case R.id.radioMCompModerate:
+				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("02020200015C02",0)));  // Compressor
 				break;
 			case R.id.radioMCompHeavy:
+				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("02020200015C03",0)));  // Compressor
 				break;
+
 			case R.id.radioMHpfOff:
+				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("02020200010600",0)));  // HPF
 				break;
 			case R.id.radioMHpf75Hz:
+				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("02020200010601",0)));  // HPF
 				break;
 			case R.id.radioMHpf150Hz:
+				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("02020200010602",0)));  // HPF
 				break;
+
 			case R.id.switchEqEnable:
+				{
+					String p = new String(switchEqEnable.isChecked() ? "01" : "00");
+					eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000200" + p, 0)));  // EQ Enable
+				}
 				break;
 			case R.id.switchEq1:
+				{
+					String p = new String(switchEqEnable.isChecked() ? "01" : "00");
+					eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000210" + p, 0)));  // EQ Band 1 Enable
+				}
 				break;
 			case R.id.switchEq2:
+				{
+					String p = new String(switchEqEnable.isChecked() ? "01" : "00");
+					eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000220" + p, 0)));  // EQ Band 2 Enable
+				}
 				break;
 			case R.id.switchEq3:
+				{
+					String p = new String(switchEqEnable.isChecked() ? "01" : "00");
+					eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000230" + p, 0)));  // EQ Band 3 Enable
+				}
 				break;
 			case R.id.switchEq4:
+				{
+					String p = new String(switchEqEnable.isChecked() ? "01" : "00");
+					eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000240" + p, 0)));  // EQ Band 4 Enable
+				}
 				break;
 			case R.id.switchEq5:
+				{
+					String p = new String(switchEqEnable.isChecked() ? "01" : "00");
+					eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000250" + p, 0)));  // EQ Band 5 Enable
+				}
 				break;
 
 			default:
+				mLog("problems in click handler")
 				break;
 		}
 	}
@@ -560,7 +600,27 @@ public class ShureDroid extends Activity implements View.OnClickListener, SeekBa
 					mLog("Tone param error");
 				}
 				break;
-			case 0x02000185:  break;  // TODO-hi: Switch to correct panel!
+			case 0x02000185:  // Auto mode enable
+				{
+					boolean currentlyAuto = viewAuto == viewSwitcher.getCurrentView();
+
+					switch(pVal) {
+						case 0:  /* manual mode */
+							if (currentlyAuto) { viewSwitcher.showNext(); }
+							TabLayout.Tab tabM = tabLayout.getTabAt(1);
+							tabM.select();
+							break;
+						case 1:  /* auto mode */
+							if (!currentlyAuto) { viewSwitcher.showPrevious(); }
+							TabLayout.Tab tabA = tabLayout.getTabAt(0);
+							tabA.select();
+							break;
+						default:
+							mLog("Auto mode param error");
+					}
+					mLog("> " + Integer.toString(pVal));
+				}
+				break;
 			case 0x02010186:
 				seekBarMixAPanel.setIndeterminate(false);
 				seekBarMixMPanel.setIndeterminate(false);
