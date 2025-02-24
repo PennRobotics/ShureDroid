@@ -470,9 +470,6 @@ public class ShureDroid extends Activity implements View.OnClickListener, SeekBa
 
 	void makeSettingsUIEnabled(boolean enable) {
 		if (!enable) {
-			seekBarMixAPanel.setIndeterminate(true);
-			seekBarMixMPanel.setIndeterminate(true);
-			seekBarMGain.setIndeterminate(true);
 			editTextNumberMixAPanel.setText(Consts.UNKNOWN_VALUE);
 			editTextNumberMixMPanel.setText(Consts.UNKNOWN_VALUE);
 			editTextNumberMGain.setText(Consts.UNKNOWN_VALUE);
@@ -518,12 +515,6 @@ public class ShureDroid extends Activity implements View.OnClickListener, SeekBa
 		seekBarEq3.setEnabled(enable);
 		seekBarEq4.setEnabled(enable);
 		seekBarEq5.setEnabled(enable);
-		seekBarEq1.setIndeterminate(!enable);
-		seekBarEq2.setIndeterminate(!enable);
-		seekBarEq3.setIndeterminate(!enable);
-		seekBarEq4.setIndeterminate(!enable);
-		seekBarEq5.setIndeterminate(!enable);
-
 	}
 
 	private void mLog(String log) {
@@ -546,13 +537,10 @@ public class ShureDroid extends Activity implements View.OnClickListener, SeekBa
 				switchLockMPanel.setChecked(pVal != 0);
 				break;
 			case 0x02000102:
-				seekBarMixAPanel.setIndeterminate(false);
 				seekBarMixAPanel.setProgress(pVal);
 				editTextNumberMixAPanel.setText(Integer.toString(pVal));
-				seekBarMGain.setIndeterminate(false);
 				seekBarMGain.setProgress(pVal / 50);
 				editTextNumberMGain.setText(String.valueOf((float)(pVal/50)/2.0));
-				mLog("TODO Manual gain " + String.valueOf(pVal)); break;
 			case 0x02000104:
 				switchMicMuteAPanel.setChecked(pVal != 0);
 				switchMicMuteMPanel.setChecked(pVal != 0);
@@ -628,8 +616,6 @@ public class ShureDroid extends Activity implements View.OnClickListener, SeekBa
 				}
 				break;
 			case 0x02010186:
-				seekBarMixAPanel.setIndeterminate(false);
-				seekBarMixMPanel.setIndeterminate(false);
 				seekBarMixAPanel.setProgress(pVal);
 				seekBarMixMPanel.setProgress(pVal);
 				editTextNumberMixAPanel.setText(Integer.toString(pVal));

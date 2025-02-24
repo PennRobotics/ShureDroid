@@ -17,20 +17,16 @@
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
 
-    <style name="sdSeekBar" parent="android:Widget.SeekBar">
-        <item name="android:indeterminateBehavior">cycle</item>
-        <item name="android:indeterminateTint">#afafaf</item>
+    <style name="sdSeekBar" parent="android:style/Widget.Holo.SeekBar">
         <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:max">60</item>
-        <item name="android:minHeight">48dp</item>
-        <item name="android:progress">30</item>
-        <item name="android:progressBackgroundTint">#6f6f6f</item>
-        <item name="android:progressBackgroundTintMode">src_in</item>
-        <item name="android:progressTint">#6f6f6f</item>
-        <item name="android:progressTintMode">src_in</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:paddingBottom">22dp</item>
+        <item name="android:paddingTop">22dp</item>
         <item name="android:splitTrack">false</item>
         <item name="android:textAlignment">center</item>
+        <item name="android:thumb">@drawable/fader_thumb</item>
+        <item name="android:progressDrawable">@drawable/bg_custom_seekbar</item>
+        <item name="android:progressTint">#6f6f6f</item>
     </style>
 
     <style name="sdEditNumber">
@@ -43,18 +39,9 @@
         <item name="android:singleLine">true</item>
     </style>
 
-    <style name="eqSeekBar" parent="android:Widget.SeekBar">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
+    <style name="eqSeekBar" parent="sdSeekBar">
         <item name="android:max">7</item>
-        <item name="android:minHeight">48dp</item>
-        <item name="android:progress">4</item>  n
-        <item name="android:progressBackgroundTint">#6f6f6f</item>
-        <item name="android:progressBackgroundTintMode">src_in</item>
-        <item name="android:progressTint">#6f6f6f</item>
-        <item name="android:progressTintMode">src_in</item>
-        <item name="android:splitTrack">false</item>
-        <item name="android:textAlignment">center</item>
+        <item name="android:progress">4</item>
     </style>
 
     <style name="sdRadioButton">
