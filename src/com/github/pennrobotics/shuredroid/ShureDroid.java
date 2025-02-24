@@ -411,7 +411,7 @@ public class ShureDroid extends Activity implements View.OnClickListener, SeekBa
 				break;
 
 			default:
-				mLog("problems in click handler")
+				mLog("problems in click handler");
 				break;
 		}
 	}
