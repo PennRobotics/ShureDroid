@@ -42,7 +42,7 @@
             android:theme="@style/ThemeCustom.TabLayout"
             app:tabGravity="fill"
             app:tabIndicatorAnimationDuration="60"
-            app:tabIndicatorColor="#1f9fff"
+            app:tabIndicatorColor="#ff5f00"
             app:tabIndicatorGravity="stretch"
             app:tabMode="fixed"
             app:tabSelectedTextColor="#000000"
