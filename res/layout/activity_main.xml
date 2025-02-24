@@ -8,12 +8,22 @@
     android:windowSoftInputMode="stateHidden"
     tools:context=".ShureDroid">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="Unofficial MVX2U Client"
+        android:textStyle="bold|italic" />
+
     <LinearLayout
         android:id="@+id/frameLayoutTop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clipToPadding="false"
-        android:padding="16dp">
+        android:paddingStart="16dp"
+        android:paddingTop="2dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="16dp">
 
         <ImageButton
             android:id="@+id/btnSelectHIDDevice"
@@ -32,7 +42,7 @@
             android:theme="@style/ThemeCustom.TabLayout"
             app:tabGravity="fill"
             app:tabIndicatorAnimationDuration="60"
-            app:tabIndicatorColor="#9fff1f"
+            app:tabIndicatorColor="#1f9fff"
             app:tabIndicatorGravity="stretch"
             app:tabMode="fixed"
             app:tabSelectedTextColor="#000000"
