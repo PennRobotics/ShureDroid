@@ -9,6 +9,41 @@ this connects to a Shure MVX2U to send/receive HID packets.
 <img src="screenshot.jpg" width=240>
 
 
+## Need Help?
+
+Please **do not** complain to Shure! The goal is to stay off their radar so this project _might live forever_.
+
+**Do** create an issue (good) or merge request (better) if you find or fix a problem.
+
+Also, bear with me. I am _not_ and Android developer and am not considering it as a career future or hobby.
+I know a lot of C&mdash;enough C to modify someone else's Java until I can connect to my own MVX2U for twenty
+seconds at 3:00 a.m. and toggle a few features on my phone running a single version of Android.
+
+What am I saying? If you have a problem, **I** might not be the person to solve it, but the community might
+eventually get to a solution. This is further complicated by some factors:
+
+1. I might miss Github notifications in my email inbox.
+2. I might not have time to work on something.
+3. I won't research long when I don't quickly understand e.g. async, i18n, theming, accessibility (see _lack of free time_)
+4. I won't merge anything I don't understand. (Blame my mechatronics professor for that.)
+5. I don't want publicity or interaction with the justice system.
+6. I dislike most Material You apps and see that form of beautification as a bit of a waste of time.
+
+(This last point is less valid if/when Shure condones this app. If that happens, I wouldn't mind so much
+polishing up the interface.)
+
+As-is, I barely understand the source that I already _have_. I try to keep everything readable by writing
+packet data as hex strings, but then it has to hit the USB buffer as a byte array after some intermediate
+calculations like length and CRC16. I don't know anything about layouts and views and how to connect each
+different element e.g. text and seekbar. Sometimes the IDE states functions are never called, but they
+actually are called from an event generator in a different file. I'm not sure how messed up memory gets
+with a statement like `String s = new String((a == 1) ? "ok" : "not ok");`. I don't know what causes the
+USB to drop out after a few minutes or how I might persist permissions.
+
+So please&hellip;
+Write issues. Comment on issues. Write pull requests. Keep them small and explain them in junior dev terms. Fork and maintain this.
+
+
 ## Getting Started
 
 _The .apk is currently being developed. Build from source._
