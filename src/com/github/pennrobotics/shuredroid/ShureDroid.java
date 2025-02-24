@@ -269,15 +269,10 @@ public class ShureDroid extends Activity implements View.OnClickListener, SeekBa
 				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000187"+p,0)));  // Auto Gain
 				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000200"+p,0)));  // EQ Enable
 				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000210"+p,0)));  // EQ Band 1 Enable
-				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000214"+p,0)));  // EQ Band 1 Gain
 				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000220"+p,0)));  // EQ Band 2 Enable
-				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000224"+p,0)));  // EQ Band 2 Gain
 				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000230"+p,0)));  // EQ Band 3 Enable
-				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000234"+p,0)));  // EQ Band 3 Gain
 				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000240"+p,0)));  // EQ Band 4 Enable
-				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000244"+p,0)));  // EQ Band 4 Gain
 				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000250"+p,0)));  // EQ Band 5 Enable
-				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000254"+p,0)));  // EQ Band 5 Gain
 		 */
 		switch (v.getId()/*TODO-hi*/) {
 			case R.id.btnSelectHIDDevice:
@@ -367,23 +362,13 @@ public class ShureDroid extends Activity implements View.OnClickListener, SeekBa
 				break;
 			case R.id.switchEq1:
 				break;
-			case R.id.seekBarEq1:
-				break;
 			case R.id.switchEq2:
-				break;
-			case R.id.seekBarEq2:
 				break;
 			case R.id.switchEq3:
 				break;
-			case R.id.seekBarEq3:
-				break;
 			case R.id.switchEq4:
 				break;
-			case R.id.seekBarEq4:
-				break;
 			case R.id.switchEq5:
-				break;
-			case R.id.seekBarEq5:
 				break;
 
 			default:
@@ -476,16 +461,23 @@ public class ShureDroid extends Activity implements View.OnClickListener, SeekBa
 		radioMHpf75Hz.setEnabled(enable);
 		radioMHpf150Hz.setEnabled(enable);
 		switchEqEnable.setEnabled(enable);
+
 		switchEq1.setEnabled(enable);
-		seekBarEq1.setEnabled(enable);
 		switchEq2.setEnabled(enable);
-		seekBarEq2.setEnabled(enable);
 		switchEq3.setEnabled(enable);
-		seekBarEq3.setEnabled(enable);
 		switchEq4.setEnabled(enable);
-		seekBarEq4.setEnabled(enable);
 		switchEq5.setEnabled(enable);
+		seekBarEq1.setEnabled(enable);
+		seekBarEq2.setEnabled(enable);
+		seekBarEq3.setEnabled(enable);
+		seekBarEq4.setEnabled(enable);
 		seekBarEq5.setEnabled(enable);
+		seekBarEq1.setIndeterminate(!enable);
+		seekBarEq2.setIndeterminate(!enable);
+		seekBarEq3.setIndeterminate(!enable);
+		seekBarEq4.setIndeterminate(!enable);
+		seekBarEq5.setIndeterminate(!enable);
+
 	}
 
 	private void mLog(String log) {
@@ -681,12 +673,28 @@ public class ShureDroid extends Activity implements View.OnClickListener, SeekBa
 
 	@Override
 	public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+		int band = 0x14;
 		switch (seekBar.getId()) {
+			case R.id.seekBarMixAPanel:  break;
+			case R.id.seekBarMixMPanel:  break;
 			case R.id.seekBarMGain:
 				{
 					int val = seekBarMGain.getProgress() * 50;
 					String valHx = String.format("%04X", val);
 					eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000102" + valHx, 0)));  // Manual Gain
+				}
+				break;
+			case R.id.seekBarEq5:  band += 0x10;  // fallthrough
+			case R.id.seekBarEq4:  band += 0x10;
+			case R.id.seekBarEq3:  band += 0x10;
+			case R.id.seekBarEq2:  band += 0x10;
+			case R.id.seekBarEq1:
+				{
+					int val = 20 * (seekBar.getProgress() - 4);
+					String valHx = String.format("%04X", val & 0xFFFF);
+					mLog(valHx);
+					eventBus.post(new USBDataSendEvent(USBUtils.padPktData("0202020002"
+							+ Integer.toHexString(band) + valHx, 0)));  // EQ Band N Gain
 				}
 				break;
 			default:
