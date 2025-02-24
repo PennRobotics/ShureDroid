@@ -28,7 +28,7 @@
             app:layout_gravity="fill|center_vertical" />
 
         <View
-            android:layout_width="48dp"
+            android:layout_width="56dp"
             android:layout_height="1dp"
             android:background="?android:attr/listDivider" />
 
@@ -139,13 +139,17 @@
         <EditText
             android:id="@+id/editTextNumberMGain"
             style="@style/sdEditNumber"
+            android:ems="3"
             android:importantForAutofill="no"
+            android:maxWidth="48dp"
+            android:textSize="16sp"
             app:layout_gravity="center"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <SeekBar
             android:id="@+id/seekBarMGain"
             style="@style/sdSeekBar"
+            android:max="120"
             app:layout_gravity="start|end" />
 
         <View
@@ -183,7 +187,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
+        android:layout_marginStart="56dp"
         android:text="@string/compressor" />
 
     <RadioGroup
@@ -229,7 +233,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
+        android:layout_marginStart="56dp"
         android:text="@string/low_cut" />
 
     <RadioGroup
@@ -274,7 +278,7 @@
         <Space
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:minWidth="48dp" />
+            android:minWidth="56dp" />
 
         <Space
             android:layout_width="wrap_content"

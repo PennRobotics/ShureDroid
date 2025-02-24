@@ -151,7 +151,7 @@ public class ShureDroid extends Activity implements View.OnClickListener {
 		radioAToneDark = (RadioButton) findViewById(R.id.radioAToneDark);
 		radioAToneNeutral = (RadioButton) findViewById(R.id.radioAToneNeutral);
 		radioAToneBright = (RadioButton) findViewById(R.id.radioAToneBright);
-		radioGroupATone = (RadioGroup) findViewById(R.id.radioGroupATone);
+		radioGroupAGain = (RadioGroup) findViewById(R.id.radioGroupAGain);
 		radioAGainLow = (RadioButton) findViewById(R.id.radioAGainLow);
 		radioAGainNormal = (RadioButton) findViewById(R.id.radioAGainNormal);
 		radioAGainHigh = (RadioButton) findViewById(R.id.radioAGainHigh);
@@ -507,7 +507,14 @@ public class ShureDroid extends Activity implements View.OnClickListener {
 				switchLockAPanel.setChecked(pVal != 0);
 				switchLockMPanel.setChecked(pVal != 0);
 				break;
-			case 0x02000102:  mLog("TODO Manual gain " + String.valueOf(pVal)); break;
+			case 0x02000102:
+				seekBarMixAPanel.setIndeterminate(false);
+				seekBarMixAPanel.setProgress(pVal);
+				editTextNumberMixAPanel.setText(Integer.toString(pVal));
+				seekBarMGain.setIndeterminate(false);
+				seekBarMGain.setProgress(pVal / 50);
+				editTextNumberMGain.setText(String.valueOf((float)(pVal/50)/2.0));
+				mLog("TODO Manual gain " + String.valueOf(pVal)); break;
 			case 0x02000104:
 				switchMicMuteAPanel.setChecked(pVal != 0);
 				switchMicMuteMPanel.setChecked(pVal != 0);
