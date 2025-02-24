@@ -110,6 +110,7 @@
         <SeekBar
             android:id="@+id/seekBarMixMPanel"
             style="@style/sdSeekBar"
+            android:max="100"
             app:layout_gravity="start|end" />
 
         <!-- TODO: disable the rest of the elements on startup -->

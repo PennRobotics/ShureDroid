@@ -44,8 +44,13 @@ public class USBUtils {
 		return (byte) ((Character.digit(hexPair.charAt(0), 16) << 4) + Character.digit(hexPair.charAt(1), 16));
 	}
 
-	/* Renderer: HexFormat.ofDelimiter(" ").formatHex(Arrays.copyOfRange(this, 0, 20)) */
-	public static byte[] padPktData(String hexStr) {
+    /* Renderer: HexFormat.ofDelimiter(" ").formatHex(Arrays.copyOfRange(this, 0, 20)) */
+    public static byte[] padPktData(String hexStr) {
+        return padPktData(hexStr, 0x03);
+    }
+
+    /* Renderer: HexFormat.ofDelimiter(" ").formatHex(Arrays.copyOfRange(this, 0, 20)) */
+	public static byte[] padPktData(String hexStr, int ch) {
 		byte[] packet = new byte[64];
 		int len = hexStr.length() / 2;
 
@@ -54,7 +59,7 @@ public class USBUtils {
 		packet[2] = 0x11;
 		packet[3] = 0x22;
 		packet[4] = SEQ;
-		packet[5] = 0x03;
+		packet[5] = (byte) ch;
 		packet[6] = 0x08;
 		packet[7] = (byte) (len + 2);
 		packet[8] = 0x70;

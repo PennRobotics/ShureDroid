@@ -107,6 +107,7 @@
         <SeekBar
             android:id="@+id/seekBarMixAPanel"
             style="@style/sdSeekBar"
+            android:max="100"
             app:layout_gravity="start|end" />
 
     </androidx.gridlayout.widget.GridLayout>

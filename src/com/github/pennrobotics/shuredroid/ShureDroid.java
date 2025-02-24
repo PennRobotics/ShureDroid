@@ -254,6 +254,31 @@ public class ShureDroid extends Activity implements View.OnClickListener {
 	}
 
 	public void onClick(View v) {
+		/*
+				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("0202010600A6"+p,0)));  // Parameter lock
+				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000102"+p,0)));  // Manual Gain
+				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000104"+p,0)));  // Mute
+				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000106"+p,0)));  // HPF
+				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000151"+p,0)));  // Limiter
+				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("02020200015C"+p,0)));  // Compressor
+				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000166"+p,0)));  // Phantom
+				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000182"+p,0)));  // Auto Position
+				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000183"+p,0)));  // Auto Tone
+				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000185"+p,0)));  // Auto Mode Enable
+				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202010186"+p,0)));  // Mix
+				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000187"+p,0)));  // Auto Gain
+				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000200"+p,0)));  // EQ Enable
+				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000210"+p,0)));  // EQ Band 1 Enable
+				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000214"+p,0)));  // EQ Band 1 Gain
+				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000220"+p,0)));  // EQ Band 2 Enable
+				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000224"+p,0)));  // EQ Band 2 Gain
+				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000230"+p,0)));  // EQ Band 3 Enable
+				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000234"+p,0)));  // EQ Band 3 Gain
+				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000240"+p,0)));  // EQ Band 4 Enable
+				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000244"+p,0)));  // EQ Band 4 Gain
+				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000250"+p,0)));  // EQ Band 5 Enable
+				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000254"+p,0)));  // EQ Band 5 Gain
+		 */
 		switch (v.getId()/*TODO-hi*/) {
 			case R.id.btnSelectHIDDevice:
 				eventBus.post(new PrepareDevicesListEvent());
@@ -262,15 +287,41 @@ public class ShureDroid extends Activity implements View.OnClickListener {
 			case R.id.switchLockAPanel:
 			case R.id.switchLockMPanel:
 				break;
+
 			case R.id.switchPhantomAPanel:
-			case R.id.switchPhantomMPanel:
+				{
+					boolean c = switchPhantomAPanel.isChecked();
+					if (c) {
+						eventBus.post(new USBDataSendEvent(USBUtils.padPktData("02020200016630", 0)));  // Phantom
+						eventBus.post(new USBDataSendEvent(USBUtils.padPktData("010000")));  // Phantom
+					} else {
+						eventBus.post(new USBDataSendEvent(USBUtils.padPktData("02020200016600", 0)));  // Phantom
+						eventBus.post(new USBDataSendEvent(USBUtils.padPktData("010000")));  // Phantom
+					}
+					switchPhantomMPanel.setChecked(c);
+				}
 				break;
+			case R.id.switchPhantomMPanel:
+			{
+				boolean c = switchPhantomMPanel.isChecked();
+				if (c) {
+					eventBus.post(new USBDataSendEvent(USBUtils.padPktData("02020200016630", 0)));  // Phantom
+					eventBus.post(new USBDataSendEvent(USBUtils.padPktData("010000")));  // Phantom
+				} else {
+					eventBus.post(new USBDataSendEvent(USBUtils.padPktData("02020200016600", 0)));  // Phantom
+					eventBus.post(new USBDataSendEvent(USBUtils.padPktData("010000")));  // Phantom
+				}
+				switchPhantomAPanel.setChecked(c);
+			}
+
 			case R.id.switchMicMuteAPanel:
 			case R.id.switchMicMuteMPanel:
 				break;
+
 			case R.id.editTextNumberMixAPanel:
 			case R.id.editTextNumberMixMPanel:
 				break;
+
 			case R.id.seekBarMixAPanel:
 			case R.id.seekBarMixMPanel:
 				break;
@@ -341,7 +392,6 @@ public class ShureDroid extends Activity implements View.OnClickListener {
 	}
 
 	void getAllMVX2UParameters() {
-		mLog("start");
 		eventBus.post(new USBDataSendEvent(USBUtils.padPktData("010201000000")));  // ID
 		eventBus.post(new USBDataSendEvent(USBUtils.padPktData("0102010600A6")));  // Parameter lock
 		eventBus.post(new USBDataSendEvent(USBUtils.padPktData("010202000102")));  // Manual Gain
@@ -366,7 +416,6 @@ public class ShureDroid extends Activity implements View.OnClickListener {
 		eventBus.post(new USBDataSendEvent(USBUtils.padPktData("010202000244")));  // EQ Band 4 Gain
 		eventBus.post(new USBDataSendEvent(USBUtils.padPktData("010202000250")));  // EQ Band 5 Enable
 		eventBus.post(new USBDataSendEvent(USBUtils.padPktData("010202000254")));  // EQ Band 5 Gain
-		mLog("finish");
 	}
 
 	void showListOfDevices(CharSequence devicesName[]) {
@@ -389,18 +438,23 @@ public class ShureDroid extends Activity implements View.OnClickListener {
 	}
 
 	void makeSettingsUIEnabled(boolean enable) {
+		if (!enable) {
+			seekBarMixAPanel.setIndeterminate(true);
+			seekBarMixMPanel.setIndeterminate(true);
+			seekBarMGain.setIndeterminate(true);
+			editTextNumberMixAPanel.setText(Consts.UNKNOWN_VALUE);
+			editTextNumberMixMPanel.setText(Consts.UNKNOWN_VALUE);
+			editTextNumberMGain.setText(Consts.UNKNOWN_VALUE);
+		}
+
 		switchPhantomAPanel.setEnabled(enable);
 		switchPhantomMPanel.setEnabled(enable);
 		switchMicMuteAPanel.setEnabled(enable);
 		switchMicMuteMPanel.setEnabled(enable);
 		editTextNumberMixAPanel.setEnabled(enable);
-		editTextNumberMixAPanel.setText(Consts.UNKNOWN_VALUE);  // TODO: conditional
 		editTextNumberMixMPanel.setEnabled(enable);
-		editTextNumberMixMPanel.setText(Consts.UNKNOWN_VALUE);  // TODO: conditional
 		seekBarMixAPanel.setEnabled(enable);
 		seekBarMixMPanel.setEnabled(enable);
-		seekBarMixAPanel.setIndeterminate(!enable);
-		seekBarMixMPanel.setIndeterminate(!enable);
 
 		radioADistNear.setEnabled(enable);
 		radioADistFar.setEnabled(enable);
@@ -412,9 +466,7 @@ public class ShureDroid extends Activity implements View.OnClickListener {
 		radioAGainHigh.setEnabled(enable);
 
 		editTextNumberMGain.setEnabled(enable);
-		editTextNumberMGain.setText(Consts.UNKNOWN_VALUE);  // TODO: conditional
 		seekBarMGain.setEnabled(enable);
-		seekBarMGain.setIndeterminate(!enable);
 		switchMLimiter.setEnabled(enable);
 		radioMCompOff.setEnabled(enable);
 		radioMCompLight.setEnabled(enable);
@@ -442,14 +494,12 @@ public class ShureDroid extends Activity implements View.OnClickListener {
 
 	@Subscribe(threadMode = ThreadMode.MAIN)
 	public void onEvent(USBDataReceiveEvent event) {
-		mLog(event.getDataAsHex());
-
 		byte[] ba = event.getData();
+
 		int pType = USBUtils.getParamType(ba);
-		if (pType < 0)  { return; }
+		if (pType < 0)  { mLog(event.getDataAsHex()); return; }
 		int pVal = USBUtils.getParamVal(ba);
 
-		mLog(Integer.toHexString(pType) + " - " + Integer.toString(pVal));
 		switch (pType) {
 			case 0x01000000:  break;
 			case 0x010600a6:  // Lock state
@@ -488,7 +538,6 @@ public class ShureDroid extends Activity implements View.OnClickListener {
 				}
 				break;
 			case 0x02000166:
-				mLog("PPOW " + Integer.toString(pVal));
 				switchPhantomAPanel.setChecked(pVal != 0);
 				switchPhantomMPanel.setChecked(pVal != 0);
 				break;
@@ -513,7 +562,14 @@ public class ShureDroid extends Activity implements View.OnClickListener {
 				}
 				break;
 			case 0x02000185:  break;  // TODO-hi: Switch to correct panel!
-			case 0x02010186:  mLog("TODO Mic mix " + String.valueOf(pVal)); break;
+			case 0x02010186:
+				seekBarMixAPanel.setIndeterminate(false);
+				seekBarMixMPanel.setIndeterminate(false);
+				seekBarMixAPanel.setProgress(pVal);
+				seekBarMixMPanel.setProgress(pVal);
+				editTextNumberMixAPanel.setText(Integer.toString(pVal));
+				editTextNumberMixMPanel.setText(Integer.toString(pVal));
+				break;
 			case 0x02000187:
 				if (pVal == 0) {
 					radioGroupAGain.check(R.id.radioAGainLow);
@@ -527,17 +583,18 @@ public class ShureDroid extends Activity implements View.OnClickListener {
 				break;
 			case 0x02000200:  switchEqEnable.setChecked(pVal != 0); break;
 			case 0x02000210:  switchEq1.setChecked(pVal != 0); break;
-			case 0x02000214:  mLog("TODO EQ 1 @ " + String.valueOf(pVal)); break;
+			case 0x02000214:  seekBarEq1.setProgress(pVal/20 + 4); break;
 			case 0x02000220:  switchEq2.setChecked(pVal != 0); break;
-			case 0x02000224:  mLog("TODO EQ 2 @ " + String.valueOf(pVal)); break;
+			case 0x02000224:  seekBarEq2.setProgress(pVal/20 + 4); break;
 			case 0x02000230:  switchEq3.setChecked(pVal != 0); break;
-			case 0x02000234:  mLog("TODO EQ 3 @ " + String.valueOf(pVal)); break;
+			case 0x02000234:  seekBarEq3.setProgress(pVal/20 + 4); break;
 			case 0x02000240:  switchEq4.setChecked(pVal != 0); break;
-			case 0x02000244:  mLog("TODO EQ 4 @ " + String.valueOf(pVal)); break;
+			case 0x02000244:  seekBarEq4.setProgress(pVal/20 + 4); break;
 			case 0x02000250:  switchEq5.setChecked(pVal != 0); break;
-			case 0x02000254:  mLog("TODO EQ 5 @ " + String.valueOf(pVal)); break;
+			case 0x02000254:  seekBarEq5.setProgress(pVal/20 + 4); break;
 			default:
-				mLog("Param Error!");
+				mLog("Param Error:");
+				mLog(event.getDataAsHex());
 		}
 	}
 
