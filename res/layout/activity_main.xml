@@ -19,9 +19,9 @@
             android:id="@+id/btnSelectHIDDevice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@android:drawable/presence_audio_busy"
             android:minWidth="50dp"
             android:minHeight="50dp"
-            android:src="@android:drawable/presence_audio_busy"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <com.google.android.material.tabs.TabLayout
@@ -57,7 +57,7 @@
     <EditText
         android:id="@+id/editLogText"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="0dp"
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
