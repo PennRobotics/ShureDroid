@@ -37,7 +37,7 @@ import org.greenrobot.eventbus.EventBusException;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-public class ShureDroid extends Activity implements View.OnClickListener {
+public class ShureDroid extends Activity implements View.OnClickListener, SeekBar.OnSeekBarChangeListener {
 
 	private Intent usbService;
 
@@ -207,6 +207,15 @@ public class ShureDroid extends Activity implements View.OnClickListener {
 			public void onTabReselected(TabLayout.Tab tab)  {}
 		});
 
+		seekBarMixAPanel.setOnSeekBarChangeListener(this);
+		seekBarMixMPanel.setOnSeekBarChangeListener(this);
+		seekBarMGain.setOnSeekBarChangeListener(this);
+		seekBarEq1.setOnSeekBarChangeListener(this);
+		seekBarEq2.setOnSeekBarChangeListener(this);
+		seekBarEq3.setOnSeekBarChangeListener(this);
+		seekBarEq4.setOnSeekBarChangeListener(this);
+		seekBarEq5.setOnSeekBarChangeListener(this);
+
 		switchLockAPanel.setOnClickListener(this);
 		switchLockMPanel.setOnClickListener(this);
 		switchPhantomAPanel.setOnClickListener(this);
@@ -215,8 +224,6 @@ public class ShureDroid extends Activity implements View.OnClickListener {
 		switchMicMuteMPanel.setOnClickListener(this);
 		editTextNumberMixAPanel.setOnClickListener(this);
 		editTextNumberMixMPanel.setOnClickListener(this);
-		seekBarMixAPanel.setOnClickListener(this);
-		seekBarMixMPanel.setOnClickListener(this);
 
 		radioADistNear.setOnClickListener(this);
 		radioADistFar.setOnClickListener(this);
@@ -228,7 +235,6 @@ public class ShureDroid extends Activity implements View.OnClickListener {
 		radioAGainHigh.setOnClickListener(this);
 
 		editTextNumberMGain.setOnClickListener(this);
-		seekBarMGain.setOnClickListener(this);
 		switchMLimiter.setOnClickListener(this);
 		radioMCompOff.setOnClickListener(this);
 		radioMCompLight.setOnClickListener(this);
@@ -239,15 +245,10 @@ public class ShureDroid extends Activity implements View.OnClickListener {
 		radioMHpf150Hz.setOnClickListener(this);
 		switchEqEnable.setOnClickListener(this);
 		switchEq1.setOnClickListener(this);
-		seekBarEq1.setOnClickListener(this);
 		switchEq2.setOnClickListener(this);
-		seekBarEq2.setOnClickListener(this);
 		switchEq3.setOnClickListener(this);
-		seekBarEq3.setOnClickListener(this);
 		switchEq4.setOnClickListener(this);
-		seekBarEq4.setOnClickListener(this);
 		switchEq5.setOnClickListener(this);
-		seekBarEq5.setOnClickListener(this);
 
 		//mLog("Initialized\nPlease select your USB HID device\n", false);
 		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
@@ -256,7 +257,6 @@ public class ShureDroid extends Activity implements View.OnClickListener {
 	public void onClick(View v) {
 		/*
 				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("0202010600A6"+p,0)));  // Parameter lock
-				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000102"+p,0)));  // Manual Gain
 				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000104"+p,0)));  // Mute
 				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000106"+p,0)));  // HPF
 				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000151"+p,0)));  // Limiter
@@ -344,9 +344,9 @@ public class ShureDroid extends Activity implements View.OnClickListener {
 				break;
 
 			case R.id.editTextNumberMGain:
+				// TODO: set seekbar, fallthrough!
 				break;
-			case R.id.seekBarMGain:
-				break;
+
 			case R.id.switchMLimiter:
 				break;
 			case R.id.radioMCompOff:
@@ -677,5 +677,30 @@ public class ShureDroid extends Activity implements View.OnClickListener {
 	void sendToUSBService(String action, int data) {
 		usbService.putExtra(action, data);
 		sendToUSBService(action);
+	}
+
+	@Override
+	public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+		switch (seekBar.getId()) {
+			case R.id.seekBarMGain:
+				{
+					int val = seekBarMGain.getProgress() * 50;
+					String valHx = String.format("%04X", val);
+					eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000102" + valHx, 0)));  // Manual Gain
+				}
+				break;
+			default:
+				mLog("unhandled seekbar");
+		}
+	}
+
+	@Override
+	public void onStartTrackingTouch(SeekBar seekBar) {
+
+	}
+
+	@Override
+	public void onStopTrackingTouch(SeekBar seekBar) {
+
 	}
 }
