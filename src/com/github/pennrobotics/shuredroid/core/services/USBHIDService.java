@@ -27,10 +27,7 @@ public class USBHIDService extends AbstractUSBHIDService {
 	private String receiveDataFormat;
 
 	@Override
-	public void onCreate() {
-		super.onCreate();
-		setupNotifications();
-	}
+	public void onCreate()  { super.onCreate(); }
 
 	@Override
 	public void onCommand(Intent intent, String action, int flags, int startId) {
@@ -92,35 +89,4 @@ public class USBHIDService extends AbstractUSBHIDService {
 	public void onUSBDataReceive(byte[] buffer) {
 		eventBus.post(new USBDataReceiveEvent(buffer));
 	}
-
-	private void setupNotifications() { //called in onCreate()
-		NotificationManager mNotificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-		NotificationCompat.Builder mNotificationBuilder = new NotificationCompat.Builder(this);
-		PendingIntent pendingIntent = PendingIntent.getActivity(this, 0,
-				new Intent(this, ShureDroid.class)
-						.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP),
-				PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
-		PendingIntent pendingCloseIntent = PendingIntent.getActivity(this, 0,
-				new Intent(this, ShureDroid.class)
-						.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP)
-						.setAction(Consts.USB_HID_TERMINAL_CLOSE_ACTION),
-				PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
-		mNotificationBuilder
-				.setSmallIcon(R.mipmap.ic_launcher)
-				.setCategory(NotificationCompat.CATEGORY_SERVICE)
-				.setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-				.setContentTitle(getText(R.string.app_name))
-				.setWhen(System.currentTimeMillis())
-				.setContentIntent(pendingIntent)
-				.addAction(android.R.drawable.ic_menu_close_clear_cancel,
-						getString(R.string.action_exit), pendingCloseIntent)
-				.setOngoing(true);
-		mNotificationBuilder
-				.setTicker(getText(R.string.app_name))
-				.setContentText(getText(R.string.app_name));
-		if (mNotificationManager != null) {
-			mNotificationManager.notify(Consts.USB_HID_TERMINAL_NOTIFICATION, mNotificationBuilder.build());
-		}
-	}
-
 }

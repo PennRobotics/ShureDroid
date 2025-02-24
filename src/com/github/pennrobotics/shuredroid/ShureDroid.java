@@ -2,6 +2,7 @@ package com.github.pennrobotics.shuredroid;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -16,6 +17,8 @@ import android.widget.RadioGroup;
 import android.widget.ScrollView;
 import android.widget.SeekBar;
 import android.widget.ViewSwitcher;
+
+import androidx.core.app.NotificationCompat;
 
 import com.github.pennrobotics.shuredroid.core.Consts;
 import com.github.pennrobotics.shuredroid.core.USBUtils;
@@ -117,6 +120,7 @@ public class ShureDroid extends Activity implements View.OnClickListener, SeekBa
 			eventBus = EventBus.getDefault();
 		}
 		initUI();
+		setupNotifications();
 	}
 
 	private void initUI() {
@@ -773,4 +777,7 @@ public class ShureDroid extends Activity implements View.OnClickListener, SeekBa
 	public void onStopTrackingTouch(SeekBar seekBar) {
 
 	}
+
+	private void setupNotifications()  {}  // TODO
+
 }
