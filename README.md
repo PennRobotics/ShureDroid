@@ -15,6 +15,8 @@ Please **do not** complain to Shure! The goal is to stay off their radar so this
 
 **Do** create an issue (good) or merge request (better) if you find or fix a problem.
 
+Fork or use the discussion board if you want major changes, such as a new UI or support for more Motiv mics.
+
 -----
 
 Also, bear with me. I am _not_ an Android developer and am not considering it as a career future or hobby.
