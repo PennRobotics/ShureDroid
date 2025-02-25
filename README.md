@@ -108,6 +108,10 @@ _This is gradually being moved to [Milestones](https://github.com/PennRobotics/S
     - [ ] fix all of the Studio complaints
         - [ ] accessibility (spoken text)
         - [ ] touch target size
+    - [ ] Color consistency
+        - [ ] Change everything currently blue to orange (#ff5f00)
+        - [ ] Remove #FF00FF from bg_progress.xml, and remove these two XML files if unused
+        - [ ] Make the seekbar background work with dark mode (when it happens) and progress tint more obvious
     - [ ] Maybe skip the connection dialog but still indicate connection state with mic icon colors
     - [ ] I'm gonna have to take PRs for these:
         - [ ] Better choice of layouts
