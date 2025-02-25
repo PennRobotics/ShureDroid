@@ -41,16 +41,21 @@ with a statement like `String s = new String((a == 1) ? "ok" : "not ok");`. I do
 USB to drop out after a few minutes or how I might persist permissions.
 
 So please&hellip;
-Write issues. Comment on issues. Write pull requests. Keep them small and explain them in junior dev terms. Fork and maintain this.
+**Write issues. Comment on issues. Write pull requests.** Keep PRs small and explain them in junior dev terms.
+If work stalls or you need something out-of-scope (access to other Motiv mics), fork and maintain this.
+
+- [Current roadmap](https://github.com/PennRobotics/ShureDroid/milestones)
+- [Issues](https://github.com/PennRobotics/ShureDroid/issues)
+- [Discussion](https://github.com/PennRobotics/ShureDroid/discussions)
 
 
 ## Getting Started
 
 _The .apk is currently being developed. Build from source._
 
-I have decided against publishing on the Google Play Store. There are too many hurdles having to generate a new developer account (creating a new email, coming up with an account name and namespace, paying 25 bucks, verifying my ID, always keeping my source up-to-date, spending less time with family) and then I would still probably get my app rejected automatically because it has a USB intent for an odd device class or would likely get the app removed after Shure complains.
+With time, I will try to get an .apk listed here and will probably publish to F-Droid[^3].
 
-With time, I will try to get an .apk listed here and will probably publish to F-Droid.
+[^3]: I have decided against publishing on the Google Play Store. There are too many hurdles having to generate a new developer account (creating a new email, coming up with an account name and namespace, paying 25 bucks, verifying my ID, always keeping my source up-to-date, spending less time with family) and then I would still probably get my app rejected automatically because it has a USB intent for an odd device class or would likely get the app removed after Shure complains.
 
 Anyone else is welcome to repackage this source, change the namespace, and submit it to the Play Store. I just do not have the time, know-how, resources, or willpower&hellip;
 
@@ -73,6 +78,8 @@ My steps? Load the project in the current version of Android Studio, click build
 
 
 ## Checklist
+
+_This is gradually being moved to [Milestones](https://github.com/PennRobotics/ShureDroid/milestones)_
 
 - [ ] go through source and resolve each TODO comment
 - [ ] go through source and eliminate unneeded imports, declarations, etc.
