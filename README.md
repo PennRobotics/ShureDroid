@@ -13,21 +13,22 @@ this connects to a Shure MVX2U to send/receive HID packets.
 
 Please **do not** complain to Shure! The goal is to stay off their radar so this project _might live forever_.
 
-**Do** create an [issue](https://github.com/PennRobotics/ShureDroid/issues) (good) or [merge request](https://github.com/PennRobotics/ShureDroid/fork) (better) if you find or fix a problem.
+**Do** create an [issue](https://github.com/PennRobotics/ShureDroid/issues) (good)
+or [merge request](https://github.com/PennRobotics/ShureDroid/fork) (better) if you find or fix a problem.
 
 Fork or use the discussion board if you want major changes, such as a new UI or support for more Motiv mics.
 
 
 ## Getting Started
 
-_The .apk is currently being developed. Build from source._
+Get the .apk [directly (alpha1 version)](https://github.com/PennRobotics/ShureDroid/releases/download/v1.0.0-alpha1/ShureDroid-debug.apk)
+or from the [release page](https://github.com/PennRobotics/ShureDroid/releases/latest/), which includes usage instructions and known bugs.
 
-With time, I will try to get an .apk listed here and will probably publish to F-Droid[^3].
+With time, I will probably publish to F-Droid[^playstore].
 
-[^3]: I have decided against publishing on the Google Play Store. There are too many hurdles having to generatea new developer account (creating a new email, coming up with an account name and namespace, paying 25 bucks, verifying my ID, always keeping my source up-to-date, spending less time with family) and then I would still probably get my app rejected automatically because it has a USB intent for an odd device class or would likely get the app removed after Shure complains. Anyone else is welcome to repackage this source, change the namespace, and submit it to the Play Store. I just do not have the time, know-how, resources, or willpower&hellip;
+[^playstore]: I have decided against publishing on the Google Play Store. There are too many hurdles having to generatea new developer account (creating a new email, coming up with an account name and namespace, paying 25 bucks, verifying my ID, always keeping my source up-to-date, spending less time with family) and then I would still probably get my app rejected automatically because it has a USB intent for an odd device class or would likely get the app removed after Shure complains. Anyone else is welcome to repackage this source, change the namespace, and submit it to the Play Store. I just do not have the time, know-how, resources, or willpower&hellip;
 
 <!-- TODO: f-droid link -->
-<!-- TODO: link apk in releases -->
 
 -----
 
@@ -67,7 +68,7 @@ If work stalls or you need something out-of-scope (access to other Motiv mics), 
 
 ### Build
 
-_You could refer to the 452 repo, which has been adapted for this repo:_
+_Refer to the [452 repo](https://github.com/452/USBHIDTerminal), which is adapted for this repo:_
 
 ```sh
 git clone https://github.com/PennRobotics/ShureDroid.git
@@ -117,6 +118,8 @@ _This is gradually being moved to [Milestones](https://github.com/PennRobotics/S
         - [ ] In auto mode, put one or more of the auto mode toggles in a system notification popup
         - [ ] Whatever else people feel is appropriate
 - [ ] enable an Action for building the .apk as an artifact/release
+- [ ] change apk URL in README after each release
+- [ ] after the first non-prerelease asset is uploaded, change the apk URL to the "latest release" asset URL
 
 
 ## Legal Information
@@ -160,13 +163,13 @@ packets despite the MVX2U microcontroller having native support for on-the-fly d
 a standard 16-bit checksum sent at the end of each packet&mdash;presumably to ensure the packet was
 not erroneously generated or altered. Publication of the structure of the data packets is not prohibited
 as they were not derived from source code and were collected&mdash;without needing to circumvent or
-decompile the standard communication method&mdash;solely for the purpose of extending interoperability[^1].
+decompile the standard communication method&mdash;solely for the purpose of extending interoperability[^origin].
 Creation of a third-party app that implements the data packet structure can not violate the Motiv
 Desktop EULA. The point is specifically mentioned in section 5.v (_derivative works_) that any work
 derived from software might not (and in this case, in my limited understanding of the law, _shall not_)
 be restricted due to the nature of its origin: software interoperability.
 
-[^1]: Let me reemphasize this point: The only reason I started examining the MVX2U USB protocol was
+[^origin]: Let me reemphasize this point: The only reason I started examining the MVX2U USB protocol was
 to get this adapter to fully function on Linux. After successfully creating a Linux client and using
 the adapter in its vendor-restricted form on Android devices, I decided to extend my work to Android.
 I can't record a brass band in auto mode, as the gain fluctuates too quickly; and I'm not lugging
@@ -190,9 +193,9 @@ an idiot, I expect Shure to respect my rights as an independent developer and a 
 Linux/Android: I would request Shure not preemptively and/or frivolously take action to remove
 this source code, binaries built from this source code, and easily discovered information about
 their protocol. Rather, be thoughtful in the reasons this app was written and use that to guide
-product development moving forward![^2]
+product development moving forward![^proto]
 
-[^2]: In fact, anyone fuzz testing the configuration endpoint of the adapter with basic USB HID
+[^proto]: In fact, anyone fuzz testing the configuration endpoint of the adapter with basic USB HID
 demos and making consecutive frequency sweeps with an attached microphone would be able to
 _French Cafe_ the protocol without ever installing the Motiv software. It doesn't take long to
 get an error packet, and then work your way toward a valid packet structure, the hardest part
@@ -265,9 +268,10 @@ my software is a step in the right direction.
 
 ## License
 
-This is a fork of software published by _emetemunoy_. I am continuing to use the same license
-and have provided the original notice without changes (mostly because Apache is confusing and
-I don't know the right thing to do to create a fork of Apache-licensed software):
+This is a [fork of software published by _emetemunoy_](https://github.com/452/USBHIDTerminal).
+I am continuing to use the same license and have provided the original notice without changes
+(mostly because Apache is confusing and I don't know the right thing to do to create a fork
+of Apache-licensed software):
 
 ### LICENSE
 
