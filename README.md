@@ -66,7 +66,7 @@ Anyone else is welcome to repackage this source, change the namespace, and submi
 
 ### Build
 
-_You could refer to the 452 repo, which simply states:_
+_You could refer to the 452 repo, which has been adapted for this repo:_
 
 ```sh
 git clone https://github.com/PennRobotics/ShureDroid.git
