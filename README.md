@@ -120,7 +120,7 @@ _This is gradually being moved to [Milestones](https://github.com/PennRobotics/S
 ## Legal Information
 
 In short: end users, use this software at your own risk and within the boundaries of your own laws.
-Shure, please do not sue and make an official app for Android.
+Shure, please do not sue or C&amp;D (it does not make sense) and instead make an official app for Android.
 
 I am a U.S. citizen with permanent EU residency. Both territories specifically allow examining software
 in the case of establishing interoperability with independent computer programs. (EU Computer Programs
