@@ -239,16 +239,8 @@ hardware. While vendors are generally permitted to unilaterally terminate a lice
 to seek legal relief. I might just ask what the ice cube's worth.
 
 (Disputes about this repository would likely center around enforcement and validity of IP rights,
-since what I have here is the simple protocol designed by Shure, and Shure states IP rights are
-excepted from arbitration. Shure has a German subsidiary, Shure Europe GmbH. Both of us being in
-Germany, I'm sure we could come to some agreement to meet at the Bundesgerichtshof rather than in
-Illinois. Side note: If I get sued and a court states I am legally entitled to publish software
-for the MVX2U derived from reverse engineering, I will publish a script and instructions for
-flashing plus a fully annotated, key-encrypted, independently developed firmware for the MVX2U
-providing expanded access to the DSP and extending the MVX2U functionality. I do _not_ want to
-deal with legal bullshit. The encryption key and RTOS firmware will remain forever unpublished
-and not used outside of my home as long as Shure is not suing me. Do not ask for it. Do not ask
-about it.)
+since what I have published here is the simple protocol designed by Shure and a program for using
+this protocol, and Shure states IP rights are excepted from arbitration.)
 
 I accept that the development and use of my independent software with the MVX2U adapter on an
 unsupported operating system is at my own risk. There is the possibility that an Android device
@@ -261,7 +253,7 @@ use of third-party software with my legally owned MVX2U adapter.
 
 It is also my goal to ensure this software always presents itself as an obviously unofficial
 application. Use of the MVX2U faceplate as an icon is merely indicative of the hardware supported
-by the software. Branding specific to Shure (fonts, colors, similarities to existing software)
+by the software. Branding specific to Shure (logos, fonts, colors, similarities to existing software)
 shall be avoided where possible, and a warning to users would be listed alongside the binary and
 as a text snippet in the main app window.
 
