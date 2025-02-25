@@ -13,9 +13,21 @@ this connects to a Shure MVX2U to send/receive HID packets.
 
 Please **do not** complain to Shure! The goal is to stay off their radar so this project _might live forever_.
 
-**Do** create an issue (good) or merge request (better) if you find or fix a problem.
+**Do** create an [issue](https://github.com/PennRobotics/ShureDroid/issues) (good) or [merge request](https://github.com/PennRobotics/ShureDroid/fork) (better) if you find or fix a problem.
 
 Fork or use the discussion board if you want major changes, such as a new UI or support for more Motiv mics.
+
+
+## Getting Started
+
+_The .apk is currently being developed. Build from source._
+
+With time, I will try to get an .apk listed here and will probably publish to F-Droid[^3].
+
+[^3]: I have decided against publishing on the Google Play Store. There are too many hurdles having to generatea new developer account (creating a new email, coming up with an account name and namespace, paying 25 bucks, verifying my ID, always keeping my source up-to-date, spending less time with family) and then I would still probably get my app rejected automatically because it has a USB intent for an odd device class or would likely get the app removed after Shure complains. Anyone else is welcome to repackage this source, change the namespace, and submit it to the Play Store. I just do not have the time, know-how, resources, or willpower&hellip;
+
+<!-- TODO: f-droid link -->
+<!-- TODO: link apk in releases -->
 
 -----
 
@@ -51,21 +63,7 @@ If work stalls or you need something out-of-scope (access to other Motiv mics), 
 - [Current roadmap](https://github.com/PennRobotics/ShureDroid/milestones)
 - [Issues](https://github.com/PennRobotics/ShureDroid/issues)
 - [Discussion](https://github.com/PennRobotics/ShureDroid/discussions)
-
-
-## Getting Started
-
-_The .apk is currently being developed. Build from source._
-
-With time, I will try to get an .apk listed here and will probably publish to F-Droid[^3].
-
-[^3]: I have decided against publishing on the Google Play Store. There are too many hurdles having to generatea new developer account (creating a new email, coming up with an account name and namespace, paying 25 bucks, verifying my ID, always keeping my source up-to-date, spending less time with family) and then I would still probably get my app rejected automatically because it has a USB intent for an odd device class or would likely get the app removed after Shure complains.
-
-Anyone else is welcome to repackage this source, change the namespace, and submit it to the Play Store.
-I just do not have the time, know-how, resources, or willpower&hellip;
-
-<!-- TODO: f-droid link -->
-<!-- TODO: link apk in releases -->
+- [Fork](https://github.com/PennRobotics/ShureDroid/fork)
 
 ### Build
 
@@ -89,6 +87,7 @@ emulator or to a smartphone. The hardest part has been ensuring KVM is enabled a
 
 _This is gradually being moved to [Milestones](https://github.com/PennRobotics/ShureDroid/milestones)_
 
+- [ ] move this whole checklist to the project/milestones
 - [ ] go through source and resolve each TODO comment
 - [ ] go through source and eliminate unneeded imports, declarations, etc.
 - [ ] see if there are low-hanging fruits in the source, like unnecessary (back-and-forth) type conversions
@@ -117,6 +116,7 @@ _This is gradually being moved to [Milestones](https://github.com/PennRobotics/S
         - [ ] In manual mode, put a gain slider in a system notification popup
         - [ ] In auto mode, put one or more of the auto mode toggles in a system notification popup
         - [ ] Whatever else people feel is appropriate
+- [ ] enable an Action for building the .apk as an artifact/release
 
 
 ## Legal Information
