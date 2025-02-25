@@ -139,7 +139,8 @@ Motiv Desktop software.
 There are **no reasonable grounds** for Shure Inc. to believe their intellectual property has been
 breached nor a strong defense of the decision to limit functionality of their adapter to computers with
 Windows or MacOS installed. In fact, the USB Audio endpoints are seemingly class compliant, so volume
-adjustments and audio transfer work across the majority of Android devices.
+adjustments and audio transfer work across the majority of Android devices. The microphone adapter works
+as an input on an Android smartphone, so an end user should be able to adjust the settings while connected.
 
 I have checked for reasonable restrictions applied by Shure to analysis of the adapter and what
 constitutes unlawful use of its software license. The current user guide for the adapter has important
