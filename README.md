@@ -16,7 +16,7 @@ Please **do not** complain to Shure! The goal is to stay off their radar so this
 **Do** create an [issue](https://github.com/PennRobotics/ShureDroid/issues) (good)
 or [merge request](https://github.com/PennRobotics/ShureDroid/fork) (better) if you find or fix a problem.
 
-Fork or use the discussion board if you want major changes, such as a new UI or support for more Motiv mics.
+[Fork](https://github.com/PennRobotics/ShureDroid/fork) or use the [discussion board](https://github.com/PennRobotics/ShureDroid/discussions) if you want major changes, such as a new UI or support for more Motiv mics.
 
 
 ## Getting Started
