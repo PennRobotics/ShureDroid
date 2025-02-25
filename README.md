@@ -17,7 +17,7 @@ Please **do not** complain to Shure! The goal is to stay off their radar so this
 
 -----
 
-Also, bear with me. I am _not_ and Android developer and am not considering it as a career future or hobby.
+Also, bear with me. I am _not_ an Android developer and am not considering it as a career future or hobby.
 I know a lot of C&mdash;enough C to modify someone else's Java until I can connect to my own MVX2U for twenty
 seconds at 3:00 a.m. and toggle a few features on my phone running a single version of Android.
 
