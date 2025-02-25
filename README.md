@@ -67,7 +67,7 @@ If work stalls or you need something out-of-scope (access to other Motiv mics), 
 
 ### Build
 
-_You could refer to the 452 repo, which has been adapted for this repo:_
+_Refer to the [452 repo](https://github.com/452/USBHIDTerminal), which is adapted for this repo:_
 
 ```sh
 git clone https://github.com/PennRobotics/ShureDroid.git
@@ -265,9 +265,10 @@ my software is a step in the right direction.
 
 ## License
 
-This is a fork of software published by _emetemunoy_. I am continuing to use the same license
-and have provided the original notice without changes (mostly because Apache is confusing and
-I don't know the right thing to do to create a fork of Apache-licensed software):
+This is a [fork of software published by _emetemunoy_](https://github.com/452/USBHIDTerminal).
+I am continuing to use the same license and have provided the original notice without changes
+(mostly because Apache is confusing and I don't know the right thing to do to create a fork
+of Apache-licensed software):
 
 ### LICENSE
 
