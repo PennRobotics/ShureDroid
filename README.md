@@ -13,21 +13,22 @@ this connects to a Shure MVX2U to send/receive HID packets.
 
 Please **do not** complain to Shure! The goal is to stay off their radar so this project _might live forever_.
 
-**Do** create an [issue](https://github.com/PennRobotics/ShureDroid/issues) (good) or [merge request](https://github.com/PennRobotics/ShureDroid/fork) (better) if you find or fix a problem.
+**Do** create an [issue](https://github.com/PennRobotics/ShureDroid/issues) (good)
+or [merge request](https://github.com/PennRobotics/ShureDroid/fork) (better) if you find or fix a problem.
 
 Fork or use the discussion board if you want major changes, such as a new UI or support for more Motiv mics.
 
 
 ## Getting Started
 
-_The .apk is currently being developed. Build from source._
+Get the .apk [directly (alpha1 version)](https://github.com/PennRobotics/ShureDroid/releases/download/v1.0.0-alpha1/ShureDroid-debug.apk)
+or from the [release page](https://github.com/PennRobotics/ShureDroid/releases/latest/), which includes usage instructions and known bugs.
 
-With time, I will try to get an .apk listed here and will probably publish to F-Droid[^playstore].
+With time, I will probably publish to F-Droid[^playstore].
 
 [^playstore]: I have decided against publishing on the Google Play Store. There are too many hurdles having to generatea new developer account (creating a new email, coming up with an account name and namespace, paying 25 bucks, verifying my ID, always keeping my source up-to-date, spending less time with family) and then I would still probably get my app rejected automatically because it has a USB intent for an odd device class or would likely get the app removed after Shure complains. Anyone else is welcome to repackage this source, change the namespace, and submit it to the Play Store. I just do not have the time, know-how, resources, or willpower&hellip;
 
 <!-- TODO: f-droid link -->
-<!-- TODO: link apk in releases -->
 
 -----
 
@@ -117,6 +118,8 @@ _This is gradually being moved to [Milestones](https://github.com/PennRobotics/S
         - [ ] In auto mode, put one or more of the auto mode toggles in a system notification popup
         - [ ] Whatever else people feel is appropriate
 - [ ] enable an Action for building the .apk as an artifact/release
+- [ ] change apk URL in README after each release
+- [ ] after the first non-prerelease asset is uploaded, change the apk URL to the "latest release" asset URL
 
 
 ## Legal Information
