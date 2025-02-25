@@ -3,9 +3,10 @@ ShureDroid
 
 ![](res/mipmap-xxhdpi/ic_launcher.png)
 
-This fork of [USB HID Terminal](https://github.com/452/USBHIDTerminal)
-connects to a [Shure MVX2U](https://www.shure.com/en-US/docs/guide/MVX2U) XLR to USB microphone adapter
-to configure their mic adapter (gain, EQ, phantom power, etc.) using USB HID packets.
+This fork of [USB HID Terminal](https://github.com/452/USBHIDTerminal) will configure a
+[Shure MVX2U](https://www.shure.com/en-US/docs/guide/MVX2U) XLR-to-USB microphone adapter
+connected to an Android smartphone via USB cable, letting a user change adapter settings
+(gain, EQ, phantom power, etc.) without needing a computer.
 
 <img src="screenshot.jpg" width=200>
 
