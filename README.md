@@ -8,6 +8,8 @@ This fork of [USB HID Terminal](https://github.com/452/USBHIDTerminal) will conf
 connected to an Android smartphone via USB cable, letting a user change adapter settings
 (gain, EQ, phantom power, etc.) without needing a computer.
 
+For Linux, see [Shux](https://gitlab.com/PennRobotics/shux)
+
 <img src="screenshot.jpg" width=200>
 
 
