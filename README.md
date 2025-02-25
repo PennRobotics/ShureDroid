@@ -21,6 +21,8 @@ Fork or use the discussion board if you want major changes, such as a new UI or 
 
 ## Getting Started
 
+<a href="https://github.com/PennRobotics/ShureDroid/releases/download/v1.0.0-alpha1/ShureDroid-debug.apk"><img src="download.png" alt="Download Debug APK"></a>
+
 Get the .apk [directly (alpha1 version)](https://github.com/PennRobotics/ShureDroid/releases/download/v1.0.0-alpha1/ShureDroid-debug.apk)
 or from the [release page](https://github.com/PennRobotics/ShureDroid/releases/latest/), which includes usage instructions and known bugs.
 
