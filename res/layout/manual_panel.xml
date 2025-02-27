@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    tools:ignore="VisualLintBounds" >
+    android:orientation="vertical">
 
     <androidx.gridlayout.widget.GridLayout
         android:layout_width="match_parent"
@@ -19,8 +18,7 @@
             android:layout_height="wrap_content"
             android:enabled="false"
             android:minHeight="48dp"
-            app:layout_gravity="center"
-            tools:ignore="TouchTargetSizeCheck" />
+            app:layout_gravity="center" />
 
         <TextView
             style="@style/gridToggleText"
@@ -44,8 +42,7 @@
             android:layout_height="wrap_content"
             android:enabled="false"
             android:minHeight="48dp"
-            app:layout_gravity="center"
-            tools:ignore="TouchTargetSizeCheck" />
+            app:layout_gravity="center" />
 
         <TextView
             android:text="@string/phantom_power_48v"
@@ -69,8 +66,7 @@
             android:layout_height="wrap_content"
             android:enabled="false"
             android:minHeight="48dp"
-            app:layout_gravity="center"
-            tools:ignore="TouchTargetSizeCheck" />
+            app:layout_gravity="center" />
 
         <TextView
             style="@style/gridToggleText"
@@ -104,8 +100,7 @@
             android:id="@+id/editTextNumberMixMPanel"
             style="@style/sdEditNumber"
             android:importantForAutofill="no"
-            app:layout_gravity="center"
-            tools:ignore="SpeakableTextPresentCheck" /> <!-- TODO: put into style xml -->
+            app:layout_gravity="center" /> <!-- TODO: put into style xml -->
 
         <SeekBar
             android:id="@+id/seekBarMixMPanel"
@@ -143,8 +138,7 @@
             android:importantForAutofill="no"
             android:maxWidth="48dp"
             android:textSize="16sp"
-            app:layout_gravity="center"
-            tools:ignore="SpeakableTextPresentCheck" />
+            app:layout_gravity="center" />
 
         <SeekBar
             android:id="@+id/seekBarMGain"
@@ -169,8 +163,7 @@
             android:layout_height="wrap_content"
             android:enabled="false"
             android:minHeight="48dp"
-            app:layout_gravity="center"
-            tools:ignore="TouchTargetSizeCheck" />
+            app:layout_gravity="center" />
 
         <TextView
             android:text="@string/limiter"
@@ -199,29 +192,25 @@
             android:id="@+id/radioMCompOff"
             style="@style/sdRadioButton"
             android:enabled="false"
-            android:text="@string/off"
-            tools:ignore="TouchTargetSizeCheck" />
+            android:text="@string/off" />
 
         <RadioButton
             android:id="@+id/radioMCompLight"
             style="@style/sdRadioButton"
             android:enabled="false"
-            android:text="@string/light"
-            tools:ignore="TouchTargetSizeCheck" />
+            android:text="@string/light" />
 
         <RadioButton
             android:id="@+id/radioMCompModerate"
             style="@style/sdRadioButton"
             android:enabled="false"
-            android:text="@string/moderate"
-            tools:ignore="TouchTargetSizeCheck" />
+            android:text="@string/moderate" />
 
         <RadioButton
             android:id="@+id/radioMCompHeavy"
             style="@style/sdRadioButton"
             android:enabled="false"
-            android:text="@string/heavy"
-            tools:ignore="TouchTargetSizeCheck" />
+            android:text="@string/heavy" />
 
     </RadioGroup>
 
@@ -245,22 +234,19 @@
             android:id="@+id/radioMHpfOff"
             style="@style/sdRadioButton"
             android:enabled="false"
-            android:text="@string/off"
-            tools:ignore="TouchTargetSizeCheck" />
+            android:text="@string/off" />
 
         <RadioButton
             android:id="@+id/radioMHpf75Hz"
             style="@style/sdRadioButton"
             android:enabled="false"
-            android:text="@string/_75_hz"
-            tools:ignore="TouchTargetSizeCheck" />
+            android:text="@string/_75_hz" />
 
         <RadioButton
             android:id="@+id/radioMHpf150Hz"
             style="@style/sdRadioButton"
             android:enabled="false"
-            android:text="@string/_150_hz"
-            tools:ignore="TouchTargetSizeCheck" />
+            android:text="@string/_150_hz" />
 
     </RadioGroup>
 
@@ -294,8 +280,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:minHeight="48dp"
-            app:layout_gravity="center"
-            tools:ignore="TouchTargetSizeCheck" />
+            app:layout_gravity="center" />
 
         <TextView
             style="@android:style/Widget.Material.Light.TextView"
@@ -313,8 +298,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:minHeight="48dp"
-            app:layout_gravity="center"
-            tools:ignore="TouchTargetSizeCheck" />
+            app:layout_gravity="center" />
 
         <TextView
             style="@android:style/Widget.Material.Light.TextView"
@@ -333,8 +317,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:minHeight="48dp"
-            app:layout_gravity="center"
-            tools:ignore="TouchTargetSizeCheck" />
+            app:layout_gravity="center" />
 
         <TextView
             style="@android:style/Widget.Material.Light.TextView"
@@ -353,8 +336,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:minHeight="48dp"
-            app:layout_gravity="center"
-            tools:ignore="TouchTargetSizeCheck" />
+            app:layout_gravity="center" />
 
         <TextView
             style="@android:style/Widget.Material.Light.TextView"
@@ -373,8 +355,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:minHeight="48dp"
-            app:layout_gravity="center"
-            tools:ignore="TouchTargetSizeCheck" />
+            app:layout_gravity="center" />
 
         <TextView
             style="@android:style/Widget.Material.Light.TextView"
@@ -393,8 +374,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:minHeight="48dp"
-            app:layout_gravity="center"
-            tools:ignore="TouchTargetSizeCheck" />
+            app:layout_gravity="center" />
 
         <TextView
             style="@android:style/Widget.Material.Light.TextView"

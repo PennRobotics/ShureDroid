@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:text="Unofficial MVX2U Client"
+        android:text="@string/unofficial_client"
         android:textStyle="bold|italic" />
 
     <LinearLayout
@@ -31,8 +31,7 @@
             android:layout_height="wrap_content"
             android:background="@android:drawable/presence_audio_busy"
             android:minWidth="50dp"
-            android:minHeight="50dp"
-            tools:ignore="SpeakableTextPresentCheck" />
+            android:minHeight="50dp" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"
@@ -53,13 +52,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTintMode="add"
-                android:text="Auto" />
+                android:text="@string/auto_button_text" />
 
             <com.google.android.material.tabs.TabItem
                 android:id="@+id/tabManual"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Manual" />
+                android:text="@string/manual_button_text" />
 
         </com.google.android.material.tabs.TabLayout>
     </LinearLayout>

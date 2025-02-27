@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">ShureDroid</string>
-    <string name="action_exit">Exit</string>
-    <string name="connected">Connected</string>
-    <string name="disconnected">Disconnected</string>
-	<string name="selectHIDDevice">Select HID device</string>
-    <string name="testPacket">TPkt</string>
-	<string name="clear">Clear</string>
-    <string name="phantom_power_48v">PHANTOM POWER (48 V)</string>
+    <!-- TODO: popup on event --><string name="connected">Connected</string>
+    <!-- TODO: popup on event --><string name="disconnected">Disconnected</string>
+	<string name="phantom_power_48v">PHANTOM POWER (48 V)</string>
     <string name="mic_mute">MIC MUTE</string>
     <string name="paren_mic">(MIC)</string>
     <string name="monitor_mix">MONITOR MIX</string>
@@ -39,4 +35,7 @@
     <string name="high">High</string>
     <string name="normal">Normal</string>
     <string name="lock">LOCK</string>
+    <string name="unofficial_client">Unofficial MVX2U Client</string>
+    <string name="auto_button_text">Auto</string>
+    <string name="manual_button_text">Manual</string>
 </resources>
