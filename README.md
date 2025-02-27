@@ -10,7 +10,7 @@ connected to an Android smartphone via USB cable, letting a user change adapter 
 
 For Linux, see [Shux](https://gitlab.com/PennRobotics/shux)
 
-<img src="screenshot.jpg" width=200>
+<img src="screenshot.jpg" width=200 alt="Screenshot of ShureDroid, an unofficial Shure MVX2U config app">
 
 
 ## Need Help?
@@ -32,7 +32,7 @@ or from the [release page](https://github.com/PennRobotics/ShureDroid/releases/l
 
 With time, I will probably publish to F-Droid[^playstore].
 
-[^playstore]: I have decided against publishing on the Google Play Store. There are too many hurdles having to generatea new developer account (creating a new email, coming up with an account name and namespace, paying 25 bucks, verifying my ID, always keeping my source up-to-date, spending less time with family) and then I would still probably get my app rejected automatically because it has a USB intent for an odd device class or would likely get the app removed after Shure complains. Anyone else is welcome to repackage this source, change the namespace, and submit it to the Play Store. I just do not have the time, know-how, resources, or willpower&hellip;
+[^playstore]: I have decided against publishing on the Google Play Store. There are too many hurdles having to generate a new developer account (creating a new email, coming up with an account name and namespace, paying 25 bucks, verifying my ID, always keeping my source up-to-date, spending less time with family) and then I would still probably get my app rejected automatically because it has a USB intent for an odd device class or would likely get the app removed after Shure complains. Anyone else is welcome to repackage this source, change the namespace, and submit it to the Play Store. I just do not have the time, know-how, resources, or willpower&hellip;
 
 <!-- TODO: f-droid link -->
 
@@ -167,7 +167,7 @@ There are no prohibitions on viewing its communications or sending USB data from
 application. The current installation of the Motiv Desktop software does not (rather, can not) prohibit
 the legal examination of the communication protocol if the goal is to improve software interoperability.
 ShureDroid does not rely on any part of the Motiv software for its creation or operation and would be
-considered either a legally permissable derived work or simply a compatible third-party application.
+considered either a legally permissible derived work or simply a compatible third-party application.
 
 No attempt was made to obscure or otherwise differentiate the standard USB HID protocol. Determining
 the structure of the MVX2U USB HID data packets is trivial. No attempt is made to encrypt USB HID
@@ -249,10 +249,10 @@ a violation of their legal obligations as the seller of the hardware that my sof
 (Not that it matters&hellip; I can't use Motiv Desktop in Linux or Android, my two daily drivers!)
 If I have not violated the terms of our mutual software license, I expect the vendor to permit my
 continued usage of their software as any other end user in my region. Both EU and German law are
-quite strict on consumer rights and the enforcability of EULA terms&mdash;particularly where the
+quite strict on consumer rights and the enforceability of EULA terms&mdash;particularly where the
 software and terms of that software are made available after registration and the purchase of
 hardware. While vendors are generally permitted to unilaterally terminate a license, the targeted
-(e.g. punative) revokation of my license due to publishing this software would be grounds for me
+(e.g. punitive) revocation of my license due to publishing this software would be grounds for me
 to seek legal relief. I might just ask what the ice cube's worth.
 
 (Disputes about this repository would likely center around enforcement and validity of IP rights,
