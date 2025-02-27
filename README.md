@@ -95,6 +95,8 @@ emulator or to a smartphone. The hardest part has been ensuring KVM is enabled a
 _This is gradually being moved to [Milestones](https://github.com/PennRobotics/ShureDroid/milestones)_
 
 - [ ] move this whole checklist to the project/milestones
+- [ ] add a debug toggle that writes a text file to the current directory
+    - [ ] reimplement LogMessageEvent
 - [ ] go through source and resolve each TODO comment
 - [ ] go through source and eliminate unneeded imports, declarations, etc.
 - [ ] see if there are low-hanging fruits in the source, like unnecessary (back-and-forth) type conversions
