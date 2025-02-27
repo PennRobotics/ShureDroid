@@ -47,7 +47,7 @@ public abstract class AbstractUSBHIDService extends Service {
 	private IntentFilter filter;
 	private PendingIntent mPermissionIntent;
 
-    protected EventBus eventBus = EventBus.getDefault();
+    protected EventBus eventBus = EventBus.getDefault();  // TODO: best practice???
 
 	@Override
 	public IBinder onBind(Intent intent) {
@@ -140,7 +140,7 @@ public abstract class AbstractUSBHIDService extends Service {
 
 	@Subscribe(threadMode = ThreadMode.MAIN)
 	public void onEvent(SelectDeviceEvent event) {
-		device = (UsbDevice) mUsbManager.getDeviceList().values().toArray()[event.getDevice()];
+		device = (UsbDevice) mUsbManager.getDeviceList().values().toArray()[event.device()];
 		mUsbManager.requestPermission(device, mPermissionIntent);
 	}
 

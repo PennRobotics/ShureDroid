@@ -29,7 +29,6 @@ import com.github.pennrobotics.shuredroid.core.events.ShowDevicesListEvent;
 import com.github.pennrobotics.shuredroid.core.events.USBDataReceiveEvent;
 import com.github.pennrobotics.shuredroid.core.events.USBDataSendEvent;
 import com.github.pennrobotics.shuredroid.core.services.USBHIDService;
-import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 
 import org.greenrobot.eventbus.EventBus;
@@ -425,12 +424,7 @@ public class ShureDroid extends Activity implements View.OnClickListener, SeekBa
 			builder.setTitle(Consts.MESSAGE_SELECT_YOUR_USB_HID_DEVICE);
 		}
 
-		builder.setItems(devicesName, new DialogInterface.OnClickListener() {
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				eventBus.post(new SelectDeviceEvent(which));
-			}
-		});
+		builder.setItems(devicesName, (dialog, which) -> eventBus.post(new SelectDeviceEvent(which)));
 		builder.setCancelable(true);
 		builder.show();
 	}
@@ -565,21 +559,19 @@ public class ShureDroid extends Activity implements View.OnClickListener, SeekBa
 				{
 					boolean currentlyAuto = viewAuto == viewSwitcher.getCurrentView();
 
-					switch(pVal) {
-						case 0:  /* manual mode */
-							if (currentlyAuto) { viewSwitcher.showNext(); }
-							TabLayout.Tab tabM = tabLayout.getTabAt(1);
-							tabM.select();
-							break;
-						case 1:  /* auto mode */
-							if (!currentlyAuto) { viewSwitcher.showPrevious(); }
-							TabLayout.Tab tabA = tabLayout.getTabAt(0);
-							tabA.select();
-							break;
-						default:
-							mLog("Auto mode param error");
+					if (pVal == 0) {
+						if (currentlyAuto) { viewSwitcher.showNext(); }
+						TabLayout.Tab tabM = tabLayout.getTabAt(1);
+						if (tabM != null) { tabM.select(); }
 					}
-					mLog("> " + pVal);
+					if (pVal == 1) {
+						if (!currentlyAuto)  { viewSwitcher.showPrevious(); }
+						TabLayout.Tab tabA = tabLayout.getTabAt(0);
+						if (tabA != null)  { tabA.select(); }
+					}
+					if (pVal < 0 || pVal > 1) {
+						mLog("Auto mode param error");
+					}
 				}
 				break;
 			case 0x02010186:
@@ -666,12 +658,10 @@ public class ShureDroid extends Activity implements View.OnClickListener, SeekBa
 		if (action == null) {
 			return;
 		}
-		switch (action) {
-			case Consts.USB_HID_TERMINAL_CLOSE_ACTION:
-				stopService(new Intent(this, USBHIDService.class));
-				((NotificationManager) getSystemService(NOTIFICATION_SERVICE)).cancel(Consts.USB_HID_TERMINAL_NOTIFICATION);
-				finish();
-				break;
+		if (action == Consts.USB_HID_TERMINAL_CLOSE_ACTION) {
+			stopService(new Intent(this, USBHIDService.class));
+			((NotificationManager) getSystemService(NOTIFICATION_SERVICE)).cancel(Consts.USB_HID_TERMINAL_NOTIFICATION);
+			finish();
 		}
 	}
 

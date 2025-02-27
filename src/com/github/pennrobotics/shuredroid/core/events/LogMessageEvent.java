@@ -1,14 +1,5 @@
 package com.github.pennrobotics.shuredroid.core.events;
 
-public class LogMessageEvent {
+public record LogMessageEvent(String data) {
 
-    private final String data;
-
-    public LogMessageEvent(String data) {
-        this.data = data;
-    }
-
-    public String getData() {
-        return data;
-    }  // TODO: used?
 }

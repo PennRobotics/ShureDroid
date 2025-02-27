@@ -10,18 +10,9 @@ import com.github.pennrobotics.shuredroid.core.events.ShowDevicesListEvent;
 import com.github.pennrobotics.shuredroid.core.events.USBDataReceiveEvent;
 
 public class USBHIDService extends AbstractUSBHIDService {
-
-	@Override
-	public void onCreate()  { super.onCreate(); }
-
 	@Override
 	public void onCommand(Intent intent, String action, int flags, int startId) {
 		super.onCommand(intent, action, flags, startId);
-	}
-
-	@Override
-	public void onDestroy() {
-		super.onDestroy();
 	}
 
 	@Override
