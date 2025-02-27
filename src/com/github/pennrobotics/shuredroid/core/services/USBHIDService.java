@@ -1,30 +1,15 @@
 package com.github.pennrobotics.shuredroid.core.services;
 
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Intent;
-import android.hardware.usb.UsbConstants;
 import android.hardware.usb.UsbDevice;
 
-import androidx.core.app.NotificationCompat;
-
-import com.github.pennrobotics.shuredroid.R;
-import com.github.pennrobotics.shuredroid.ShureDroid;
-import com.github.pennrobotics.shuredroid.core.Consts;
-import com.github.pennrobotics.shuredroid.core.USBUtils;
 import com.github.pennrobotics.shuredroid.core.events.DeviceAttachedEvent;
 import com.github.pennrobotics.shuredroid.core.events.DeviceDetachedEvent;
 import com.github.pennrobotics.shuredroid.core.events.DevicePluggedEvent;
-import com.github.pennrobotics.shuredroid.core.events.LogMessageEvent;
 import com.github.pennrobotics.shuredroid.core.events.ShowDevicesListEvent;
 import com.github.pennrobotics.shuredroid.core.events.USBDataReceiveEvent;
 
-import java.io.ByteArrayOutputStream;
-
 public class USBHIDService extends AbstractUSBHIDService {
-
-	private String delimiter;
-	private String receiveDataFormat;
 
 	@Override
 	public void onCreate()  { super.onCreate(); }
@@ -64,10 +49,6 @@ public class USBHIDService extends AbstractUSBHIDService {
 	@Override
 	public void onShowDevicesList(CharSequence[] deviceName) {
 		eventBus.post(new ShowDevicesListEvent(deviceName));
-	}
-
-	private String showDecHex(int data) {
-		return  data + " 0x" + Integer.toHexString(data);
 	}
 
 	@Override

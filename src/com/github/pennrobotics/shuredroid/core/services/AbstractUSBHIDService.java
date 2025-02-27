@@ -22,7 +22,6 @@ import android.os.IBinder;
 import android.util.Log;
 
 import com.github.pennrobotics.shuredroid.core.Consts;
-import com.github.pennrobotics.shuredroid.core.events.LogMessageEvent;
 import com.github.pennrobotics.shuredroid.core.events.PrepareDevicesListEvent;
 import com.github.pennrobotics.shuredroid.core.events.SelectDeviceEvent;
 import com.github.pennrobotics.shuredroid.core.events.USBDataSendEvent;
@@ -59,7 +58,12 @@ public abstract class AbstractUSBHIDService extends Service {
     @Override
 	public void onCreate() {
 		super.onCreate();
-		mPermissionIntent = PendingIntent.getBroadcast(this, 0, new Intent(Consts.ACTION_USB_PERMISSION), PendingIntent.FLAG_UPDATE_CURRENT | (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S ? PendingIntent.FLAG_MUTABLE | PendingIntent.FLAG_ALLOW_UNSAFE_IMPLICIT_INTENT : 0));
+		mPermissionIntent = PendingIntent.getBroadcast(
+				this,
+				0,
+				new Intent(Consts.ACTION_USB_PERMISSION),
+				PendingIntent.FLAG_UPDATE_CURRENT| (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S ? PendingIntent.FLAG_MUTABLE | PendingIntent.FLAG_ALLOW_UNSAFE_IMPLICIT_INTENT : 0)
+				);
 		filter = new IntentFilter(Consts.ACTION_USB_PERMISSION);
 		filter.addAction(UsbManager.ACTION_USB_DEVICE_ATTACHED);
 		filter.addAction(UsbManager.ACTION_USB_DEVICE_DETACHED);
@@ -112,12 +116,7 @@ public abstract class AbstractUSBHIDService extends Service {
 								if (UsbConstants.USB_DIR_IN == endPointRead.getDirection()) {
 									final byte[] buffer = new byte[endPointRead.getMaxPacketSize()];
 									if (0 < connection.bulkTransfer(endPointRead, buffer, buffer.length, 100)) {
-										uiHandler.post(new Runnable() {
-											@Override
-											public void run() {
-												onUSBDataReceive(buffer);
-											}
-										});
+										uiHandler.post(() -> onUSBDataReceive(buffer));
 									}
 								}
 							}
@@ -136,7 +135,7 @@ public abstract class AbstractUSBHIDService extends Service {
 
 	@Subscribe(threadMode = ThreadMode.MAIN)
 	public void onEventMainThread(USBDataSendEvent event){
-		sendBytes(event.getBytes());
+		sendBytes(event.bytes());
 	}
 
 	@Subscribe(threadMode = ThreadMode.MAIN)
@@ -148,12 +147,12 @@ public abstract class AbstractUSBHIDService extends Service {
 	@Subscribe(threadMode = ThreadMode.MAIN)
 	public void onEventMainThread(PrepareDevicesListEvent event) {
         mUsbManager = (UsbManager) getSystemService(Context.USB_SERVICE);
-        List<CharSequence> list = new LinkedList<CharSequence>();
+        List<CharSequence> list = new LinkedList<>();
         for (UsbDevice usbDevice : mUsbManager.getDeviceList().values()) {
             list.add(onBuildingDevicesList(usbDevice));
         }
-        final CharSequence devicesName[] = new CharSequence[mUsbManager.getDeviceList().size()];
-        list.toArray(devicesName);
+        final CharSequence[] devicesName = new CharSequence[mUsbManager.getDeviceList().size()];
+		list.toArray(devicesName);
 		onShowDevicesList(devicesName);
     }
 
@@ -199,7 +198,7 @@ public abstract class AbstractUSBHIDService extends Service {
 
 		private void setDevice(Intent intent) {
 			synchronized (this) {
-				device = (UsbDevice) intent.getParcelableExtra(UsbManager.EXTRA_DEVICE);
+				device = intent.getParcelableExtra(UsbManager.EXTRA_DEVICE);
 				Log.d(TAG, "Broadcast received. Device: " + device);
 				if (intent.getBooleanExtra(UsbManager.EXTRA_PERMISSION_GRANTED, false) && device != null) {
 					Log.d(TAG, "Permission granted for device: " + device.getDeviceName());
@@ -250,13 +249,7 @@ public abstract class AbstractUSBHIDService extends Service {
 		return null;
 	}
 
-	public void onUSBDataSending(String data) {
-	}
-
 	public void onUSBDataSent(int status, byte[] out) {
-	}
-
-	public void onSendingError(Exception e) {
 	}
 
 }

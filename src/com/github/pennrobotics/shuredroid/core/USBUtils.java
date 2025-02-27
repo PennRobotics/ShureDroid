@@ -1,26 +1,10 @@
 package com.github.pennrobotics.shuredroid.core;
 
-import android.widget.EditText;
-
 import androidx.annotation.NonNull;
-
-import com.github.pennrobotics.shuredroid.R;
-
-import java.io.ByteArrayOutputStream;
 import java.util.Arrays;
-
-import kotlin.collections.ByteIterator;
 
 public class USBUtils {
 	static byte SEQ = 0x00;
-
-	public static int toInt(byte b) {
-		return (int) b & 0xFF;
-	}
-
-	public static byte toByte(int c) {
-		return (byte) (c <= 0x7f ? c : ((c % 0x80) - 0x80));
-	}
 
 	private static final char[] HEX_DIGITS_UPPER = "0123456789ABCDEF".toCharArray();
 	public static String toHex(byte[] bytes) {

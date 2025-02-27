@@ -1,10 +1,8 @@
 apply plugin: 'com.android.application'
 
-ext {
-    versionMajor = 1
-    versionMinor = 0
-    versionPatch = 0
-}
+def versionMajor = 1
+def versionMinor = 0
+def versionPatch = 0
 
 buildscript {
     repositories {
@@ -13,7 +11,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.8.1'
+        classpath 'com.android.tools.build:gradle:8.8.2'
     }
 }
 
@@ -37,8 +35,8 @@ android {
         applicationId 'com.github.pennrobotics.shuredroid'
         minSdk 21
         targetSdk 35
-        versionCode computeVersionCode()
-        versionName computeVersionName()
+        versionCode versionMajor * 10000 + versionMinor * 100 + versionPatch
+        versionName "${versionMajor}.${versionMinor}.${versionPatch}"
     }
 
     buildTypes {
@@ -77,10 +75,12 @@ task adbConfig(type: Exec) {
 task tst(dependsOn: ['adbConfig', 'connectedAndroidTest']) {
 } */
 
-def computeVersionName() {
+/*
+static def computeVersionName() {
     return String.format('%d.%d.%d', versionMajor, versionMinor, versionPatch)
 }
 
-def computeVersionCode() {
-    return (versionMajor * 10000) + (versionMinor * 100) + versionPatch;
+static def computeVersionCode() {
+    return (versionMajor * 10000) + (versionMinor * 100) + versionPatch
 }
+*/

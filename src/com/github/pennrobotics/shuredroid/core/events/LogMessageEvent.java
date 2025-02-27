@@ -10,5 +10,5 @@ public class LogMessageEvent {
 
     public String getData() {
         return data;
-    }
+    }  // TODO: used?
 }

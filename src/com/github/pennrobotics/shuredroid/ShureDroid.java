@@ -2,7 +2,6 @@ package com.github.pennrobotics.shuredroid;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -17,8 +16,6 @@ import android.widget.RadioGroup;
 import android.widget.ScrollView;
 import android.widget.SeekBar;
 import android.widget.ViewSwitcher;
-
-import androidx.core.app.NotificationCompat;
 
 import com.github.pennrobotics.shuredroid.core.Consts;
 import com.github.pennrobotics.shuredroid.core.USBUtils;
@@ -51,8 +48,6 @@ public class ShureDroid extends Activity implements View.OnClickListener, SeekBa
 	private ScrollView viewManual;
 
 	private TabLayout tabLayout;
-	private TabItem tabManual;
-	private TabItem tabAuto;
 
 	private CheckBox switchLockAPanel;
 	private CheckBox switchLockMPanel;
@@ -125,66 +120,66 @@ public class ShureDroid extends Activity implements View.OnClickListener, SeekBa
 
 	private void initUI() {
 		getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
-		getActionBar().hide();
+		/* TODO: getActionBar().hide(); */
 
-		btnSelectHIDDevice = (ImageButton) findViewById(R.id.btnSelectHIDDevice);
+		btnSelectHIDDevice = findViewById(R.id.btnSelectHIDDevice);
 
-		viewSwitcher = (ViewSwitcher) findViewById(R.id.viewSwitcher);
-		viewAuto = (ScrollView) findViewById(R.id.viewAuto);
-		viewManual = (ScrollView) findViewById(R.id.viewManual);
+		viewSwitcher = findViewById(R.id.viewSwitcher);
+		viewAuto = findViewById(R.id.viewAuto);
+		viewManual = findViewById(R.id.viewManual);
 
-		tabLayout = (TabLayout) findViewById(R.id.tabLayout);
-		tabManual = (TabItem) findViewById(R.id.tabManual);
-		tabAuto = (TabItem) findViewById(R.id.tabAuto);
+		tabLayout = findViewById(R.id.tabLayout);
+		//tabManual = findViewById(R.id.tabManual);
+		//tabAuto = findViewById(R.id.tabAuto);
 
-		switchLockAPanel = (CheckBox) findViewById(R.id.switchLockAPanel);
-		switchLockMPanel = (CheckBox) findViewById(R.id.switchLockMPanel);
-		switchPhantomAPanel = (CheckBox) findViewById(R.id.switchPhantomAPanel);
-		switchPhantomMPanel = (CheckBox) findViewById(R.id.switchPhantomMPanel);
-		switchMicMuteAPanel = (CheckBox) findViewById(R.id.switchMicMuteAPanel);
-		switchMicMuteMPanel = (CheckBox) findViewById(R.id.switchMicMuteMPanel);
-		editTextNumberMixAPanel = (EditText) findViewById(R.id.editTextNumberMixAPanel);
-		editTextNumberMixMPanel = (EditText) findViewById(R.id.editTextNumberMixMPanel);
-		seekBarMixAPanel = (SeekBar) findViewById(R.id.seekBarMixAPanel);
-		seekBarMixMPanel = (SeekBar) findViewById(R.id.seekBarMixMPanel);
+		switchLockAPanel = findViewById(R.id.switchLockAPanel);
+		switchLockMPanel = findViewById(R.id.switchLockMPanel);
+		switchPhantomAPanel = findViewById(R.id.switchPhantomAPanel);
+		switchPhantomMPanel = findViewById(R.id.switchPhantomMPanel);
+		switchMicMuteAPanel = findViewById(R.id.switchMicMuteAPanel);
+		switchMicMuteMPanel = findViewById(R.id.switchMicMuteMPanel);
+		editTextNumberMixAPanel = findViewById(R.id.editTextNumberMixAPanel);
+		editTextNumberMixMPanel = findViewById(R.id.editTextNumberMixMPanel);
+		seekBarMixAPanel = findViewById(R.id.seekBarMixAPanel);
+		seekBarMixMPanel = findViewById(R.id.seekBarMixMPanel);
 
-		radioGroupADist = (RadioGroup) findViewById(R.id.radioGroupADist);
-		radioADistNear = (RadioButton) findViewById(R.id.radioADistNear);
-		radioADistFar = (RadioButton) findViewById(R.id.radioADistFar);
-		radioGroupATone = (RadioGroup) findViewById(R.id.radioGroupATone);
-		radioAToneDark = (RadioButton) findViewById(R.id.radioAToneDark);
-		radioAToneNeutral = (RadioButton) findViewById(R.id.radioAToneNeutral);
-		radioAToneBright = (RadioButton) findViewById(R.id.radioAToneBright);
-		radioGroupAGain = (RadioGroup) findViewById(R.id.radioGroupAGain);
-		radioAGainLow = (RadioButton) findViewById(R.id.radioAGainLow);
-		radioAGainNormal = (RadioButton) findViewById(R.id.radioAGainNormal);
-		radioAGainHigh = (RadioButton) findViewById(R.id.radioAGainHigh);
+		radioGroupADist = findViewById(R.id.radioGroupADist);
+		radioADistNear = findViewById(R.id.radioADistNear);
+		radioADistFar = findViewById(R.id.radioADistFar);
+		radioGroupATone = findViewById(R.id.radioGroupATone);
+		radioAToneDark = findViewById(R.id.radioAToneDark);
+		radioAToneNeutral = findViewById(R.id.radioAToneNeutral);
+		radioAToneBright = findViewById(R.id.radioAToneBright);
+		radioGroupAGain = findViewById(R.id.radioGroupAGain);
+		radioAGainLow = findViewById(R.id.radioAGainLow);
+		radioAGainNormal = findViewById(R.id.radioAGainNormal);
+		radioAGainHigh = findViewById(R.id.radioAGainHigh);
 
-		editTextNumberMGain = (EditText) findViewById(R.id.editTextNumberMGain);
-		seekBarMGain = (SeekBar) findViewById(R.id.seekBarMGain);
-		switchMLimiter = (CheckBox) findViewById(R.id.switchMLimiter);
-		radioGroupMComp = (RadioGroup) findViewById(R.id.radioGroupMComp);
-		radioMCompOff = (RadioButton) findViewById(R.id.radioMCompOff);
-		radioMCompLight = (RadioButton) findViewById(R.id.radioMCompLight);
-		radioMCompModerate = (RadioButton) findViewById(R.id.radioMCompModerate);
-		radioMCompHeavy = (RadioButton) findViewById(R.id.radioMCompHeavy);
-		radioGroupMHpf = (RadioGroup) findViewById(R.id.radioGroupMHpf);
-		radioMHpfOff = (RadioButton) findViewById(R.id.radioMHpfOff);
-		radioMHpf75Hz = (RadioButton) findViewById(R.id.radioMHpf75Hz);
-		radioMHpf150Hz = (RadioButton) findViewById(R.id.radioMHpf150Hz);
-		switchEqEnable = (CheckBox) findViewById(R.id.switchEqEnable);
-		switchEq1 = (CheckBox) findViewById(R.id.switchEq1);
-		seekBarEq1 = (SeekBar) findViewById(R.id.seekBarEq1);
-		switchEq2 = (CheckBox) findViewById(R.id.switchEq2);
-		seekBarEq2 = (SeekBar) findViewById(R.id.seekBarEq2);
-		switchEq3 = (CheckBox) findViewById(R.id.switchEq3);
-		seekBarEq3 = (SeekBar) findViewById(R.id.seekBarEq3);
-		switchEq4 = (CheckBox) findViewById(R.id.switchEq4);
-		seekBarEq4 = (SeekBar) findViewById(R.id.seekBarEq4);
-		switchEq5 = (CheckBox) findViewById(R.id.switchEq5);
-		seekBarEq5 = (SeekBar) findViewById(R.id.seekBarEq5);
+		editTextNumberMGain = findViewById(R.id.editTextNumberMGain);
+		seekBarMGain = findViewById(R.id.seekBarMGain);
+		switchMLimiter = findViewById(R.id.switchMLimiter);
+		radioGroupMComp = findViewById(R.id.radioGroupMComp);
+		radioMCompOff = findViewById(R.id.radioMCompOff);
+		radioMCompLight = findViewById(R.id.radioMCompLight);
+		radioMCompModerate = findViewById(R.id.radioMCompModerate);
+		radioMCompHeavy = findViewById(R.id.radioMCompHeavy);
+		radioGroupMHpf = findViewById(R.id.radioGroupMHpf);
+		radioMHpfOff = findViewById(R.id.radioMHpfOff);
+		radioMHpf75Hz = findViewById(R.id.radioMHpf75Hz);
+		radioMHpf150Hz = findViewById(R.id.radioMHpf150Hz);
+		switchEqEnable = findViewById(R.id.switchEqEnable);
+		switchEq1 = findViewById(R.id.switchEq1);
+		seekBarEq1 = findViewById(R.id.seekBarEq1);
+		switchEq2 = findViewById(R.id.switchEq2);
+		seekBarEq2 = findViewById(R.id.seekBarEq2);
+		switchEq3 = findViewById(R.id.switchEq3);
+		seekBarEq3 = findViewById(R.id.seekBarEq3);
+		switchEq4 = findViewById(R.id.switchEq4);
+		seekBarEq4 = findViewById(R.id.seekBarEq4);
+		switchEq5 = findViewById(R.id.switchEq5);
+		seekBarEq5 = findViewById(R.id.seekBarEq5);
 
-		editLogText = (EditText) findViewById(R.id.editLogText);
+		editLogText = findViewById(R.id.editLogText);
 
 		makeSettingsUIEnabled(false);
 
@@ -266,159 +261,131 @@ public class ShureDroid extends Activity implements View.OnClickListener, SeekBa
 				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000185"+p,0)));  // Auto Mode Enable
 				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202010186"+p,0)));  // Mix
 		 */
-		switch (v.getId()/*TODO-hi*/) {
-			case R.id.btnSelectHIDDevice:
-				eventBus.post(new PrepareDevicesListEvent());
-				break;
+		if (v.getId() == R.id.btnSelectHIDDevice) {
+			eventBus.post(new PrepareDevicesListEvent());
+		}
 
-			case R.id.switchLockAPanel:
-			case R.id.switchLockMPanel:
-				// TODO: eventBus.post(new USBDataSendEvent(USBUtils.padPktData("0202010600A6"+p,0)));  // Parameter lock
-				break;
+		if (v.getId() == R.id.switchLockAPanel ||
+			v.getId() == R.id.switchLockMPanel)
+		{
+			// TODO: eventBus.post(new USBDataSendEvent(USBUtils.padPktData("0202010600A6"+p,0)));  // Parameter lock
+			// TODO: set both elements to the same value
+			// TODO: lock should disable nearly every element except itself
+		}
 
-			case R.id.switchPhantomAPanel:
-				{
-					boolean c = switchPhantomAPanel.isChecked();
-					if (c) {
-						eventBus.post(new USBDataSendEvent(USBUtils.padPktData("02020200016630", 0)));  // Phantom
-						eventBus.post(new USBDataSendEvent(USBUtils.padPktData("010000")));  // Phantom
-					} else {
-						eventBus.post(new USBDataSendEvent(USBUtils.padPktData("02020200016600", 0)));  // Phantom
-						eventBus.post(new USBDataSendEvent(USBUtils.padPktData("010000")));  // Phantom
-					}
-					switchPhantomMPanel.setChecked(c);
-				}
-				break;
-			case R.id.switchPhantomMPanel:
-				{
-					boolean c = switchPhantomMPanel.isChecked();
-					if (c) {
-						eventBus.post(new USBDataSendEvent(USBUtils.padPktData("02020200016630", 0)));  // Phantom
-						eventBus.post(new USBDataSendEvent(USBUtils.padPktData("010000")));  // Phantom
-					} else {
-						eventBus.post(new USBDataSendEvent(USBUtils.padPktData("02020200016600", 0)));  // Phantom
-						eventBus.post(new USBDataSendEvent(USBUtils.padPktData("010000")));  // Phantom
-					}
-					switchPhantomAPanel.setChecked(c);
-				}
-				break;
+		if (v.getId() == R.id.switchPhantomAPanel ||
+			v.getId() == R.id.switchPhantomMPanel) {
+			boolean c = (v.getId() == R.id.switchPhantomAPanel)
+					? switchPhantomAPanel.isChecked()
+					: switchPhantomMPanel.isChecked();
+			if (c) {
+				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("02020200016630", 0)));  // Phantom
+				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("010000")));  // Phantom
+			} else {
+				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("02020200016600", 0)));  // Phantom
+				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("010000")));  // Phantom
+			}
+			switchPhantomAPanel.setChecked(c);
+			switchPhantomMPanel.setChecked(c);
+		}
 
-			case R.id.switchMicMuteAPanel:
-			case R.id.switchMicMuteMPanel:
-				// TODO: eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000104"+p,0)));  // Mute
-				break;
+		if (v.getId() == R.id.switchMicMuteAPanel ||
+			v.getId() == R.id.switchMicMuteMPanel)
+		{
+			// TODO: eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000104"+p,0)));  // Mute
+			// TODO: set both elements to same value
+			// TODO: indicate mute state somehow
+		}
 
-			case R.id.editTextNumberMixAPanel:
-			case R.id.editTextNumberMixMPanel:
-				break;  // TODO
+		if (v.getId() == R.id.editTextNumberMixAPanel)  { /*TODO*/ }
+		if (v.getId() == R.id.editTextNumberMixMPanel)  { /*TODO*/ }
+		if (v.getId() == R.id.seekBarMixAPanel)  { /*TODO*/ }
+		if (v.getId() == R.id.seekBarMixMPanel)  { /*TODO*/ }
 
-			case R.id.seekBarMixAPanel:
-			case R.id.seekBarMixMPanel:
-				break;  // TODO
+		if (v.getId() == R.id.radioADistNear) {
+			eventBus.post(new USBDataSendEvent(USBUtils.padPktData("02020200018200", 0/*TODO: which should be default, 0 or 3?*/)));  // Auto Position
+		}
+		if (v.getId() == R.id.radioADistFar) {
+			eventBus.post(new USBDataSendEvent(USBUtils.padPktData("02020200018201", 0)));  // Auto Position
+		}
 
-			case R.id.radioADistNear:
-				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("02020200018200",0)));  // Auto Position
-				break;
-			case R.id.radioADistFar:
-				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("02020200018201",0)));  // Auto Position
-				break;
+		if (v.getId() == R.id.radioAToneDark) {
+			eventBus.post(new USBDataSendEvent(USBUtils.padPktData("02020200018300", 0)));  // Auto Tone
+		}
+		if (v.getId() == R.id.radioAToneNeutral) {
+			eventBus.post(new USBDataSendEvent(USBUtils.padPktData("02020200018301", 0)));  // Auto Tone
+		}
+		if (v.getId() == R.id.radioAToneBright) {
+			eventBus.post(new USBDataSendEvent(USBUtils.padPktData("02020200018302", 0)));  // Auto Tone
+		}
 
-			case R.id.radioAToneDark:
-				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("02020200018300",0)));  // Auto Tone
-				break;
-			case R.id.radioAToneNeutral:
-				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("02020200018301",0)));  // Auto Tone
-				break;
-			case R.id.radioAToneBright:
-				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("02020200018302",0)));  // Auto Tone
-				break;
+		if (v.getId() == R.id.radioAGainLow) {
+			eventBus.post(new USBDataSendEvent(USBUtils.padPktData("02020200018700", 0)));  // Auto Gain
+		}
+		if (v.getId() == R.id.radioAGainNormal) {
+			eventBus.post(new USBDataSendEvent(USBUtils.padPktData("02020200018701", 0)));  // Auto Gain
+		}
+		if (v.getId() == R.id.radioAGainHigh) {
+			eventBus.post(new USBDataSendEvent(USBUtils.padPktData("02020200018702", 0)));  // Auto Gain
+		}
 
-			case R.id.radioAGainLow:
-				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("02020200018700",0)));  // Auto Gain
-				break;
-			case R.id.radioAGainNormal:
-				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("02020200018701",0)));  // Auto Gain
-				break;
-			case R.id.radioAGainHigh:
-				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("02020200018702",0)));  // Auto Gain
-				break;
+		if (v.getId() == R.id.editTextNumberMGain) {
+			// TODO: link with seekbar and vice-versa
+			// TODO: link all text edit boxes to their seekbars
+			// TODO: set seekbar, run that (seekbar) code
+		}
 
-			case R.id.editTextNumberMGain:
-				// TODO: link with seekbar and vice-versa
-				// TODO: link all edittexts to their seekbars
-				// TODO: set seekbar, run that (seekbar) code
-				break;
+		if (v.getId() == R.id.switchMLimiter) {
+			String p = switchMLimiter.isChecked() ? "01" : "00";
+			eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000151"+p,0)));  // Limiter
+		}
 
-			case R.id.switchMLimiter:
-				{
-					String p = new String(switchMLimiter.isChecked() ? "01" : "00");
-					eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000151"+p,0)));  // Limiter
-				}
-				break;
+		if (v.getId() == R.id.radioMCompOff) {
+			eventBus.post(new USBDataSendEvent(USBUtils.padPktData("02020200015C00", 0)));  // Compressor
+		}
+		if (v.getId() == R.id.radioMCompLight) {
+			eventBus.post(new USBDataSendEvent(USBUtils.padPktData("02020200015C01", 0)));  // Compressor
+		}
+		if (v.getId() == R.id.radioMCompModerate) {
+			eventBus.post(new USBDataSendEvent(USBUtils.padPktData("02020200015C02", 0)));  // Compressor
+		}
+		if (v.getId() == R.id.radioMCompHeavy) {
+			eventBus.post(new USBDataSendEvent(USBUtils.padPktData("02020200015C03", 0)));  // Compressor
+		}
 
-			case R.id.radioMCompOff:
-				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("02020200015C00",0)));  // Compressor
-				break;
-			case R.id.radioMCompLight:
-				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("02020200015C01",0)));  // Compressor
-				break;
-			case R.id.radioMCompModerate:
-				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("02020200015C02",0)));  // Compressor
-				break;
-			case R.id.radioMCompHeavy:
-				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("02020200015C03",0)));  // Compressor
-				break;
+		if (v.getId() == R.id.radioMHpfOff) {
+			eventBus.post(new USBDataSendEvent(USBUtils.padPktData("02020200010600", 0)));  // HPF
+		}
+		if (v.getId() == R.id.radioMHpf75Hz) {
+			eventBus.post(new USBDataSendEvent(USBUtils.padPktData("02020200010601", 0)));  // HPF
+		}
+		if (v.getId() == R.id.radioMHpf150Hz) {
+			eventBus.post(new USBDataSendEvent(USBUtils.padPktData("02020200010602", 0)));  // HPF
+		}
 
-			case R.id.radioMHpfOff:
-				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("02020200010600",0)));  // HPF
-				break;
-			case R.id.radioMHpf75Hz:
-				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("02020200010601",0)));  // HPF
-				break;
-			case R.id.radioMHpf150Hz:
-				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("02020200010602",0)));  // HPF
-				break;
-
-			case R.id.switchEqEnable:
-				{
-					String p = new String(switchEqEnable.isChecked() ? "01" : "00");
-					eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000200" + p, 0)));  // EQ Enable
-				}
-				break;
-			case R.id.switchEq1:
-				{
-					String p = new String(switchEqEnable.isChecked() ? "01" : "00");
-					eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000210" + p, 0)));  // EQ Band 1 Enable
-				}
-				break;
-			case R.id.switchEq2:
-				{
-					String p = new String(switchEqEnable.isChecked() ? "01" : "00");
-					eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000220" + p, 0)));  // EQ Band 2 Enable
-				}
-				break;
-			case R.id.switchEq3:
-				{
-					String p = new String(switchEqEnable.isChecked() ? "01" : "00");
-					eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000230" + p, 0)));  // EQ Band 3 Enable
-				}
-				break;
-			case R.id.switchEq4:
-				{
-					String p = new String(switchEqEnable.isChecked() ? "01" : "00");
-					eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000240" + p, 0)));  // EQ Band 4 Enable
-				}
-				break;
-			case R.id.switchEq5:
-				{
-					String p = new String(switchEqEnable.isChecked() ? "01" : "00");
-					eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000250" + p, 0)));  // EQ Band 5 Enable
-				}
-				break;
-
-			default:
-				mLog("problems in click handler");
-				break;
+		if (v.getId() == R.id.switchEqEnable) {
+			String p = switchEqEnable.isChecked() ? "01" : "00";
+			eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000200" + p, 0)));  // EQ Enable
+		}
+		if (v.getId() == R.id.switchEq1) {
+			String p = switchEq1.isChecked() ? "01" : "00";
+			eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000210" + p, 0)));  // EQ Band 1 Enable
+		}
+		if (v.getId() == R.id.switchEq2) {
+			String p = switchEq2.isChecked() ? "01" : "00";
+			eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000220" + p, 0)));  // EQ Band 2 Enable
+		}
+		if (v.getId() == R.id.switchEq3) {
+			String p = switchEq3.isChecked() ? "01" : "00";
+			eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000230" + p, 0)));  // EQ Band 3 Enable
+		}
+		if (v.getId() == R.id.switchEq4) {
+			String p = switchEq4.isChecked() ? "01" : "00";
+			eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000240" + p, 0)));  // EQ Band 4 Enable
+		}
+		if (v.getId() == R.id.switchEq5) {
+			String p = switchEq5.isChecked() ? "01" : "00";
+			eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000250" + p, 0)));  // EQ Band 5 Enable
 		}
 	}
 
@@ -449,7 +416,7 @@ public class ShureDroid extends Activity implements View.OnClickListener, SeekBa
 		eventBus.post(new USBDataSendEvent(USBUtils.padPktData("010202000254")));  // EQ Band 5 Gain
 	}
 
-	void showListOfDevices(CharSequence devicesName[]) {
+	void showListOfDevices(CharSequence[] devicesName) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
 		if (devicesName.length == 0) {
@@ -612,7 +579,7 @@ public class ShureDroid extends Activity implements View.OnClickListener, SeekBa
 						default:
 							mLog("Auto mode param error");
 					}
-					mLog("> " + Integer.toString(pVal));
+					mLog("> " + pVal);
 				}
 				break;
 			case 0x02010186:
@@ -725,32 +692,33 @@ public class ShureDroid extends Activity implements View.OnClickListener, SeekBa
 
 	@Override
 	public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-		int band = 0x14;
-		switch (seekBar.getId()) {
-			case R.id.seekBarMixAPanel:  break;
-			case R.id.seekBarMixMPanel:  break;
-			case R.id.seekBarMGain:
-				{
-					int val = seekBarMGain.getProgress() * 50;
-					String valHx = String.format("%04X", val);
-					eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000102" + valHx, 0)));  // Manual Gain
-				}
-				break;
-			case R.id.seekBarEq5:  band += 0x10;  // fallthrough
-			case R.id.seekBarEq4:  band += 0x10;
-			case R.id.seekBarEq3:  band += 0x10;
-			case R.id.seekBarEq2:  band += 0x10;
-			case R.id.seekBarEq1:
-				{
-					int val = 20 * (seekBar.getProgress() - 4);
-					String valHx = String.format("%04X", val & 0xFFFF);
-					mLog(valHx);
-					eventBus.post(new USBDataSendEvent(USBUtils.padPktData("0202020002"
-							+ Integer.toHexString(band) + valHx, 0)));  // EQ Band N Gain
-				}
-				break;
-			default:
-				mLog("unhandled seekbar");
+		if (seekBar.getId() == R.id.seekBarMixAPanel)  { /*TODO*/ }
+		if (seekBar.getId() == R.id.seekBarMixMPanel)  { /*TODO*/ }
+
+		if (seekBar.getId() == R.id.seekBarMGain) {
+			int val = seekBarMGain.getProgress() * 50;
+			String valHx = String.format("%04X", val);
+			eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000102" + valHx, 0)));  // Manual Gain
+		}
+
+		if (seekBar.getId() == R.id.seekBarEq1 ||
+			seekBar.getId() == R.id.seekBarEq2 ||
+			seekBar.getId() == R.id.seekBarEq3 ||
+			seekBar.getId() == R.id.seekBarEq4 ||
+			seekBar.getId() == R.id.seekBarEq5)
+		{
+			int band = 0x14;  /* default */
+			if (seekBar.getId() == R.id.seekBarEq1)  { /* default */ }
+			if (seekBar.getId() == R.id.seekBarEq2)  { band = 0x24; }
+			if (seekBar.getId() == R.id.seekBarEq3)  { band = 0x34; }
+			if (seekBar.getId() == R.id.seekBarEq4)  { band = 0x44; }
+			if (seekBar.getId() == R.id.seekBarEq5)  { band = 0x54; }
+
+			int val = 20 * (seekBar.getProgress() - 4);
+			String valHx = String.format("%04X", val & 0xFFFF);
+			mLog(valHx);
+			eventBus.post(new USBDataSendEvent(USBUtils.padPktData("0202020002"
+					+ Integer.toHexString(band) + valHx, 0)));  // EQ Band N Gain
 		}
 	}
 
