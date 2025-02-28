@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="mic_mute">MIKRO STUMM</string>
+    <string name="manual_gain">M. VERSTÄRKUNG</string>
+    <string name="auto_gain">AUTO-VERSTÄRKUNG</string>
+    <string name="limiter">BEGRENZER</string>
+    <string name="compressor">KOMPRESSOR</string>
+    <string name="off">Aus</string>
+    <string name="low_cut">TIEFENSPERRE</string>
+    <string name="distance">ABSTAND</string>
+    <string name="tone">KLANG</string>
+    <string name="lock">SPERREN</string>
+    <string name="unofficial_client">inoffizieller MVX2U-Client</string>
+    <string name="auto_button_text">Auto</string>
+    <string name="manual_button_text">Manuell</string>
+</resources>

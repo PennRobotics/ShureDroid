@@ -3,7 +3,6 @@
     <string name="app_name">ShureDroid</string>
     <!-- TODO: popup on event --><string name="connected">Connected</string>
     <!-- TODO: popup on event --><string name="disconnected">Disconnected</string>
-	<string name="phantom_power_48v">PHANTOM POWER (48 V)</string>
     <string name="mic_mute">MIC MUTE</string>
     <string name="paren_mic">(MIC)</string>
     <string name="monitor_mix">MONITOR MIX</string>
