@@ -116,7 +116,7 @@ public abstract class AbstractUSBHIDService extends Service {
 								if (UsbConstants.USB_DIR_IN == endPointRead.getDirection()) {
 									final byte[] buffer = new byte[endPointRead.getMaxPacketSize()];
 									if (0 < connection.bulkTransfer(endPointRead, buffer, buffer.length, 100)) {
-										uiHandler.post(() -> onUSBDataReceive(buffer));
+										uiHandler.post(() -> onUSBDataReceive(buffer));  // TODO: this wants to be something like Looper.getMainLooper() ... new Runnable() ... etc
 									}
 								}
 							}
@@ -198,6 +198,7 @@ public abstract class AbstractUSBHIDService extends Service {
 
 		private void setDevice(Intent intent) {
 			synchronized (this) {
+				// TODO: maybe switch from Intent to IntentCompat? (or conditionally provide type safety)
 				device = intent.getParcelableExtra(UsbManager.EXTRA_DEVICE);
 				Log.d(TAG, "Broadcast received. Device: " + device);
 				if (intent.getBooleanExtra(UsbManager.EXTRA_PERMISSION_GRANTED, false) && device != null) {

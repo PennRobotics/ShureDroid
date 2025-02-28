@@ -95,7 +95,7 @@ public class ShureDroid extends Activity implements View.OnClickListener, SeekBa
 	private CheckBox switchEq5;
 	private SeekBar seekBarEq5;
 
-	private EditText editLogText;
+	//private EditText editLogText;
 
 	protected EventBus eventBus;
 
@@ -118,6 +118,7 @@ public class ShureDroid extends Activity implements View.OnClickListener, SeekBa
 	}
 
 	private void initUI() {
+		// TODO: setSystemUiViz and SYSTEM_UI_FLAG_FULLSCREEN deprecated
 		getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
 		/* TODO: getActionBar().hide(); */
 
@@ -178,7 +179,8 @@ public class ShureDroid extends Activity implements View.OnClickListener, SeekBa
 		switchEq5 = findViewById(R.id.switchEq5);
 		seekBarEq5 = findViewById(R.id.seekBarEq5);
 
-		editLogText = findViewById(R.id.editLogText);
+		//editLogText = findViewById(R.id.editLogText);
+		// TODO: replace editLogText with a debug log file in local folder!
 
 		makeSettingsUIEnabled(false);
 
@@ -479,7 +481,8 @@ public class ShureDroid extends Activity implements View.OnClickListener, SeekBa
 	}
 
 	private void mLog(String log) {
-		editLogText.append(log + "\n");
+		//editLogText.append(log + "\n");
+		// TODO-hi: write to log file here!
 	}
 
 	@Subscribe(threadMode = ThreadMode.MAIN)
