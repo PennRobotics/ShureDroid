@@ -25,7 +25,7 @@
     <string name="_10000">10000</string>
     <string name="distance">DISTANCE</string>
     <string name="far">Far</string>
-    <string name="near">Near (test tint)</string><!--TODO-->
+    <string name="near">Near</string>
     <string name="tone">TONE</string>
     <string name="dark">Dark</string>
     <string name="neutral">Neutral</string>

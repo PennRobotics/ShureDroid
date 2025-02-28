@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ShureDroid</string>
+    <!-- TODO: popup on event --><string name="connected">Connected</string>
+    <!-- TODO: popup on event --><string name="disconnected">Disconnected</string>
+	<string name="phantom_power_48v">PHANTOMSPEISUNG (48 V)</string>
+    <string name="mic_mute">MIKRO STUMM</string>
+    <string name="paren_mic">(MIKR)</string>
+    <string name="monitor_mix">MONITOR MIX</string>
+    <string name="manual_gain">M. VERSTÄRKUNG</string>
+    <string name="limiter">BEGRENZER</string>
+    <string name="compressor">KOMPRESSION</string>
+    <string name="off">Aus</string>
+    <string name="light">Minimal</string>
+    <string name="moderate">Mäßig</string>
+    <string name="heavy">Schwer</string>
+    <string name="low_cut">	TIEFENSPERRE</string>
+    <string name="_75_hz">75 Hz</string>
+    <string name="_150_hz">150 Hz</string>
+    <string name="eq">EQ</string>
+    <string name="_100">100</string>
+    <string name="_250">250</string>
+    <string name="_1000">1000</string>
+    <string name="_4000">4000</string>
+    <string name="_10000">10000</string>
+    <string name="distance">ABSTAND</string>
+    <string name="far">Weit</string>
+    <string name="near">Nah</string><!--TODO-->
+    <string name="tone">KLANG</string>
+    <string name="dark">Dunkle</string>
+    <string name="neutral">Neutral</string>
+    <string name="bright">Hell</string>
+    <string name="auto_gain">AUTO VERSTÄRKUNG</string>
+    <string name="low">Leise</string>
+    <string name="high">Laut</string>
+    <string name="normal">Halblaut</string>
+    <string name="lock">SPERREN</string>
+    <string name="unofficial_client">inoffizieller MVX2U-Client</string>
+    <string name="auto_button_text">Auto</string>
+    <string name="manual_button_text">Manuell</string>
+</resources>
