@@ -127,7 +127,6 @@
         <RadioButton
             android:id="@+id/radioADistNear"
             style="@style/sdRadioButton"
-            android:buttonTint="#FF5F00"
             android:enabled="false"
             android:text="@string/near" />
 
