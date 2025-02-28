@@ -31,8 +31,8 @@
     <string name="bright">Bright</string>
     <string name="auto_gain">AUTO GAIN</string>
     <string name="low">Low</string>
-    <string name="high">High</string>
     <string name="normal">Normal</string>
+    <string name="high">High</string>
     <string name="lock">LOCK</string>
     <string name="unofficial_client">Unofficial MVX2U Client</string>
     <string name="auto_button_text">Auto</string>
