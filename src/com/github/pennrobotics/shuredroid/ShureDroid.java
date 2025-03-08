@@ -119,7 +119,7 @@ public class ShureDroid extends Activity implements View.OnClickListener, SeekBa
 
 	private void initUI() {
 		// TODO: setSystemUiViz and SYSTEM_UI_FLAG_FULLSCREEN deprecated
-		getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
+		//getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
 		/* TODO: getActionBar().hide(); */
 
 		btnSelectHIDDevice = findViewById(R.id.btnSelectHIDDevice);
