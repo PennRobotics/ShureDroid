@@ -95,8 +95,6 @@ public class ShureDroid extends Activity implements View.OnClickListener, SeekBa
 	private CheckBox switchEq5;
 	private SeekBar seekBarEq5;
 
-	//private EditText editLogText;
-
 	protected EventBus eventBus;
 
 	private void prepareServices() {
@@ -118,10 +116,6 @@ public class ShureDroid extends Activity implements View.OnClickListener, SeekBa
 	}
 
 	private void initUI() {
-		// TODO: setSystemUiViz and SYSTEM_UI_FLAG_FULLSCREEN deprecated
-		//getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
-		/* TODO: getActionBar().hide(); */
-
 		btnSelectHIDDevice = findViewById(R.id.btnSelectHIDDevice);
 
 		viewSwitcher = findViewById(R.id.viewSwitcher);
@@ -129,8 +123,6 @@ public class ShureDroid extends Activity implements View.OnClickListener, SeekBa
 		viewManual = findViewById(R.id.viewManual);
 
 		tabLayout = findViewById(R.id.tabLayout);
-		//tabManual = findViewById(R.id.tabManual);
-		//tabAuto = findViewById(R.id.tabAuto);
 
 		switchLockAPanel = findViewById(R.id.switchLockAPanel);
 		switchLockMPanel = findViewById(R.id.switchLockMPanel);
@@ -178,9 +170,6 @@ public class ShureDroid extends Activity implements View.OnClickListener, SeekBa
 		seekBarEq4 = findViewById(R.id.seekBarEq4);
 		switchEq5 = findViewById(R.id.switchEq5);
 		seekBarEq5 = findViewById(R.id.seekBarEq5);
-
-		//editLogText = findViewById(R.id.editLogText);
-		// TODO: replace editLogText with a debug log file in local folder!
 
 		makeSettingsUIEnabled(false);
 
@@ -252,7 +241,6 @@ public class ShureDroid extends Activity implements View.OnClickListener, SeekBa
 		switchEq4.setOnClickListener(this);
 		switchEq5.setOnClickListener(this);
 
-		//mLog("Initialized\nPlease select your USB HID device\n", false);
 		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 	}
 
