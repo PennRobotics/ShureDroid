@@ -47,15 +47,9 @@ public class USBHIDService extends AbstractUSBHIDService {
 		return usbDevice.getDeviceName() + " devID:" + usbDevice.getDeviceId();
 	}
 
-	@Override
-	public void onUSBDataSent(int status, byte[] out) {
-		if (status <= 0) {
-			//mLog("Unable to send (" + status + ")");
-		} else {
-			//mLog("Sent " + status + " bytes");
-			//mLog(USBUtils.toHex(out));
-		}
-	}
+//	@Override
+//	public void onUSBDataSent(int status, byte[] out) {
+//	}
 
 	@Override
 	public void onUSBDataReceive(byte[] buffer) {
