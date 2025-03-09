@@ -5,7 +5,10 @@ import android.app.AlertDialog;
 import android.app.NotificationManager;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.os.ParcelFileDescriptor;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.CheckBox;
@@ -39,6 +42,8 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -602,9 +607,9 @@ public class ShureDroid extends Activity implements View.OnClickListener, SeekBa
 			case 0x02000250:  switchEq5.setChecked(pVal != 0); break;
 			case 0x02000254:  seekBarEq5.setProgress(pVal/20 + 4); break;
 			default:
-				mLog("Param Error:");
-				mLog(event.getDataAsHex());
+				mLog("Param Error");
 		}
+		mLog("RECV: " + event.getDataAsHex());
 	}
 
 	@Subscribe(threadMode = ThreadMode.MAIN)
@@ -726,25 +731,26 @@ public class ShureDroid extends Activity implements View.OnClickListener, SeekBa
 	private void mLog(String msg) throws RuntimeException {
 		if (!logEnabled)  { return; }
 
-		File logFile = new File("debug-log.txt");
-		if (!logFile.exists()) {
-			try {
-				logFile.createNewFile();
-			} catch (IOException e) {
-				throw new RuntimeException(e);
-			}
-		}
-		BufferedWriter buf = null;
+		String state = Environment.getExternalStorageState();
+		if (!Environment.MEDIA_MOUNTED.equals(state))  { return; }
+
+		File logFile = new File(getExternalFilesDir(null), "debug-log.txt");
+
+		FileOutputStream logStream = null;
 		try {
-			buf = new BufferedWriter(new FileWriter(logFile, true));
-			buf.append(msg);
-				buf.newLine();
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		} finally {
-			if (buf != null) {
-				try  { buf.close(); }  catch (IOException e)  { throw new RuntimeException(e); }
+			if (!logFile.exists()) {
+				logFile.createNewFile();
 			}
-		}
-	}
+			logStream = new FileOutputStream(logFile, true);
+
+			logStream.write(msg.getBytes());
+			logStream.write('\n');
+			logStream.flush();
+			logStream.close();
+		} catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
