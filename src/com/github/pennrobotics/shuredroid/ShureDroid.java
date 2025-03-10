@@ -5,7 +5,10 @@ import android.app.AlertDialog;
 import android.app.NotificationManager;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.os.ParcelFileDescriptor;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.CheckBox;
@@ -15,6 +18,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.ScrollView;
 import android.widget.SeekBar;
+import android.widget.ToggleButton;
 import android.widget.ViewSwitcher;
 
 import com.github.pennrobotics.shuredroid.core.Consts;
@@ -36,11 +40,19 @@ import org.greenrobot.eventbus.EventBusException;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class ShureDroid extends Activity implements View.OnClickListener, SeekBar.OnSeekBarChangeListener {
 
 	private Intent usbService;
 
 	private ImageButton btnSelectHIDDevice;
+	private ToggleButton btnLog;
 
 	private ViewSwitcher viewSwitcher;
 	private ScrollView viewAuto;
@@ -95,9 +107,8 @@ public class ShureDroid extends Activity implements View.OnClickListener, SeekBa
 	private CheckBox switchEq5;
 	private SeekBar seekBarEq5;
 
-	//private EditText editLogText;
-
 	protected EventBus eventBus;
+	protected boolean logEnabled = false;
 
 	private void prepareServices() {
 		usbService = new Intent(this, USBHIDService.class);
@@ -118,19 +129,14 @@ public class ShureDroid extends Activity implements View.OnClickListener, SeekBa
 	}
 
 	private void initUI() {
-		// TODO: setSystemUiViz and SYSTEM_UI_FLAG_FULLSCREEN deprecated
-		getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
-		/* TODO: getActionBar().hide(); */
-
 		btnSelectHIDDevice = findViewById(R.id.btnSelectHIDDevice);
+		btnLog = findViewById(R.id.btnLog);
 
 		viewSwitcher = findViewById(R.id.viewSwitcher);
 		viewAuto = findViewById(R.id.viewAuto);
 		viewManual = findViewById(R.id.viewManual);
 
 		tabLayout = findViewById(R.id.tabLayout);
-		//tabManual = findViewById(R.id.tabManual);
-		//tabAuto = findViewById(R.id.tabAuto);
 
 		switchLockAPanel = findViewById(R.id.switchLockAPanel);
 		switchLockMPanel = findViewById(R.id.switchLockMPanel);
@@ -179,11 +185,9 @@ public class ShureDroid extends Activity implements View.OnClickListener, SeekBa
 		switchEq5 = findViewById(R.id.switchEq5);
 		seekBarEq5 = findViewById(R.id.seekBarEq5);
 
-		//editLogText = findViewById(R.id.editLogText);
-		// TODO: replace editLogText with a debug log file in local folder!
-
 		makeSettingsUIEnabled(false);
 
+		btnLog.setOnClickListener(this);
 		btnSelectHIDDevice.setOnClickListener(this);
 
 		tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -252,7 +256,6 @@ public class ShureDroid extends Activity implements View.OnClickListener, SeekBa
 		switchEq4.setOnClickListener(this);
 		switchEq5.setOnClickListener(this);
 
-		//mLog("Initialized\nPlease select your USB HID device\n", false);
 		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 	}
 
@@ -262,6 +265,9 @@ public class ShureDroid extends Activity implements View.OnClickListener, SeekBa
 				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202000185"+p,0)));  // Auto Mode Enable
 				eventBus.post(new USBDataSendEvent(USBUtils.padPktData("020202010186"+p,0)));  // Mix
 		 */
+		if (v.getId() == R.id.btnLog) {
+			logEnabled = btnLog.isChecked();
+        }
 		if (v.getId() == R.id.btnSelectHIDDevice) {
 			eventBus.post(new PrepareDevicesListEvent());
 		}
@@ -275,7 +281,7 @@ public class ShureDroid extends Activity implements View.OnClickListener, SeekBa
 		}
 
 		if (v.getId() == R.id.switchPhantomAPanel ||
-			v.getId() == R.id.switchPhantomMPanel) {
+			v.getId() == R.id.switchPhantomMPanel)	 {
 			boolean c = (v.getId() == R.id.switchPhantomAPanel)
 					? switchPhantomAPanel.isChecked()
 					: switchPhantomMPanel.isChecked();
@@ -480,11 +486,6 @@ public class ShureDroid extends Activity implements View.OnClickListener, SeekBa
 		seekBarEq5.setEnabled(enable);
 	}
 
-	private void mLog(String log) {
-		//editLogText.append(log + "\n");
-		// TODO-hi: write to log file here!
-	}
-
 	@Subscribe(threadMode = ThreadMode.MAIN)
 	public void onEvent(USBDataReceiveEvent event) {
 		byte[] ba = event.getData();
@@ -606,9 +607,9 @@ public class ShureDroid extends Activity implements View.OnClickListener, SeekBa
 			case 0x02000250:  switchEq5.setChecked(pVal != 0); break;
 			case 0x02000254:  seekBarEq5.setProgress(pVal/20 + 4); break;
 			default:
-				mLog("Param Error:");
-				mLog(event.getDataAsHex());
+				mLog("Param Error");
 		}
+		mLog("RECV: " + event.getDataAsHex());
 	}
 
 	@Subscribe(threadMode = ThreadMode.MAIN)
@@ -727,4 +728,29 @@ public class ShureDroid extends Activity implements View.OnClickListener, SeekBa
 
 	private void setupNotifications()  {}  // TODO
 
+	private void mLog(String msg) throws RuntimeException {
+		if (!logEnabled)  { return; }
+
+		String state = Environment.getExternalStorageState();
+		if (!Environment.MEDIA_MOUNTED.equals(state))  { return; }
+
+		File logFile = new File(getExternalFilesDir(null), "debug-log.txt");
+
+		FileOutputStream logStream = null;
+		try {
+			if (!logFile.exists()) {
+				logFile.createNewFile();
+			}
+			logStream = new FileOutputStream(logFile, true);
+
+			logStream.write(msg.getBytes());
+			logStream.write('\n');
+			logStream.flush();
+			logStream.close();
+		} catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
