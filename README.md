@@ -1,6 +1,12 @@
 ShureDroid
 ==========
 
+**FOR IMPROVED COMPATIBILITY WITH F-DROID, THIS PROJECT NOW LIVES ON GITLAB**
+
+https://gitlab.com/PennRobotics/ShureDroid
+
+-----
+
 ![](res/mipmap-xxhdpi/ic_launcher.png)
 
 This fork of [USB HID Terminal](https://github.com/452/USBHIDTerminal) will configure a
